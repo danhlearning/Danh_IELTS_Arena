@@ -902,38 +902,30 @@ class GameEngine {
       this.roundResults.push(true);
       this.showFeedbackDrawer(true, q, false, retentionRate);
     } else {
+      this.isAnsweringLocked = true;
+      clearInterval(this.timerInterval);
       blankBoxes.forEach(b => b.classList.add('wrong-word'));
+
+      // Hiển thị ký tự đúng để học sinh nhận diện từ đúng
+      const missingLetters = Array.isArray(q.missing) ? q.missing : q.missing.split('');
+      blankBoxes.forEach((b, i) => {
+        b.textContent = missingLetters[i] || '_';
+        b.classList.remove('empty');
+        b.classList.add('filled', 'wrong-word');
+      });
+
       if (typeof navigator !== 'undefined' && navigator.vibrate) {
         try { navigator.vibrate([60, 50, 70]); } catch (e) {}
       }
       this.handleWrongAnswer(false);
+      const timeTaken = (Date.now() - this.questionStartTime) / 1000;
+      this.responseTimes.push(timeTaken);
       const retentionRate = this.updateWordRetention(q.id, false);
-      this.updateMemoryProfile(q, false, 0);
+      this.updateMemoryProfile(q, false, timeTaken);
+      this.roundResults.push(false);
 
-      if (this.hearts <= 0) {
-        this.isAnsweringLocked = true;
-        clearInterval(this.timerInterval);
-        this.responseTimes.push((Date.now() - this.questionStartTime) / 1000);
-        this.roundResults.push(false);
-        this.showFeedbackDrawer(false, q, false, retentionRate);
-      } else {
-        setTimeout(() => {
-          if (this.isAnsweringLocked) return;
-          blankBoxes.forEach(b => {
-            const tileId = b.dataset.tileId;
-            b.textContent = '_';
-            b.className = 'letter-box blank empty';
-            delete b.dataset.tileId;
-            if (tileId) {
-              const tileBtn = this.findTileButton(tileId);
-              if (tileBtn && !tileBtn.classList.contains('eliminated')) {
-                tileBtn.classList.remove('used');
-                tileBtn.disabled = false;
-              }
-            }
-          });
-        }, 650);
-      }
+      // Với câu sai: Hiện feedback drawer giải thích và đợi học sinh bấm nút "Tiếp tục"
+      this.showFeedbackDrawer(false, q, false, retentionRate);
     }
   }
 
@@ -961,13 +953,16 @@ class GameEngine {
     });
   }
 
-  // Đếm ngược 10 GIÂY với bước nhảy 50ms siêu mượt
+  // Đếm ngược với bước nhảy 50ms siêu mượt
   startTimer() {
     clearInterval(this.timerInterval);
     this.remainingTime = this.maxTimeSeconds;
     this.questionStartTime = Date.now();
     this.timerBar.classList.remove('urgent');
     if (this.countdownDigitalBox) this.countdownDigitalBox.classList.remove('urgent');
+
+    // Theo dõi giây nguyên để phát âm thanh tích tắc êm ái từng giây, tránh phát 20 lần/giây
+    let lastTickSecond = Math.ceil(this.remainingTime);
 
     const updateTimer = () => {
       if (this.isFrozen || this.isAnsweringLocked) return;
@@ -976,18 +971,27 @@ class GameEngine {
       const progressPercent = Math.max(0, (this.remainingTime / this.maxTimeSeconds) * 100);
       this.timerBar.style.width = `${progressPercent}%`;
 
-      // Cập nhật số giây thời gian thực (ví dụ: 9.8s)
+      // Cập nhật số giây thời gian thực (ví dụ: 14.8s)
       if (this.timerSecondsEl) {
         this.timerSecondsEl.textContent = `${Math.max(0, this.remainingTime).toFixed(1)}s`;
       }
 
-      // Khi còn dưới 3.0 giây: Báo động đỏ và tăng nhịp tích tắc dồn dập
+      const currentSec = Math.ceil(this.remainingTime);
+
+      // Khi còn dưới 3.0 giây: Báo động đỏ và nhịp tích tắc êm ái
       if (this.remainingTime <= 3.0) {
         this.timerBar.classList.add('urgent');
         if (this.countdownDigitalBox) this.countdownDigitalBox.classList.add('urgent');
-        soundEngine.playTick(true);
+        if (currentSec !== lastTickSecond && currentSec > 0) {
+          lastTickSecond = currentSec;
+          soundEngine.playTick(true);
+        }
       } else {
-        soundEngine.playTick(false);
+        // Nhịp đếm nhẹ nhàng từng giây một
+        if (currentSec !== lastTickSecond && currentSec > 0) {
+          lastTickSecond = currentSec;
+          soundEngine.playTick(false);
+        }
       }
 
       if (this.remainingTime <= 0) {
@@ -1234,9 +1238,15 @@ class GameEngine {
       this.commonMistakeText.textContent = q.common_mistake ? `💡 ${q.common_mistake}` : '';
     }
 
+    clearTimeout(this.autoAdvanceTimer);
+    this.autoAdvanceTimer = null;
+
+    // CHỈ tự động chuyển sang câu tiếp theo khi học sinh trả lời ĐÚNG (sau 1.8s).
+    // Với câu trả lời SAI hoặc HẾT GIỜ: TUYỆT ĐỐI KHÔNG tự động đổi câu.
+    // Giữ nguyên giao diện để học sinh xem kỹ giải thích, CHỈ đổi câu khi học sinh bấm nút "Tiếp tục".
     if (isCorrect && this.hearts > 0 && this.currentIndex < this.questions.length - 1) {
       this.autoAdvanceTimer = setTimeout(() => {
-        if (this.feedbackDrawer.classList.contains('active')) {
+        if (this.feedbackDrawer && this.feedbackDrawer.classList.contains('active')) {
           this.nextQuestion();
         }
       }, 1800);

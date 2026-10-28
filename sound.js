@@ -97,27 +97,44 @@ class SoundEngine {
     });
   }
 
-  // 3. Âm thanh Đồng hồ Tích tắc (Đẩy nhịp khi thời gian <= 3.0s)
+  // 3. Âm thanh Đồng hồ Tích tắc / Đếm ngược (Êm dịu, nhẹ nhàng, thanh thoát chuẩn iOS Marimba/Woodblock)
   playTick(isUrgent = false) {
     if (this.isMuted) return;
     this.init();
     if (!this.ctx) return;
 
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
 
-    osc.type = isUrgent ? 'square' : 'triangle';
-    osc.frequency.setValueAtTime(isUrgent ? 880 : 440, now);
+      // Dùng sóng Sine thuần khiết, êm ái tự nhiên, không dùng Square gây chói gắt
+      osc.type = 'sine';
+      
+      // Tần số nhẹ dịu mô phỏng gõ gỗ êm tai (woodblock/soft haptic click)
+      // Bình thường: 440Hz -> 360Hz. Khi khẩn cấp (<= 3s): 580Hz -> 480Hz
+      const baseFreq = isUrgent ? 580 : 440;
+      osc.frequency.setValueAtTime(baseFreq, now);
+      if (osc.frequency.exponentialRampToValueAtTime) {
+        osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.8, now + 0.04);
+      }
 
-    gain.gain.setValueAtTime(isUrgent ? 0.15 : 0.06, now);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+      // Âm lượng siêu nhẹ nhàng (0.02 - 0.035), êm ái không gây chói tai
+      const peakGain = isUrgent ? 0.035 : 0.02;
+      gain.gain.setValueAtTime(0.0001, now);
+      if (gain.gain.linearRampToValueAtTime) {
+        gain.gain.linearRampToValueAtTime(peakGain, now + 0.004);
+      }
+      if (gain.gain.exponentialRampToValueAtTime) {
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.042);
+      }
 
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
 
-    osc.start(now);
-    osc.stop(now + 0.045);
+      osc.start(now);
+      osc.stop(now + 0.045);
+    } catch (e) {}
   }
 
   // 4. Âm thanh kích hoạt FEVER MODE & STREAK (Chuẩn Danh_English_Tutor ngũ âm cao trào)

@@ -663,19 +663,19 @@ body.light-theme .icon-btn {
 
 /* ==========================================================================
    ZONE 2: QUESTION CONTEXT (VÙNG ĐỌC HIỂU TRUNG TÂM LIQUID GLASS PRO)
-   Được đẩy cao lên ngay sát mép dưới Header (Vùng nhìn tự nhiên nhất)
+   Hạ khu vực câu hỏi xuống phía dưới hơn, gần tầm tay và vùng thao tác
    ========================================================================== */
 .zone-question {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: stretch;
   padding: 0;
-  margin-top: 0px;
+  margin: clamp(20px, 3.2vh, 38px) auto clamp(10px, 1.6vh, 18px) auto;
   z-index: 10;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .question-card {
@@ -1349,6 +1349,18 @@ body:not(.light-theme) .btn-tactile.wrong {
 
 .feedback-drawer.wrong-state {
   border-top: 4px solid var(--color-danger);
+}
+
+.feedback-drawer.wrong-state .feedback-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-bottom: 4px solid #991b1b;
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+}
+
+body.light-theme .feedback-drawer.wrong-state .feedback-btn {
+  background: #ef4444 !important;
+  border-bottom: 4px solid #991b1b !important;
+  color: #ffffff !important;
 }
 
 .feedback-header-row {
