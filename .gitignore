@@ -1,0 +1,15 @@
+# Antigravity system generated logs and temporary artifacts
+.system_generated/
+*.log
+
+# Node dependencies
+node_modules/
+
+# Local screenshot tests
+current_view.png
+new_view.png
+refined_view.png
+
+# Operating system files
+.DS_Store
+Thumbs.db

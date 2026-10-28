@@ -1,0 +1,6172 @@
+{
+  "6": [
+    {
+      "title": "My New School",
+      "vietnamese": "Trường học mới của em",
+      "icon": "🎒",
+      "color": "#2563eb",
+      "words": [
+        {
+          "id": 1,
+          "term": "uniform",
+          "meaning": "đồng phục",
+          "example": "I wear my uniform to school.",
+          "icon": "👕"
+        },
+        {
+          "id": 2,
+          "term": "classmate",
+          "meaning": "bạn cùng lớp",
+          "example": "My classmate sits next to me.",
+          "icon": "👫"
+        },
+        {
+          "id": 3,
+          "term": "subject",
+          "meaning": "môn học",
+          "example": "English is my favourite subject.",
+          "icon": "📚"
+        },
+        {
+          "id": 4,
+          "term": "timetable",
+          "meaning": "thời khóa biểu",
+          "example": "Our timetable is on the classroom wall.",
+          "icon": "🗓️"
+        },
+        {
+          "id": 5,
+          "term": "playground",
+          "meaning": "sân chơi",
+          "example": "We play in the playground at break time.",
+          "icon": "🏀"
+        },
+        {
+          "id": 6,
+          "term": "library",
+          "meaning": "thư viện",
+          "example": "I borrow books from the library.",
+          "icon": "📖"
+        },
+        {
+          "id": 7,
+          "term": "homework",
+          "meaning": "bài tập về nhà",
+          "example": "I do my homework after dinner.",
+          "icon": "✏️"
+        },
+        {
+          "id": 8,
+          "term": "notebook",
+          "meaning": "vở ghi",
+          "example": "I write new words in my notebook.",
+          "icon": "📓"
+        }
+      ],
+      "number": 1,
+      "id": "unit1"
+    },
+    {
+      "title": "My House",
+      "vietnamese": "Ngôi nhà của em",
+      "icon": "🏡",
+      "color": "#0f766e",
+      "words": [
+        {
+          "id": 1,
+          "term": "living room",
+          "meaning": "phòng khách",
+          "example": "My family watches television in the living room.",
+          "icon": "🛋️"
+        },
+        {
+          "id": 2,
+          "term": "bedroom",
+          "meaning": "phòng ngủ",
+          "example": "My bedroom is small but bright.",
+          "icon": "🛏️"
+        },
+        {
+          "id": 3,
+          "term": "kitchen",
+          "meaning": "nhà bếp",
+          "example": "My mum is cooking in the kitchen.",
+          "icon": "🍳"
+        },
+        {
+          "id": 4,
+          "term": "bathroom",
+          "meaning": "phòng tắm",
+          "example": "There is a mirror in the bathroom.",
+          "icon": "🛁"
+        },
+        {
+          "id": 5,
+          "term": "balcony",
+          "meaning": "ban công",
+          "example": "We grow flowers on the balcony.",
+          "icon": "🌼"
+        },
+        {
+          "id": 6,
+          "term": "wardrobe",
+          "meaning": "tủ quần áo",
+          "example": "My clothes are in the wardrobe.",
+          "icon": "🚪"
+        },
+        {
+          "id": 7,
+          "term": "sofa",
+          "meaning": "ghế sô pha",
+          "example": "There is a blue sofa in the living room.",
+          "icon": "🛋️"
+        },
+        {
+          "id": 8,
+          "term": "fridge",
+          "meaning": "tủ lạnh",
+          "example": "The milk is in the fridge.",
+          "icon": "🧊"
+        }
+      ],
+      "number": 2,
+      "id": "unit2"
+    },
+    {
+      "title": "My Friends",
+      "vietnamese": "Bạn bè của em",
+      "icon": "🤝",
+      "color": "#be185d",
+      "words": [
+        {
+          "id": 1,
+          "term": "friendly",
+          "meaning": "thân thiện",
+          "example": "My new friend is very friendly.",
+          "icon": "😊"
+        },
+        {
+          "id": 2,
+          "term": "kind",
+          "meaning": "tốt bụng",
+          "example": "Lan is kind to everyone.",
+          "icon": "💗"
+        },
+        {
+          "id": 3,
+          "term": "clever",
+          "meaning": "thông minh",
+          "example": "Minh is clever and loves puzzles.",
+          "icon": "🧩"
+        },
+        {
+          "id": 4,
+          "term": "funny",
+          "meaning": "hài hước",
+          "example": "My funny friend makes us laugh.",
+          "icon": "😄"
+        },
+        {
+          "id": 5,
+          "term": "confident",
+          "meaning": "tự tin",
+          "example": "She feels confident when she speaks English.",
+          "icon": "🎤"
+        },
+        {
+          "id": 6,
+          "term": "creative",
+          "meaning": "sáng tạo",
+          "example": "Our creative friend draws beautiful pictures.",
+          "icon": "🎨"
+        },
+        {
+          "id": 7,
+          "term": "glasses",
+          "meaning": "kính mắt",
+          "example": "My friend wears glasses.",
+          "icon": "👓"
+        },
+        {
+          "id": 8,
+          "term": "curly hair",
+          "meaning": "tóc xoăn",
+          "example": "She has curly hair.",
+          "icon": "👩‍🦱"
+        }
+      ],
+      "number": 3,
+      "id": "unit3"
+    },
+    {
+      "title": "My Neighbourhood",
+      "vietnamese": "Khu phố của em",
+      "icon": "🏘️",
+      "color": "#7c3aed",
+      "words": [
+        {
+          "id": 1,
+          "term": "neighbourhood",
+          "meaning": "khu phố",
+          "example": "My neighbourhood is quiet at night.",
+          "icon": "🏘️"
+        },
+        {
+          "id": 2,
+          "term": "market",
+          "meaning": "chợ",
+          "example": "We buy fresh fruit at the market.",
+          "icon": "🛒"
+        },
+        {
+          "id": 3,
+          "term": "square",
+          "meaning": "quảng trường",
+          "example": "People meet in the town square.",
+          "icon": "🏛️"
+        },
+        {
+          "id": 4,
+          "term": "post office",
+          "meaning": "bưu điện",
+          "example": "The post office is next to the bank.",
+          "icon": "📮"
+        },
+        {
+          "id": 5,
+          "term": "railway station",
+          "meaning": "ga tàu",
+          "example": "The railway station is near my house.",
+          "icon": "🚉"
+        },
+        {
+          "id": 6,
+          "term": "temple",
+          "meaning": "ngôi đền",
+          "example": "There is an old temple in our town.",
+          "icon": "🏯"
+        },
+        {
+          "id": 7,
+          "term": "convenient",
+          "meaning": "thuận tiện",
+          "example": "The bus stop is convenient for students.",
+          "icon": "🚌"
+        },
+        {
+          "id": 8,
+          "term": "peaceful",
+          "meaning": "yên bình",
+          "example": "Our street is peaceful in the morning.",
+          "icon": "🌳"
+        }
+      ],
+      "number": 4,
+      "id": "unit4"
+    },
+    {
+      "title": "Natural Wonders of Viet Nam",
+      "vietnamese": "Kỳ quan thiên nhiên Việt Nam",
+      "icon": "🏞️",
+      "color": "#15803d",
+      "words": [
+        {
+          "id": 1,
+          "term": "mountain",
+          "meaning": "núi",
+          "example": "Fansipan is a high mountain.",
+          "icon": "⛰️"
+        },
+        {
+          "id": 2,
+          "term": "island",
+          "meaning": "hòn đảo",
+          "example": "We visited a small island last summer.",
+          "icon": "🏝️"
+        },
+        {
+          "id": 3,
+          "term": "waterfall",
+          "meaning": "thác nước",
+          "example": "The waterfall is beautiful after the rain.",
+          "icon": "💦"
+        },
+        {
+          "id": 4,
+          "term": "cave",
+          "meaning": "hang động",
+          "example": "The cave has many interesting rocks.",
+          "icon": "🪨"
+        },
+        {
+          "id": 5,
+          "term": "desert",
+          "meaning": "sa mạc",
+          "example": "A desert is a very dry place.",
+          "icon": "🏜️"
+        },
+        {
+          "id": 6,
+          "term": "forest",
+          "meaning": "rừng",
+          "example": "Many animals live in the forest.",
+          "icon": "🌲"
+        },
+        {
+          "id": 7,
+          "term": "river",
+          "meaning": "dòng sông",
+          "example": "The river flows through our town.",
+          "icon": "🏞️"
+        },
+        {
+          "id": 8,
+          "term": "travel",
+          "meaning": "đi du lịch",
+          "example": "We travel to Da Nang by train.",
+          "icon": "🧳"
+        }
+      ],
+      "number": 5,
+      "id": "unit5"
+    },
+    {
+      "title": "Our Tet Holiday",
+      "vietnamese": "Ngày Tết của chúng ta",
+      "icon": "🧧",
+      "color": "#c2410c",
+      "words": [
+        {
+          "id": 1,
+          "term": "lucky money",
+          "meaning": "tiền mừng tuổi",
+          "example": "Children receive lucky money at Tet.",
+          "icon": "🧧"
+        },
+        {
+          "id": 2,
+          "term": "fireworks",
+          "meaning": "pháo hoa",
+          "example": "We watch fireworks on New Year’s Eve.",
+          "icon": "🎆"
+        },
+        {
+          "id": 3,
+          "term": "peach blossom",
+          "meaning": "hoa đào",
+          "example": "There is a peach blossom tree in the room.",
+          "icon": "🌸"
+        },
+        {
+          "id": 4,
+          "term": "apricot blossom",
+          "meaning": "hoa mai",
+          "example": "Apricot blossoms are yellow.",
+          "icon": "🌼"
+        },
+        {
+          "id": 5,
+          "term": "decorate",
+          "meaning": "trang trí",
+          "example": "We decorate our house before Tet.",
+          "icon": "🎀"
+        },
+        {
+          "id": 6,
+          "term": "relative",
+          "meaning": "người họ hàng",
+          "example": "I visit my relatives during Tet.",
+          "icon": "👨‍👩‍👧"
+        },
+        {
+          "id": 7,
+          "term": "wish",
+          "meaning": "lời chúc",
+          "example": "I send a New Year wish to my grandparents.",
+          "icon": "💌"
+        },
+        {
+          "id": 8,
+          "term": "celebrate",
+          "meaning": "ăn mừng",
+          "example": "Our family celebrates Tet together.",
+          "icon": "🥳"
+        }
+      ],
+      "number": 6,
+      "id": "unit6"
+    },
+    {
+      "title": "Television",
+      "vietnamese": "Truyền hình",
+      "icon": "📺",
+      "color": "#4338ca",
+      "words": [
+        {
+          "id": 1,
+          "term": "programme",
+          "meaning": "chương trình",
+          "example": "This programme starts at seven o’clock.",
+          "icon": "📺"
+        },
+        {
+          "id": 2,
+          "term": "cartoon",
+          "meaning": "phim hoạt hình",
+          "example": "My brother likes this funny cartoon.",
+          "icon": "🐻"
+        },
+        {
+          "id": 3,
+          "term": "news",
+          "meaning": "bản tin",
+          "example": "My dad watches the news every evening.",
+          "icon": "📰"
+        },
+        {
+          "id": 4,
+          "term": "documentary",
+          "meaning": "phim tài liệu",
+          "example": "We watched a documentary about whales.",
+          "icon": "🐋"
+        },
+        {
+          "id": 5,
+          "term": "comedy",
+          "meaning": "chương trình hài",
+          "example": "The comedy made us laugh.",
+          "icon": "😆"
+        },
+        {
+          "id": 6,
+          "term": "channel",
+          "meaning": "kênh truyền hình",
+          "example": "Which channel is the football match on?",
+          "icon": "🔢"
+        },
+        {
+          "id": 7,
+          "term": "remote control",
+          "meaning": "điều khiển từ xa",
+          "example": "The remote control is on the table.",
+          "icon": "🎛️"
+        },
+        {
+          "id": 8,
+          "term": "viewer",
+          "meaning": "người xem",
+          "example": "The programme has many young viewers.",
+          "icon": "👀"
+        }
+      ],
+      "number": 7,
+      "id": "unit7"
+    },
+    {
+      "title": "Sports and Games",
+      "vietnamese": "Thể thao và trò chơi",
+      "icon": "⚽",
+      "color": "#b45309",
+      "words": [
+        {
+          "id": 1,
+          "term": "football",
+          "meaning": "bóng đá",
+          "example": "We play football after school.",
+          "icon": "⚽"
+        },
+        {
+          "id": 2,
+          "term": "badminton",
+          "meaning": "cầu lông",
+          "example": "My sister plays badminton on Sundays.",
+          "icon": "🏸"
+        },
+        {
+          "id": 3,
+          "term": "volleyball",
+          "meaning": "bóng chuyền",
+          "example": "Our team plays volleyball in the gym.",
+          "icon": "🏐"
+        },
+        {
+          "id": 4,
+          "term": "swimming",
+          "meaning": "bơi lội",
+          "example": "Swimming is my favourite sport.",
+          "icon": "🏊"
+        },
+        {
+          "id": 5,
+          "term": "athlete",
+          "meaning": "vận động viên",
+          "example": "The athlete runs very fast.",
+          "icon": "🏃"
+        },
+        {
+          "id": 6,
+          "term": "team",
+          "meaning": "đội",
+          "example": "Our team won the match.",
+          "icon": "👥"
+        },
+        {
+          "id": 7,
+          "term": "competition",
+          "meaning": "cuộc thi",
+          "example": "The competition begins tomorrow.",
+          "icon": "🏆"
+        },
+        {
+          "id": 8,
+          "term": "racket",
+          "meaning": "vợt",
+          "example": "I need a racket to play badminton.",
+          "icon": "🏸"
+        }
+      ],
+      "number": 8,
+      "id": "unit8"
+    },
+    {
+      "title": "Cities of the World",
+      "vietnamese": "Các thành phố trên thế giới",
+      "icon": "🌍",
+      "color": "#0369a1",
+      "words": [
+        {
+          "id": 1,
+          "term": "city",
+          "meaning": "thành phố",
+          "example": "Ha Noi is a busy city.",
+          "icon": "🏙️"
+        },
+        {
+          "id": 2,
+          "term": "landmark",
+          "meaning": "địa danh nổi bật",
+          "example": "The tower is a famous landmark.",
+          "icon": "🗼"
+        },
+        {
+          "id": 3,
+          "term": "museum",
+          "meaning": "bảo tàng",
+          "example": "We visited a history museum.",
+          "icon": "🏛️"
+        },
+        {
+          "id": 4,
+          "term": "palace",
+          "meaning": "cung điện",
+          "example": "The palace is open to visitors.",
+          "icon": "🏰"
+        },
+        {
+          "id": 5,
+          "term": "capital",
+          "meaning": "thủ đô",
+          "example": "Tokyo is the capital of Japan.",
+          "icon": "📍"
+        },
+        {
+          "id": 6,
+          "term": "continent",
+          "meaning": "châu lục",
+          "example": "Asia is a large continent.",
+          "icon": "🌏"
+        },
+        {
+          "id": 7,
+          "term": "famous",
+          "meaning": "nổi tiếng",
+          "example": "This bridge is famous around the world.",
+          "icon": "✨"
+        },
+        {
+          "id": 8,
+          "term": "visit",
+          "meaning": "tham quan",
+          "example": "I want to visit Singapore one day.",
+          "icon": "🧳"
+        }
+      ],
+      "number": 9,
+      "id": "unit9"
+    },
+    {
+      "title": "Our Houses in the Future",
+      "vietnamese": "Ngôi nhà trong tương lai",
+      "icon": "🚀",
+      "color": "#7c3aed",
+      "words": [
+        {
+          "id": 1,
+          "term": "future",
+          "meaning": "tương lai",
+          "example": "Our homes may look different in the future.",
+          "icon": "🔮"
+        },
+        {
+          "id": 2,
+          "term": "robot",
+          "meaning": "người máy",
+          "example": "A robot may clean the kitchen.",
+          "icon": "🤖"
+        },
+        {
+          "id": 3,
+          "term": "solar energy",
+          "meaning": "năng lượng mặt trời",
+          "example": "Our house uses solar energy.",
+          "icon": "☀️"
+        },
+        {
+          "id": 4,
+          "term": "appliance",
+          "meaning": "thiết bị gia dụng",
+          "example": "A washing machine is an appliance.",
+          "icon": "🔌"
+        },
+        {
+          "id": 5,
+          "term": "smart home",
+          "meaning": "ngôi nhà thông minh",
+          "example": "A smart home can turn on the lights.",
+          "icon": "🏠"
+        },
+        {
+          "id": 6,
+          "term": "wireless",
+          "meaning": "không dây",
+          "example": "The speaker is wireless.",
+          "icon": "📡"
+        },
+        {
+          "id": 7,
+          "term": "space",
+          "meaning": "không gian vũ trụ",
+          "example": "Some people dream of living in space.",
+          "icon": "🌌"
+        },
+        {
+          "id": 8,
+          "term": "automatically",
+          "meaning": "một cách tự động",
+          "example": "The lights turn on automatically.",
+          "icon": "💡"
+        }
+      ],
+      "number": 10,
+      "id": "unit10"
+    },
+    {
+      "title": "Our Greener World",
+      "vietnamese": "Thế giới xanh hơn",
+      "icon": "🌱",
+      "color": "#047857",
+      "words": [
+        {
+          "id": 1,
+          "term": "recycle",
+          "meaning": "tái chế",
+          "example": "We recycle paper and plastic bottles.",
+          "icon": "♻️"
+        },
+        {
+          "id": 2,
+          "term": "reuse",
+          "meaning": "tái sử dụng",
+          "example": "I reuse this glass jar.",
+          "icon": "🫙"
+        },
+        {
+          "id": 3,
+          "term": "reduce",
+          "meaning": "giảm bớt",
+          "example": "We should reduce plastic waste.",
+          "icon": "📉"
+        },
+        {
+          "id": 4,
+          "term": "pollution",
+          "meaning": "ô nhiễm",
+          "example": "Air pollution is a serious problem.",
+          "icon": "🏭"
+        },
+        {
+          "id": 5,
+          "term": "environment",
+          "meaning": "môi trường",
+          "example": "We can help protect the environment.",
+          "icon": "🌍"
+        },
+        {
+          "id": 6,
+          "term": "plastic",
+          "meaning": "nhựa",
+          "example": "This bag is made of plastic.",
+          "icon": "🛍️"
+        },
+        {
+          "id": 7,
+          "term": "bin",
+          "meaning": "thùng rác",
+          "example": "Please put the paper in the bin.",
+          "icon": "🗑️"
+        },
+        {
+          "id": 8,
+          "term": "save",
+          "meaning": "tiết kiệm",
+          "example": "Turn off the lights to save energy.",
+          "icon": "💡"
+        }
+      ],
+      "number": 11,
+      "id": "unit11"
+    },
+    {
+      "title": "Robots",
+      "vietnamese": "Người máy",
+      "icon": "🤖",
+      "color": "#475569",
+      "words": [
+        {
+          "id": 1,
+          "term": "robot",
+          "meaning": "người máy",
+          "example": "This robot can speak English.",
+          "icon": "🤖"
+        },
+        {
+          "id": 2,
+          "term": "technology",
+          "meaning": "công nghệ",
+          "example": "Technology changes our lives.",
+          "icon": "💻"
+        },
+        {
+          "id": 3,
+          "term": "helpful",
+          "meaning": "có ích",
+          "example": "A cleaning robot is helpful at home.",
+          "icon": "🧹"
+        },
+        {
+          "id": 4,
+          "term": "housework",
+          "meaning": "việc nhà",
+          "example": "Robots may do housework for us.",
+          "icon": "🧺"
+        },
+        {
+          "id": 5,
+          "term": "recognise",
+          "meaning": "nhận ra",
+          "example": "The robot can recognise my voice.",
+          "icon": "🎙️"
+        },
+        {
+          "id": 6,
+          "term": "move",
+          "meaning": "di chuyển",
+          "example": "The robot can move across the room.",
+          "icon": "➡️"
+        },
+        {
+          "id": 7,
+          "term": "repair",
+          "meaning": "sửa chữa",
+          "example": "A robot may repair broken machines.",
+          "icon": "🛠️"
+        },
+        {
+          "id": 8,
+          "term": "human",
+          "meaning": "con người",
+          "example": "Robots can work with humans.",
+          "icon": "🧑"
+        }
+      ],
+      "number": 12,
+      "id": "unit12"
+    }
+  ],
+  "7": [
+    {
+      "title": "Hobbies",
+      "vietnamese": "Sở thích",
+      "icon": "🎨",
+      "color": "#2563eb",
+      "words": [
+        {
+          "id": 1,
+          "term": "hobby",
+          "meaning": "sở thích",
+          "example": "My hobby is drawing pictures.",
+          "icon": "🎨",
+          "image": "./assets/images/pencil/unit1/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "gardening",
+          "meaning": "làm vườn",
+          "example": "My grandmother enjoys gardening.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit1/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "collecting coins",
+          "meaning": "sưu tầm tiền xu",
+          "example": "Nam likes collecting coins from different countries.",
+          "icon": "🪙",
+          "image": "./assets/images/pencil/unit1/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "making models",
+          "meaning": "làm mô hình",
+          "example": "I enjoy making models of ships.",
+          "icon": "⛵",
+          "image": "./assets/images/pencil/unit1/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "building dollhouses",
+          "meaning": "làm nhà búp bê",
+          "example": "Mai likes building dollhouses from cardboard.",
+          "icon": "🏠",
+          "image": "./assets/images/pencil/unit1/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "cycling",
+          "meaning": "đạp xe",
+          "example": "We go cycling in the park on Sundays.",
+          "icon": "🚲",
+          "image": "./assets/images/pencil/unit1/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "taking photos",
+          "meaning": "chụp ảnh",
+          "example": "My brother loves taking photos of flowers.",
+          "icon": "📷",
+          "image": "./assets/images/pencil/unit1/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "creativity",
+          "meaning": "sự sáng tạo",
+          "example": "Making a new toy from old boxes needs creativity.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit1/8-v1.webp"
+        }
+      ],
+      "number": 1,
+      "id": "unit1"
+    },
+    {
+      "title": "Healthy Living",
+      "vietnamese": "Sống lành mạnh",
+      "icon": "🥗",
+      "color": "#15803d",
+      "words": [
+        {
+          "id": 1,
+          "term": "exercise",
+          "meaning": "tập thể dục",
+          "example": "I exercise every morning.",
+          "icon": "🏃",
+          "image": "./assets/images/pencil/unit2/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "vegetable",
+          "meaning": "rau",
+          "example": "A carrot is a vegetable.",
+          "icon": "🥕",
+          "image": "./assets/images/pencil/unit2/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "fruit",
+          "meaning": "trái cây",
+          "example": "I eat fresh fruit after lunch.",
+          "icon": "🍎",
+          "image": "./assets/images/pencil/unit2/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "sunburn",
+          "meaning": "tình trạng da bị cháy nắng",
+          "example": "His shoulders are red because of sunburn.",
+          "icon": "☀️",
+          "image": "./assets/images/pencil/unit2/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "water",
+          "meaning": "nước",
+          "example": "I drink water after playing football.",
+          "icon": "💧",
+          "image": "./assets/images/pencil/unit2/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "sleep",
+          "meaning": "ngủ",
+          "example": "I sleep for eight hours every night.",
+          "icon": "🛌",
+          "image": "./assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "outdoor activity",
+          "meaning": "hoạt động ngoài trời",
+          "example": "Flying a kite is an outdoor activity.",
+          "icon": "🪁",
+          "image": "./assets/images/pencil/unit2/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "balanced diet",
+          "meaning": "chế độ ăn uống cân bằng",
+          "example": "A balanced diet includes different kinds of food.",
+          "icon": "🥗",
+          "image": "./assets/images/pencil/unit2/8-v1.webp"
+        }
+      ],
+      "number": 2,
+      "id": "unit2"
+    },
+    {
+      "title": "Community Service",
+      "vietnamese": "Hoạt động phục vụ cộng đồng",
+      "icon": "🤝",
+      "color": "#0f766e",
+      "words": [
+        {
+          "id": 1,
+          "term": "volunteer",
+          "meaning": "tình nguyện viên",
+          "example": "The volunteer helps clean the park.",
+          "icon": "🙋",
+          "image": "./assets/images/pencil/unit3/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "donate",
+          "meaning": "quyên góp, tặng để giúp đỡ",
+          "example": "We donate books to children who need them.",
+          "icon": "🎁",
+          "image": "./assets/images/pencil/unit3/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "rubbish",
+          "meaning": "rác",
+          "example": "We put the rubbish in a bag.",
+          "icon": "🗑️",
+          "image": "./assets/images/pencil/unit3/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "plant trees",
+          "meaning": "trồng cây",
+          "example": "Our class will plant trees in the school garden.",
+          "icon": "🌳",
+          "image": "./assets/images/pencil/unit3/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "clean up",
+          "meaning": "dọn sạch",
+          "example": "We clean up the beach every month.",
+          "icon": "🧹",
+          "image": "./assets/images/pencil/unit3/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "nursing home",
+          "meaning": "viện dưỡng lão",
+          "example": "We read stories to older people at the nursing home.",
+          "icon": "🏡",
+          "image": "./assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "used clothes",
+          "meaning": "quần áo đã qua sử dụng",
+          "example": "These clean used clothes can help other families.",
+          "icon": "👕",
+          "image": "./assets/images/pencil/unit3/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "community service",
+          "meaning": "hoạt động phục vụ cộng đồng",
+          "example": "Cleaning the local park is community service.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit3/8-v1.webp"
+        }
+      ],
+      "number": 3,
+      "id": "unit3"
+    },
+    {
+      "title": "Music and Arts",
+      "vietnamese": "Âm nhạc và nghệ thuật",
+      "icon": "🎭",
+      "color": "#be185d",
+      "words": [
+        {
+          "id": 1,
+          "term": "painting",
+          "meaning": "bức tranh",
+          "example": "This painting shows a quiet village.",
+          "icon": "🖼️",
+          "image": "./assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "portrait",
+          "meaning": "tranh chân dung",
+          "example": "She painted a portrait of her mother.",
+          "icon": "👩",
+          "image": "./assets/images/pencil/unit4/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "guitar",
+          "meaning": "đàn ghi ta",
+          "example": "My sister plays the guitar.",
+          "icon": "🎸",
+          "image": "./assets/images/pencil/unit4/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "drum",
+          "meaning": "trống",
+          "example": "He plays the drum in our band.",
+          "icon": "🥁",
+          "image": "./assets/images/pencil/unit4/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "violin",
+          "meaning": "đàn vi ô lông",
+          "example": "Lan practises the violin after school.",
+          "icon": "🎻",
+          "image": "./assets/images/pencil/unit4/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "artist",
+          "meaning": "nghệ sĩ",
+          "example": "The artist is painting a picture.",
+          "icon": "🧑‍🎨",
+          "image": "./assets/images/pencil/unit4/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "performance",
+          "meaning": "buổi biểu diễn",
+          "example": "We watched a musical performance at school.",
+          "icon": "🎤",
+          "image": "./assets/images/pencil/unit4/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "water puppet show",
+          "meaning": "buổi múa rối nước",
+          "example": "The water puppet show tells a story about village life.",
+          "icon": "🎭",
+          "image": "./assets/images/pencil/unit4/8-v1.webp"
+        }
+      ],
+      "number": 4,
+      "id": "unit4"
+    },
+    {
+      "title": "Food and Drink",
+      "vietnamese": "Đồ ăn và thức uống",
+      "icon": "🍲",
+      "color": "#ea580c",
+      "words": [
+        {
+          "id": 1,
+          "term": "noodle",
+          "meaning": "sợi mì, sợi bún",
+          "example": "This noodle is long and thin.",
+          "icon": "🍜",
+          "image": "./assets/images/pencil/unit5/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "rice",
+          "meaning": "gạo, cơm",
+          "example": "We eat rice with vegetables.",
+          "icon": "🍚",
+          "image": "./assets/images/pencil/unit5/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "omelette",
+          "meaning": "trứng tráng",
+          "example": "Dad makes an omelette for breakfast.",
+          "icon": "🍳",
+          "image": "./assets/images/pencil/unit5/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "flour",
+          "meaning": "bột mì",
+          "example": "We use flour to make bread.",
+          "icon": "🌾",
+          "image": "./assets/images/pencil/unit5/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "pepper",
+          "meaning": "hạt tiêu, tiêu",
+          "example": "Add a little pepper to the soup.",
+          "icon": "🧂",
+          "image": "./assets/images/pencil/unit5/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "lemonade",
+          "meaning": "nước chanh",
+          "example": "I would like a glass of lemonade.",
+          "icon": "🍋",
+          "image": "./assets/images/pencil/unit5/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "tofu",
+          "meaning": "đậu phụ",
+          "example": "Mum cooks tofu with tomatoes.",
+          "icon": "⬜",
+          "image": "./assets/images/pencil/unit5/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "ingredient",
+          "meaning": "nguyên liệu nấu ăn",
+          "example": "An egg is an ingredient in this cake.",
+          "icon": "🥚",
+          "image": "./assets/images/pencil/unit5/8-v1.webp"
+        }
+      ],
+      "number": 5,
+      "id": "unit5"
+    },
+    {
+      "title": "A Visit to a School",
+      "vietnamese": "Một chuyến thăm trường học",
+      "icon": "🏫",
+      "color": "#7c3aed",
+      "words": [
+        {
+          "id": 1,
+          "term": "school gate",
+          "meaning": "cổng trường",
+          "example": "Meet me at the school gate.",
+          "icon": "🏫",
+          "image": "./assets/images/pencil/unit6/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "classroom",
+          "meaning": "phòng học",
+          "example": "Our classroom is on the second floor.",
+          "icon": "🪑",
+          "image": "./assets/images/pencil/unit6/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "laboratory",
+          "meaning": "phòng thí nghiệm",
+          "example": "We do science experiments in the laboratory.",
+          "icon": "🧪",
+          "image": "./assets/images/pencil/unit6/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "library",
+          "meaning": "thư viện",
+          "example": "Students read books in the library.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit6/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "computer room",
+          "meaning": "phòng máy tính",
+          "example": "We learn to use computers in the computer room.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit6/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "playground",
+          "meaning": "sân chơi",
+          "example": "We play badminton in the playground.",
+          "icon": "🏸",
+          "image": "./assets/images/pencil/unit6/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "school uniform",
+          "meaning": "đồng phục học sinh",
+          "example": "I wear my school uniform on Mondays.",
+          "icon": "👔",
+          "image": "./assets/images/pencil/unit6/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "entrance examination",
+          "meaning": "kỳ thi tuyển sinh",
+          "example": "She is preparing for the entrance examination.",
+          "icon": "📝",
+          "image": "./assets/images/pencil/unit6/8-v1.webp"
+        }
+      ],
+      "number": 6,
+      "id": "unit6"
+    },
+    {
+      "title": "Traffic",
+      "vietnamese": "Giao thông",
+      "icon": "🚦",
+      "color": "#b45309",
+      "words": [
+        {
+          "id": 1,
+          "term": "traffic light",
+          "meaning": "đèn giao thông",
+          "example": "Stop when the traffic light is red.",
+          "icon": "🚦",
+          "image": "./assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "helmet",
+          "meaning": "mũ bảo hiểm",
+          "example": "Always wear a helmet when riding a motorbike.",
+          "icon": "⛑️",
+          "image": "./assets/images/pencil/unit7/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "seat belt",
+          "meaning": "dây an toàn",
+          "example": "Fasten your seat belt in the car.",
+          "icon": "🚗",
+          "image": "./assets/images/pencil/unit7/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "pavement",
+          "meaning": "vỉa hè",
+          "example": "We walk on the pavement.",
+          "icon": "🚶",
+          "image": "./assets/images/pencil/unit7/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "pedestrian",
+          "meaning": "người đi bộ",
+          "example": "The pedestrian is crossing at the zebra crossing.",
+          "icon": "🚶",
+          "image": "./assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "zebra crossing",
+          "meaning": "vạch sang đường dành cho người đi bộ",
+          "example": "Use the zebra crossing to cross the road.",
+          "icon": "🛣️",
+          "image": "./assets/images/pencil/unit7/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "road sign",
+          "meaning": "biển báo giao thông",
+          "example": "This road sign tells drivers to stop.",
+          "icon": "🛑",
+          "image": "./assets/images/pencil/unit7/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "traffic jam",
+          "meaning": "tắc đường",
+          "example": "A traffic jam makes the bus journey slower.",
+          "icon": "🚗",
+          "image": "./assets/images/pencil/unit7/8-v1.webp"
+        }
+      ],
+      "number": 7,
+      "id": "unit7"
+    },
+    {
+      "title": "Films",
+      "vietnamese": "Phim ảnh",
+      "icon": "🎬",
+      "color": "#9333ea",
+      "words": [
+        {
+          "id": 1,
+          "term": "comedy",
+          "meaning": "phim hài",
+          "example": "The comedy made everyone laugh.",
+          "icon": "😄",
+          "image": "./assets/images/pencil/unit8/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "cartoon",
+          "meaning": "phim hoạt hình",
+          "example": "My little sister likes this cartoon.",
+          "icon": "🐭",
+          "image": "./assets/images/pencil/unit8/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "documentary",
+          "meaning": "phim tài liệu",
+          "example": "This documentary explains how sea turtles live.",
+          "icon": "🎥",
+          "image": "./assets/images/pencil/unit8/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "actor",
+          "meaning": "nam diễn viên",
+          "example": "The actor plays a teacher in the film.",
+          "icon": "🎭",
+          "image": "./assets/images/pencil/unit8/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "actress",
+          "meaning": "nữ diễn viên",
+          "example": "The actress plays a doctor in the film.",
+          "icon": "🎭",
+          "image": "./assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "cinema",
+          "meaning": "rạp chiếu phim",
+          "example": "We watch the film at the cinema.",
+          "icon": "🍿",
+          "image": "./assets/images/pencil/unit8/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "ticket",
+          "meaning": "vé",
+          "example": "I bought a ticket for the film.",
+          "icon": "🎟️",
+          "image": "./assets/images/pencil/unit8/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "gripping",
+          "meaning": "hấp dẫn, cuốn hút",
+          "example": "The gripping film kept us watching until the end.",
+          "icon": "👀",
+          "image": "./assets/images/pencil/unit8/8-v1.webp"
+        }
+      ],
+      "number": 8,
+      "id": "unit8"
+    },
+    {
+      "title": "Festivals Around the World",
+      "vietnamese": "Lễ hội trên thế giới",
+      "icon": "🎉",
+      "color": "#db2777",
+      "words": [
+        {
+          "id": 1,
+          "term": "festival",
+          "meaning": "lễ hội",
+          "example": "The village holds a spring festival.",
+          "icon": "🎉",
+          "image": "./assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "parade",
+          "meaning": "cuộc diễu hành",
+          "example": "We watched a colourful parade in the street.",
+          "icon": "🥁",
+          "image": "./assets/images/pencil/unit9/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "costume",
+          "meaning": "trang phục hóa trang",
+          "example": "She wears a fairy costume.",
+          "icon": "🧚",
+          "image": "./assets/images/pencil/unit9/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "fireworks",
+          "meaning": "pháo hoa",
+          "example": "We watched fireworks in the sky.",
+          "icon": "🎆",
+          "image": "./assets/images/pencil/unit9/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "lantern",
+          "meaning": "đèn lồng",
+          "example": "The children carry lanterns at night.",
+          "icon": "🏮",
+          "image": "./assets/images/pencil/unit9/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "feast",
+          "meaning": "bữa tiệc thịnh soạn",
+          "example": "Our family prepares a feast for the holiday.",
+          "icon": "🍽️",
+          "image": "./assets/images/pencil/unit9/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "mask",
+          "meaning": "mặt nạ",
+          "example": "He wears a funny mask at the festival.",
+          "icon": "🎭",
+          "image": "./assets/images/pencil/unit9/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "celebration",
+          "meaning": "hoạt động ăn mừng, lễ kỷ niệm",
+          "example": "The celebration marks the start of the new year.",
+          "icon": "🎊",
+          "image": "./assets/images/pencil/unit9/8-v1.webp"
+        }
+      ],
+      "number": 9,
+      "id": "unit9"
+    },
+    {
+      "title": "Energy Sources",
+      "vietnamese": "Các nguồn năng lượng",
+      "icon": "⚡",
+      "color": "#0891b2",
+      "words": [
+        {
+          "id": 1,
+          "term": "solar panel",
+          "meaning": "tấm pin năng lượng mặt trời",
+          "example": "The solar panel makes electricity from sunlight.",
+          "icon": "☀️",
+          "image": "./assets/images/pencil/unit10/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "wind turbine",
+          "meaning": "tua bin gió",
+          "example": "The wind turbine turns in the wind.",
+          "icon": "🌬️",
+          "image": "./assets/images/pencil/unit10/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "coal",
+          "meaning": "than đá",
+          "example": "Coal is a fossil fuel.",
+          "icon": "🪨",
+          "image": "./assets/images/pencil/unit10/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "oil",
+          "meaning": "dầu mỏ",
+          "example": "People get oil from deep underground.",
+          "icon": "🛢️",
+          "image": "./assets/images/pencil/unit10/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "light bulb",
+          "meaning": "bóng đèn",
+          "example": "Turn off the light bulb when you leave.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit10/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "electricity",
+          "meaning": "điện",
+          "example": "The fan needs electricity to work.",
+          "icon": "🔌",
+          "image": "./assets/images/pencil/unit10/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "renewable energy",
+          "meaning": "năng lượng tái tạo",
+          "example": "Wind and sunlight provide renewable energy.",
+          "icon": "♻️",
+          "image": "./assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "non-renewable energy",
+          "meaning": "năng lượng không tái tạo",
+          "example": "Energy from coal is non-renewable energy.",
+          "icon": "🛢️",
+          "image": "./assets/images/pencil/unit10/8-v1.webp"
+        }
+      ],
+      "number": 10,
+      "id": "unit10"
+    },
+    {
+      "title": "Travelling in the Future",
+      "vietnamese": "Đi lại trong tương lai",
+      "icon": "🚀",
+      "color": "#4f46e5",
+      "words": [
+        {
+          "id": 1,
+          "term": "electric car",
+          "meaning": "ô tô điện",
+          "example": "An electric car uses electricity instead of petrol.",
+          "icon": "🚙",
+          "image": "./assets/images/pencil/unit11/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "flying car",
+          "meaning": "ô tô bay",
+          "example": "In this story, a flying car travels above the road.",
+          "icon": "🚘",
+          "image": "./assets/images/pencil/unit11/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "spaceship",
+          "meaning": "tàu vũ trụ",
+          "example": "The spaceship carries astronauts into space.",
+          "icon": "🚀",
+          "image": "./assets/images/pencil/unit11/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "helicopter",
+          "meaning": "máy bay trực thăng",
+          "example": "The helicopter lands on a small platform.",
+          "icon": "🚁",
+          "image": "./assets/images/pencil/unit11/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "boat",
+          "meaning": "thuyền",
+          "example": "We cross the river by boat.",
+          "icon": "⛵",
+          "image": "./assets/images/pencil/unit11/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "train",
+          "meaning": "tàu hỏa",
+          "example": "This train carries passengers between cities.",
+          "icon": "🚆",
+          "image": "./assets/images/pencil/unit11/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "passenger",
+          "meaning": "hành khách",
+          "example": "The passenger is sitting on the bus.",
+          "icon": "🧳",
+          "image": "./assets/images/pencil/unit11/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "driverless",
+          "meaning": "không người lái, tự lái",
+          "example": "A driverless car can travel without a human driver.",
+          "icon": "🚙",
+          "image": "./assets/images/pencil/unit11/8-v1.webp"
+        }
+      ],
+      "number": 11,
+      "id": "unit11"
+    },
+    {
+      "title": "English-speaking Countries",
+      "vietnamese": "Các quốc gia nói tiếng Anh",
+      "icon": "🌍",
+      "color": "#0d9488",
+      "words": [
+        {
+          "id": 1,
+          "term": "kangaroo",
+          "meaning": "chuột túi",
+          "example": "Kangaroos live in Australia.",
+          "icon": "🦘",
+          "image": "./assets/images/pencil/unit12/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "koala",
+          "meaning": "gấu túi koala",
+          "example": "The koala is resting in a tree.",
+          "icon": "🐨",
+          "image": "./assets/images/pencil/unit12/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "castle",
+          "meaning": "lâu đài",
+          "example": "We visited an old castle in Scotland.",
+          "icon": "🏰",
+          "image": "./assets/images/pencil/unit12/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "island",
+          "meaning": "hòn đảo",
+          "example": "New Zealand has two large main islands.",
+          "icon": "🏝️",
+          "image": "./assets/images/pencil/unit12/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "coast",
+          "meaning": "bờ biển",
+          "example": "We walked along the coast.",
+          "icon": "🌊",
+          "image": "./assets/images/pencil/unit12/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "tower",
+          "meaning": "tòa tháp",
+          "example": "The clock tower is very tall.",
+          "icon": "🗼",
+          "image": "./assets/images/pencil/unit12/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "landmark",
+          "meaning": "địa danh nổi bật, dễ nhận biết",
+          "example": "The Sydney Opera House is a famous landmark.",
+          "icon": "🏛️",
+          "image": "./assets/images/pencil/unit12/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "native speaker",
+          "meaning": "người bản ngữ",
+          "example": "A native speaker learns the language from early childhood.",
+          "icon": "🗣️",
+          "image": "./assets/images/pencil/unit12/8-v1.webp"
+        }
+      ],
+      "number": 12,
+      "id": "unit12"
+    }
+  ],
+  "8": [
+    {
+      "title": "Leisure Time",
+      "vietnamese": "Thời gian rảnh",
+      "icon": "🎨",
+      "color": "#2563eb",
+      "number": 1,
+      "id": "unit1",
+      "words": [
+        {
+          "id": 1,
+          "term": "knitting",
+          "meaning": "đan len",
+          "example": "My aunt enjoys knitting warm scarves.",
+          "icon": "🧶",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "origami",
+          "meaning": "nghệ thuật gấp giấy",
+          "example": "We make paper birds in our origami club.",
+          "icon": "📄",
+          "image": "../../shared/assets/vocabulary-reviewed/origami-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "leisure",
+          "meaning": "thời gian rảnh",
+          "example": "I read comics in my leisure time.",
+          "icon": "📖",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "craft kit",
+          "meaning": "bộ dụng cụ thủ công",
+          "example": "This craft kit has paper and glue.",
+          "icon": "✂️",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "cycling",
+          "meaning": "đạp xe",
+          "example": "We go cycling along the quiet road.",
+          "icon": "🚲",
+          "image": "../../shared/assets/vocabulary-3d/ride-a-bike-3d-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "gardening",
+          "meaning": "làm vườn",
+          "example": "Gardening helps me relax after school.",
+          "icon": "🌱",
+          "image": "../../shared/assets/vocabulary-3d/garden-3d-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "board game",
+          "meaning": "trò chơi bàn cờ",
+          "example": "We play a board game together on Fridays.",
+          "icon": "🎲",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "be keen on",
+          "meaning": "say mê, yêu thích",
+          "example": "I am keen on making small paper boats.",
+          "icon": "💛",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Life in the Countryside",
+      "vietnamese": "Cuộc sống ở nông thôn",
+      "icon": "🌾",
+      "color": "#15803d",
+      "number": 2,
+      "id": "unit2",
+      "words": [
+        {
+          "id": 1,
+          "term": "paddy field",
+          "meaning": "ruộng lúa",
+          "example": "The paddy field turns golden before harvest.",
+          "icon": "🌾",
+          "image": "../../shared/assets/vocabulary-reviewed/paddy-field-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "herd",
+          "meaning": "chăn, lùa gia súc",
+          "example": "The farmers herd their cattle home.",
+          "icon": "🐄",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "harvest",
+          "meaning": "vụ thu hoạch",
+          "example": "The rice harvest keeps the village busy.",
+          "icon": "🌾",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "orchard",
+          "meaning": "vườn cây ăn quả",
+          "example": "We pick ripe oranges in the orchard.",
+          "icon": "🍊",
+          "image": "../../shared/assets/vocabulary-reviewed/orchard-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "village",
+          "meaning": "làng quê",
+          "example": "My grandparents live in a small village.",
+          "icon": "🏡",
+          "image": "../../shared/assets/vocabulary-3d/village-3d-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "farmer",
+          "meaning": "nông dân",
+          "example": "The farmer grows beans beside the river.",
+          "icon": "🧑‍🌾",
+          "image": "../../shared/assets/vocabulary-3d/farmer-3d-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "peaceful",
+          "meaning": "yên bình",
+          "example": "The village is peaceful in the early morning.",
+          "icon": "🍃",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "buffalo",
+          "meaning": "con trâu",
+          "example": "A buffalo rests in the shade of a tree.",
+          "icon": "🐃",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Teenagers",
+      "vietnamese": "Thanh thiếu niên",
+      "icon": "🌟",
+      "color": "#be185d",
+      "number": 3,
+      "id": "unit3",
+      "words": [
+        {
+          "id": 1,
+          "term": "teenager",
+          "meaning": "thanh thiếu niên",
+          "example": "A teenager may need some quiet time after school.",
+          "icon": "🧑",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "peer pressure",
+          "meaning": "áp lực từ bạn bè đồng trang lứa",
+          "example": "Peer pressure can make it hard to say no.",
+          "icon": "🤝",
+          "image": "../lop11/assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "school club",
+          "meaning": "câu lạc bộ ở trường",
+          "example": "Our school club meets every Thursday.",
+          "icon": "🏫",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "concentrate",
+          "meaning": "tập trung",
+          "example": "I turn off my phone to concentrate on reading.",
+          "icon": "🎯",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "bullying",
+          "meaning": "hành vi bắt nạt",
+          "example": "Our class discusses how to stop bullying.",
+          "icon": "🛡️",
+          "image": "../lop11/assets/images/pencil/unit9/2-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "forum",
+          "meaning": "diễn đàn",
+          "example": "Students share study tips on our class forum.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "stress",
+          "meaning": "sự căng thẳng",
+          "example": "Too much homework can cause stress.",
+          "icon": "😟",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "notification",
+          "meaning": "thông báo trên thiết bị",
+          "example": "I turn off each notification while studying.",
+          "icon": "🔔",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Ethnic Groups of Viet Nam",
+      "vietnamese": "Các dân tộc ở Việt Nam",
+      "icon": "🏡",
+      "color": "#7c3aed",
+      "number": 4,
+      "id": "unit4",
+      "words": [
+        {
+          "id": 1,
+          "term": "stilt house",
+          "meaning": "nhà sàn",
+          "example": "The wooden stilt house stands above the ground.",
+          "icon": "🏠",
+          "image": "../../shared/assets/vocabulary-reviewed/stilt-house-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "communal house",
+          "meaning": "nhà cộng đồng",
+          "example": "The villagers meet in the communal house.",
+          "icon": "🏘️",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "ethnic group",
+          "meaning": "nhóm dân tộc",
+          "example": "Each ethnic group has its own traditions.",
+          "icon": "🤝",
+          "image": "../../shared/assets/vocabulary-reviewed/ethnic-group-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "costume",
+          "meaning": "trang phục truyền thống hoặc biểu diễn",
+          "example": "She wears a traditional costume at the festival.",
+          "icon": "👘",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "weave",
+          "meaning": "dệt",
+          "example": "My grandmother can weave cloth by hand.",
+          "icon": "🧵",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "terraced field",
+          "meaning": "ruộng bậc thang",
+          "example": "The terraced field follows the slope of the hill.",
+          "icon": "🌾",
+          "image": "../../shared/assets/vocabulary-reviewed/terraced-field-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "gong",
+          "meaning": "cồng, chiêng",
+          "example": "The musician strikes a large bronze gong.",
+          "icon": "🔔",
+          "image": "../../shared/assets/vocabulary-reviewed/gong-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "mountain",
+          "meaning": "ngọn núi",
+          "example": "Clouds cover the top of the mountain.",
+          "icon": "⛰️",
+          "image": "../../shared/assets/vocabulary-3d/mountains-3d-v1.webp"
+        }
+      ]
+    },
+    {
+      "title": "Our Customs and Traditions",
+      "vietnamese": "Phong tục và truyền thống",
+      "icon": "🏮",
+      "color": "#2563eb",
+      "number": 5,
+      "id": "unit5",
+      "words": [
+        {
+          "id": 1,
+          "term": "custom",
+          "meaning": "phong tục",
+          "example": "Removing shoes at the door is a family custom.",
+          "icon": "👟",
+          "image": "../../shared/assets/vocabulary-reviewed/custom-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "tradition",
+          "meaning": "truyền thống",
+          "example": "Making rice cakes is a tradition in our family.",
+          "icon": "🍃",
+          "image": "../lop11/assets/images/pencil/unit6/10-vocab100-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "ancestor",
+          "meaning": "tổ tiên",
+          "example": "We tell stories about an ancestor from long ago.",
+          "icon": "🌳",
+          "image": "../../shared/assets/vocabulary-reviewed/ancestor-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "reunion",
+          "meaning": "cuộc sum họp",
+          "example": "Our family reunion brings everyone together.",
+          "icon": "👨‍👩‍👧‍👦",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "lantern",
+          "meaning": "đèn lồng",
+          "example": "We hang a red lantern outside the house.",
+          "icon": "🏮",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "offering",
+          "meaning": "lễ vật",
+          "example": "They place an offering of fruit on the table.",
+          "icon": "🍎",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "respect",
+          "meaning": "tôn trọng",
+          "example": "We respect the customs of our neighbours.",
+          "icon": "🤝",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "family meal",
+          "meaning": "bữa cơm gia đình",
+          "example": "We share a family meal on Sunday evening.",
+          "icon": "🍽️",
+          "image": "../../shared/assets/vocabulary-3d/have-dinner-3d-v1.webp"
+        }
+      ]
+    },
+    {
+      "title": "Lifestyles",
+      "vietnamese": "Lối sống",
+      "icon": "🍀",
+      "color": "#15803d",
+      "number": 6,
+      "id": "unit6",
+      "words": [
+        {
+          "id": 1,
+          "term": "lifestyle",
+          "meaning": "lối sống",
+          "example": "An active lifestyle includes daily exercise.",
+          "icon": "🏃",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "habit",
+          "meaning": "thói quen",
+          "example": "Reading before bed is a useful habit.",
+          "icon": "📖",
+          "image": "../../shared/assets/vocabulary-reviewed/habit-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "greet",
+          "meaning": "chào hỏi",
+          "example": "We greet our teacher at the classroom door.",
+          "icon": "👋",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "punctual",
+          "meaning": "đúng giờ",
+          "example": "She is punctual and never misses the bus.",
+          "icon": "⏰",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "independent",
+          "meaning": "tự lập",
+          "example": "He is independent and cooks his own lunch.",
+          "icon": "💪",
+          "image": "../lop10/assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "online learning",
+          "meaning": "học trực tuyến",
+          "example": "Online learning lets us study from home.",
+          "icon": "💻",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "exercise",
+          "meaning": "tập thể dục",
+          "example": "I exercise in the park before breakfast.",
+          "icon": "🏃",
+          "image": "../../shared/assets/vocabulary-3d/running-3d-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "gathering",
+          "meaning": "buổi tụ họp",
+          "example": "We have a small gathering with our cousins.",
+          "icon": "👨‍👩‍👧‍👦",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Environmental Protection",
+      "vietnamese": "Bảo vệ môi trường",
+      "icon": "🌱",
+      "color": "#be185d",
+      "number": 7,
+      "id": "unit7",
+      "words": [
+        {
+          "id": 1,
+          "term": "habitat",
+          "meaning": "môi trường sống tự nhiên",
+          "example": "The forest is a habitat for many birds.",
+          "icon": "🌳",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "pollution",
+          "meaning": "sự ô nhiễm",
+          "example": "Plastic waste causes pollution in the river.",
+          "icon": "🏭",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "recycle",
+          "meaning": "tái chế",
+          "example": "We recycle paper and empty bottles.",
+          "icon": "♻️",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "endangered species",
+          "meaning": "loài có nguy cơ tuyệt chủng",
+          "example": "An endangered species needs protection.",
+          "icon": "🐢",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "carbon footprint",
+          "meaning": "dấu chân carbon, lượng khí thải gây hiệu ứng nhà kính",
+          "example": "Walking can help reduce our carbon footprint.",
+          "icon": "👣",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "protect",
+          "meaning": "bảo vệ",
+          "example": "We protect young trees from strong winds.",
+          "icon": "🛡️",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "river",
+          "meaning": "dòng sông",
+          "example": "We remove rubbish from the river bank.",
+          "icon": "🏞️",
+          "image": "../../shared/assets/vocabulary-3d/river-3d-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "reusable bag",
+          "meaning": "túi có thể tái sử dụng",
+          "example": "I carry a reusable bag when I shop.",
+          "icon": "🛍️",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Shopping",
+      "vietnamese": "Mua sắm",
+      "icon": "🛍️",
+      "color": "#7c3aed",
+      "number": 8,
+      "id": "unit8",
+      "words": [
+        {
+          "id": 1,
+          "term": "bargain",
+          "meaning": "mặc cả",
+          "example": "Some shoppers bargain at the outdoor market.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "price tag",
+          "meaning": "nhãn giá",
+          "example": "Read the price tag before buying the shirt.",
+          "icon": "🏷️",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "discount",
+          "meaning": "khoản giảm giá",
+          "example": "The shop gives students a small discount.",
+          "icon": "💸",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "receipt",
+          "meaning": "hóa đơn, biên lai",
+          "example": "Keep the receipt in case you return the shoes.",
+          "icon": "🧾",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "customer",
+          "meaning": "khách hàng",
+          "example": "The customer asks for a larger size.",
+          "icon": "🛍️",
+          "image": "../../shared/assets/vocabulary-reviewed/customer-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "convenience store",
+          "meaning": "cửa hàng tiện lợi",
+          "example": "The convenience store sells snacks and drinks.",
+          "icon": "🏪",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "supermarket",
+          "meaning": "siêu thị",
+          "example": "We buy vegetables at the supermarket.",
+          "icon": "🛒",
+          "image": "../../shared/assets/vocabulary-3d/supermarket-3d-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "shopping centre",
+          "meaning": "trung tâm mua sắm",
+          "example": "The shopping centre has three floors of shops.",
+          "icon": "🏬",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Natural Disasters",
+      "vietnamese": "Thiên tai",
+      "icon": "🌧️",
+      "color": "#2563eb",
+      "number": 9,
+      "id": "unit9",
+      "words": [
+        {
+          "id": 1,
+          "term": "flood",
+          "meaning": "lũ lụt",
+          "example": "The flood covered the road with water.",
+          "icon": "🌊",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "earthquake",
+          "meaning": "động đất",
+          "example": "The earthquake shook the windows.",
+          "icon": "🏚️",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "typhoon",
+          "meaning": "bão nhiệt đới ở Tây Bắc Thái Bình Dương",
+          "example": "The typhoon brought strong winds to the coast.",
+          "icon": "🌀",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "landslide",
+          "meaning": "sạt lở đất",
+          "example": "A landslide blocked the mountain road.",
+          "icon": "⛰️",
+          "image": "../../shared/assets/vocabulary-reviewed/landslide-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "rescue worker",
+          "meaning": "nhân viên cứu hộ",
+          "example": "The rescue worker helped people reach safety.",
+          "icon": "🦺",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "shelter",
+          "meaning": "nơi trú ẩn",
+          "example": "The families stayed in a safe shelter.",
+          "icon": "🏠",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "storm",
+          "meaning": "cơn bão",
+          "example": "We stayed indoors during the storm.",
+          "icon": "⛈️",
+          "image": "../../shared/assets/vocabulary-3d/stormy-3d-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "emergency kit",
+          "meaning": "bộ vật dụng khẩn cấp",
+          "example": "Our emergency kit has water and a torch.",
+          "icon": "🎒",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Communication in the Future",
+      "vietnamese": "Giao tiếp trong tương lai",
+      "icon": "📡",
+      "color": "#15803d",
+      "number": 10,
+      "id": "unit10",
+      "words": [
+        {
+          "id": 1,
+          "term": "video call",
+          "meaning": "cuộc gọi video",
+          "example": "We make a video call to our cousins abroad.",
+          "icon": "📱",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "hologram",
+          "meaning": "hình ảnh ba chiều tạo bằng ánh sáng",
+          "example": "The exhibition shows a hologram of a dancer.",
+          "icon": "✨",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "translation",
+          "meaning": "sự dịch thuật, bản dịch",
+          "example": "The app provides a translation of the message.",
+          "icon": "🌐",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "message",
+          "meaning": "tin nhắn",
+          "example": "I send a short message to my friend.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "connection",
+          "meaning": "kết nối",
+          "example": "A stable connection makes the call clearer.",
+          "icon": "🔗",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "webcam",
+          "meaning": "camera dùng cho máy tính",
+          "example": "My webcam shows my face during the call.",
+          "icon": "📷",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "headset",
+          "meaning": "tai nghe có micro",
+          "example": "I wear a headset for the online meeting.",
+          "icon": "🎧",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "communicate",
+          "meaning": "giao tiếp",
+          "example": "We communicate with words and gestures.",
+          "icon": "🗣️",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Science and Technology",
+      "vietnamese": "Khoa học và công nghệ",
+      "icon": "🔬",
+      "color": "#be185d",
+      "number": 11,
+      "id": "unit11",
+      "words": [
+        {
+          "id": 1,
+          "term": "invention",
+          "meaning": "phát minh",
+          "example": "This invention helps people save water.",
+          "icon": "💡",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "experiment",
+          "meaning": "thí nghiệm",
+          "example": "Our experiment tests how plants grow.",
+          "icon": "🧪",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "scientist",
+          "meaning": "nhà khoa học",
+          "example": "The scientist records the results carefully.",
+          "icon": "🧑‍🔬",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "robot",
+          "meaning": "rô bốt",
+          "example": "The robot carries small boxes across the room.",
+          "icon": "🤖",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "technology",
+          "meaning": "công nghệ",
+          "example": "New technology can help us learn languages.",
+          "icon": "💻",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "laboratory",
+          "meaning": "phòng thí nghiệm",
+          "example": "We wear safety glasses in the laboratory.",
+          "icon": "🔬",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "device",
+          "meaning": "thiết bị",
+          "example": "This small device measures the temperature.",
+          "icon": "📟",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "discover",
+          "meaning": "khám phá, phát hiện",
+          "example": "We hope to discover a better way to recycle.",
+          "icon": "🔎",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Life on Other Planets",
+      "vietnamese": "Sự sống trên các hành tinh khác",
+      "icon": "🪐",
+      "color": "#7c3aed",
+      "number": 12,
+      "id": "unit12",
+      "words": [
+        {
+          "id": 1,
+          "term": "planet",
+          "meaning": "hành tinh",
+          "example": "The planet moves around its star.",
+          "icon": "🪐",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "alien",
+          "meaning": "sinh vật ngoài hành tinh trong giả tưởng",
+          "example": "The alien in our story has three eyes.",
+          "icon": "👽",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "spaceship",
+          "meaning": "tàu vũ trụ",
+          "example": "The spaceship in the story lands on a distant moon.",
+          "icon": "🚀",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "astronaut",
+          "meaning": "phi hành gia",
+          "example": "The astronaut floats inside the space station.",
+          "icon": "🧑‍🚀",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "gravity",
+          "meaning": "trọng lực",
+          "example": "Gravity keeps our feet on the ground.",
+          "icon": "⬇️",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "surface",
+          "meaning": "bề mặt",
+          "example": "The surface of the moon has many craters.",
+          "icon": "🌕",
+          "image": "../../shared/assets/vocabulary-reviewed/surface-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "oxygen",
+          "meaning": "khí ô xi",
+          "example": "Humans need oxygen to breathe.",
+          "icon": "💨",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "galaxy",
+          "meaning": "thiên hà",
+          "example": "A galaxy contains billions of stars.",
+          "icon": "🌌",
+          "image": null
+        }
+      ]
+    }
+  ],
+  "9": [
+    {
+      "title": "Local Community",
+      "vietnamese": "Cộng đồng địa phương",
+      "icon": "🤝",
+      "color": "#2563eb",
+      "number": 1,
+      "id": "unit1",
+      "words": [
+        {
+          "id": 1,
+          "term": "artisan",
+          "meaning": "nghệ nhân",
+          "example": "The artisan shapes a bowl from wet clay.",
+          "icon": "🧑‍🎨",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "pottery",
+          "meaning": "đồ gốm, nghề gốm",
+          "example": "Our village is known for handmade pottery.",
+          "icon": "🏺",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "handicraft",
+          "meaning": "đồ thủ công",
+          "example": "This bamboo basket is a local handicraft.",
+          "icon": "🧺",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "community helper",
+          "meaning": "người phục vụ cộng đồng",
+          "example": "A community helper supports local people.",
+          "icon": "🤝",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "delivery worker",
+          "meaning": "nhân viên giao hàng",
+          "example": "The delivery worker brings a parcel to our door.",
+          "icon": "📦",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "firefighter",
+          "meaning": "lính cứu hỏa",
+          "example": "The firefighter checks the safety equipment.",
+          "icon": "🧑‍🚒",
+          "image": "../../shared/assets/vocabulary-3d/firefighter-3d-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "look after",
+          "meaning": "chăm sóc",
+          "example": "We look after the plants in our shared garden.",
+          "icon": "🌱",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "hand down",
+          "meaning": "truyền lại cho thế hệ sau",
+          "example": "Craftspeople hand down their skills to young learners.",
+          "icon": "👐",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "City Life",
+      "vietnamese": "Cuộc sống thành thị",
+      "icon": "🏙️",
+      "color": "#15803d",
+      "number": 2,
+      "id": "unit2",
+      "words": [
+        {
+          "id": 1,
+          "term": "traffic congestion",
+          "meaning": "tình trạng ùn tắc giao thông",
+          "example": "Traffic congestion makes the bus journey longer.",
+          "icon": "🚗",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "skytrain",
+          "meaning": "tàu điện trên cao",
+          "example": "The skytrain runs above the busy streets.",
+          "icon": "🚝",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "concrete jungle",
+          "meaning": "đô thị dày đặc bê tông",
+          "example": "He misses green spaces in the concrete jungle.",
+          "icon": "🏙️",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "public transport",
+          "meaning": "giao thông công cộng",
+          "example": "Public transport helps people travel around the city.",
+          "icon": "🚌",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "pedestrian zone",
+          "meaning": "khu vực dành cho người đi bộ",
+          "example": "Cars cannot enter the pedestrian zone.",
+          "icon": "🚶",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "bus stop",
+          "meaning": "trạm xe buýt",
+          "example": "The bus stop is opposite our school.",
+          "icon": "🚏",
+          "image": "../../shared/assets/vocabulary-3d/bus-stop-3d-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "amenity",
+          "meaning": "tiện ích phục vụ cư dân",
+          "example": "A public swimming pool is a useful amenity.",
+          "icon": "🏊",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "crowded",
+          "meaning": "đông đúc",
+          "example": "The city square is crowded at the weekend.",
+          "icon": "👥",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Healthy Living for Teens",
+      "vietnamese": "Sống lành mạnh ở tuổi teen",
+      "icon": "🥗",
+      "color": "#be185d",
+      "number": 3,
+      "id": "unit3",
+      "words": [
+        {
+          "id": 1,
+          "term": "balanced diet",
+          "meaning": "chế độ ăn cân bằng",
+          "example": "A balanced diet includes many different foods.",
+          "icon": "🥗",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "mental health",
+          "meaning": "sức khỏe tinh thần",
+          "example": "Talking to someone can support our mental health.",
+          "icon": "💚",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "time management",
+          "meaning": "kỹ năng quản lý thời gian",
+          "example": "Time management helps me finish tasks calmly.",
+          "icon": "📅",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "priority",
+          "meaning": "việc được ưu tiên",
+          "example": "Finishing my project is my priority today.",
+          "icon": "🎯",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "distraction",
+          "meaning": "điều gây mất tập trung",
+          "example": "A noisy phone can be a distraction.",
+          "icon": "📱",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "deadline",
+          "meaning": "hạn chót",
+          "example": "The deadline for our poster is Friday.",
+          "icon": "⏳",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "sleep",
+          "meaning": "giấc ngủ, việc ngủ",
+          "example": "Enough sleep helps me concentrate at school.",
+          "icon": "🛌",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "physical activity",
+          "meaning": "hoạt động thể chất",
+          "example": "Swimming is my favourite physical activity.",
+          "icon": "🏊",
+          "image": "../../shared/assets/vocabulary-3d/swimming-3d-v1.webp"
+        }
+      ]
+    },
+    {
+      "title": "Remembering the Past",
+      "vietnamese": "Nhớ về quá khứ",
+      "icon": "🕰️",
+      "color": "#7c3aed",
+      "number": 4,
+      "id": "unit4",
+      "words": [
+        {
+          "id": 1,
+          "term": "heritage",
+          "meaning": "di sản",
+          "example": "We learn how to protect our cultural heritage.",
+          "icon": "🏛️",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "monument",
+          "meaning": "tượng đài, công trình tưởng niệm",
+          "example": "The monument honours local heroes.",
+          "icon": "🗿",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "generation",
+          "meaning": "thế hệ",
+          "example": "Each generation adds new stories to our family.",
+          "icon": "👨‍👩‍👧‍👦",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "preserve",
+          "meaning": "gìn giữ, bảo tồn",
+          "example": "We preserve old photographs in an album.",
+          "icon": "📔",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "ancient",
+          "meaning": "cổ xưa",
+          "example": "The ancient wall is made of stone.",
+          "icon": "🧱",
+          "image": "../../shared/assets/vocabulary-reviewed/ancient-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "memory",
+          "meaning": "ký ức",
+          "example": "My happiest memory is a picnic with my cousins.",
+          "icon": "💭",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "museum",
+          "meaning": "bảo tàng",
+          "example": "The museum displays objects from village life.",
+          "icon": "🏛️",
+          "image": "../../shared/assets/vocabulary-3d/museum-3d-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "historical site",
+          "meaning": "di tích lịch sử",
+          "example": "We visit a historical site near our town.",
+          "icon": "🏯",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Our Experiences",
+      "vietnamese": "Những trải nghiệm của chúng ta",
+      "icon": "🎒",
+      "color": "#2563eb",
+      "number": 5,
+      "id": "unit5",
+      "words": [
+        {
+          "id": 1,
+          "term": "experience",
+          "meaning": "trải nghiệm",
+          "example": "My first camping experience was exciting.",
+          "icon": "🌟",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "embarrassing",
+          "meaning": "gây ngượng ngùng",
+          "example": "Forgetting my lines was embarrassing.",
+          "icon": "😳",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "thrilling",
+          "meaning": "hồi hộp, đầy phấn khích",
+          "example": "The boat ride was a thrilling experience.",
+          "icon": "🎢",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "memorable",
+          "meaning": "đáng nhớ",
+          "example": "Our first class trip was memorable.",
+          "icon": "💭",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "explore",
+          "meaning": "khám phá",
+          "example": "We explore a small island with our guide.",
+          "icon": "🧭",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "camping",
+          "meaning": "cắm trại",
+          "example": "We tried camping beside a quiet lake.",
+          "icon": "🏕️",
+          "image": "../../shared/assets/vocabulary-3d/camping-3d-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "confidence",
+          "meaning": "sự tự tin",
+          "example": "Practice gives me confidence to speak in public.",
+          "icon": "💪",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "achievement",
+          "meaning": "thành tựu, điều đạt được",
+          "example": "Finishing the long walk was an achievement.",
+          "icon": "🏅",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Vietnamese Lifestyles: Then and Now",
+      "vietnamese": "Lối sống Việt Nam xưa và nay",
+      "icon": "🏡",
+      "color": "#15803d",
+      "number": 6,
+      "id": "unit6",
+      "words": [
+        {
+          "id": 1,
+          "term": "extended family",
+          "meaning": "gia đình nhiều thế hệ",
+          "example": "An extended family may include grandparents.",
+          "icon": "👨‍👩‍👧‍👦",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "nuclear family",
+          "meaning": "gia đình gồm cha mẹ và con",
+          "example": "A nuclear family lives in the flat next door.",
+          "icon": "👨‍👩‍👧",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "privacy",
+          "meaning": "sự riêng tư",
+          "example": "We knock on doors to respect each other's privacy.",
+          "icon": "🚪",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "household appliance",
+          "meaning": "đồ gia dụng",
+          "example": "A washing machine is a household appliance.",
+          "icon": "🧺",
+          "image": "../../shared/assets/vocabulary-reviewed/household-appliance-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "convenient",
+          "meaning": "thuận tiện",
+          "example": "The new bridge makes travel more convenient.",
+          "icon": "🌉",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "generation gap",
+          "meaning": "khoảng cách thế hệ",
+          "example": "Listening can help reduce the generation gap.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "living standard",
+          "meaning": "mức sống",
+          "example": "Reliable electricity can improve the living standard.",
+          "icon": "🏠",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "family gathering",
+          "meaning": "buổi tụ họp gia đình",
+          "example": "Our family gathering takes place on Sunday.",
+          "icon": "🍽️",
+          "image": "../../shared/assets/vocabulary-3d/have-dinner-3d-v1.webp"
+        }
+      ]
+    },
+    {
+      "title": "Natural Wonders of the World",
+      "vietnamese": "Kỳ quan thiên nhiên thế giới",
+      "icon": "🏞️",
+      "color": "#be185d",
+      "number": 7,
+      "id": "unit7",
+      "words": [
+        {
+          "id": 1,
+          "term": "waterfall",
+          "meaning": "thác nước",
+          "example": "The waterfall drops into a deep pool.",
+          "icon": "💦",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "cave",
+          "meaning": "hang động",
+          "example": "We follow a guide into the limestone cave.",
+          "icon": "🦇",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "landscape",
+          "meaning": "phong cảnh",
+          "example": "The mountain landscape looks beautiful at dawn.",
+          "icon": "🏞️",
+          "image": "../../shared/assets/vocabulary-3d/mountains-3d-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "rainforest",
+          "meaning": "rừng mưa nhiệt đới",
+          "example": "Many unusual plants grow in the rainforest.",
+          "icon": "🌴",
+          "image": "../../shared/assets/vocabulary-reviewed/rainforest-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "coral reef",
+          "meaning": "rạn san hô",
+          "example": "We observe the coral reef without touching it.",
+          "icon": "🪸",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "spectacular",
+          "meaning": "ngoạn mục",
+          "example": "The view from the hill is spectacular.",
+          "icon": "🌄",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "limestone",
+          "meaning": "đá vôi",
+          "example": "Water has shaped the limestone over time.",
+          "icon": "🪨",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "conservation",
+          "meaning": "sự bảo tồn",
+          "example": "Conservation helps protect the park's wildlife.",
+          "icon": "🌿",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Tourism",
+      "vietnamese": "Du lịch",
+      "icon": "🧳",
+      "color": "#7c3aed",
+      "number": 8,
+      "id": "unit8",
+      "words": [
+        {
+          "id": 1,
+          "term": "itinerary",
+          "meaning": "lịch trình chuyến đi",
+          "example": "Our itinerary includes a boat trip and a walk.",
+          "icon": "🗺️",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "destination",
+          "meaning": "điểm đến",
+          "example": "The island is a popular holiday destination.",
+          "icon": "🏝️",
+          "image": "../../shared/assets/vocabulary-3d/island-3d-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "accommodation",
+          "meaning": "chỗ ở khi đi xa",
+          "example": "We booked accommodation near the station.",
+          "icon": "🏨",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "package holiday",
+          "meaning": "kỳ nghỉ trọn gói",
+          "example": "The package holiday includes travel and a hotel.",
+          "icon": "🧳",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "tour guide",
+          "meaning": "hướng dẫn viên du lịch",
+          "example": "Our tour guide explains the town's history.",
+          "icon": "🙋",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "souvenir",
+          "meaning": "đồ lưu niệm",
+          "example": "I bought a small wooden bird as a souvenir.",
+          "icon": "🎁",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "eco-tourism",
+          "meaning": "du lịch sinh thái",
+          "example": "Eco-tourism encourages respect for nature.",
+          "icon": "🌱",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "local cuisine",
+          "meaning": "ẩm thực địa phương",
+          "example": "We try the local cuisine at a family restaurant.",
+          "icon": "🍜",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "World Englishes",
+      "vietnamese": "Tiếng Anh trên thế giới",
+      "icon": "🌍",
+      "color": "#2563eb",
+      "number": 9,
+      "id": "unit9",
+      "words": [
+        {
+          "id": 1,
+          "term": "accent",
+          "meaning": "giọng nói đặc trưng",
+          "example": "People speak English with different accents.",
+          "icon": "🗣️",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "fluency",
+          "meaning": "sự lưu loát",
+          "example": "Daily conversations can improve fluency.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "vocabulary",
+          "meaning": "vốn từ vựng",
+          "example": "Reading stories helps expand my vocabulary.",
+          "icon": "📚",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "pronunciation",
+          "meaning": "cách phát âm",
+          "example": "I listen and repeat to practise pronunciation.",
+          "icon": "🔊",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "official language",
+          "meaning": "ngôn ngữ chính thức",
+          "example": "English is an official language in Singapore.",
+          "icon": "🌐",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "bilingual",
+          "meaning": "sử dụng được hai ngôn ngữ",
+          "example": "My bilingual friend speaks Vietnamese and English.",
+          "icon": "🗣️",
+          "image": "../../shared/assets/vocabulary-reviewed/bilingual-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "mother tongue",
+          "meaning": "tiếng mẹ đẻ",
+          "example": "Vietnamese is my mother tongue.",
+          "icon": "💛",
+          "image": "../../shared/assets/vocabulary-reviewed/mother-tongue-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "communication",
+          "meaning": "sự giao tiếp",
+          "example": "Clear communication matters more than speed.",
+          "icon": "🤝",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Planet Earth",
+      "vietnamese": "Hành tinh Trái Đất",
+      "icon": "🌏",
+      "color": "#15803d",
+      "number": 10,
+      "id": "unit10",
+      "words": [
+        {
+          "id": 1,
+          "term": "ocean",
+          "meaning": "đại dương",
+          "example": "The ocean covers a large part of Earth.",
+          "icon": "🌊",
+          "image": "../../shared/assets/vocabulary-3d/sea-3d-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "continent",
+          "meaning": "lục địa",
+          "example": "Africa is a large continent.",
+          "icon": "🌍",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "ecosystem",
+          "meaning": "hệ sinh thái",
+          "example": "A pond is a small ecosystem.",
+          "icon": "🌿",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "climate change",
+          "meaning": "biến đổi khí hậu",
+          "example": "Climate change affects weather patterns.",
+          "icon": "🌡️",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "wildlife",
+          "meaning": "động vật hoang dã",
+          "example": "We watch wildlife from a safe distance.",
+          "icon": "🦒",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "natural resource",
+          "meaning": "tài nguyên thiên nhiên",
+          "example": "Fresh water is a valuable natural resource.",
+          "icon": "💧",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "biodiversity",
+          "meaning": "đa dạng sinh học",
+          "example": "The forest has rich biodiversity.",
+          "icon": "🦋",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "polar region",
+          "meaning": "vùng cực",
+          "example": "The polar region is cold for much of the year.",
+          "icon": "🧊",
+          "image": "../../shared/assets/vocabulary-reviewed/polar-region-v1.webp"
+        }
+      ]
+    },
+    {
+      "title": "Electronic Devices",
+      "vietnamese": "Thiết bị điện tử",
+      "icon": "💻",
+      "color": "#be185d",
+      "number": 11,
+      "id": "unit11",
+      "words": [
+        {
+          "id": 1,
+          "term": "touchscreen",
+          "meaning": "màn hình cảm ứng",
+          "example": "Tap the touchscreen to open the map.",
+          "icon": "📱",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "charger",
+          "meaning": "bộ sạc",
+          "example": "I keep my phone charger in my bag.",
+          "icon": "🔌",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "tablet",
+          "meaning": "máy tính bảng",
+          "example": "She reads an e-book on her tablet.",
+          "icon": "📱",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "keyboard",
+          "meaning": "bàn phím",
+          "example": "This keyboard has large, clear keys.",
+          "icon": "⌨️",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "battery life",
+          "meaning": "thời lượng pin",
+          "example": "Good battery life is useful on long journeys.",
+          "icon": "🔋",
+          "image": null
+        },
+        {
+          "id": 6,
+          "term": "portable",
+          "meaning": "có thể mang theo dễ dàng",
+          "example": "The small speaker is portable.",
+          "icon": "🎒",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "smartwatch",
+          "meaning": "đồng hồ thông minh",
+          "example": "My smartwatch counts my steps.",
+          "icon": "⌚",
+          "image": null
+        },
+        {
+          "id": 8,
+          "term": "application",
+          "meaning": "ứng dụng",
+          "example": "This application helps me organise my homework.",
+          "icon": "📲",
+          "image": null
+        }
+      ]
+    },
+    {
+      "title": "Career Choices",
+      "vietnamese": "Lựa chọn nghề nghiệp",
+      "icon": "🌟",
+      "color": "#7c3aed",
+      "number": 12,
+      "id": "unit12",
+      "words": [
+        {
+          "id": 1,
+          "term": "career",
+          "meaning": "sự nghiệp, nghề nghiệp lâu dài",
+          "example": "She hopes to build a career in engineering.",
+          "icon": "🧭",
+          "image": null
+        },
+        {
+          "id": 2,
+          "term": "qualification",
+          "meaning": "bằng cấp, trình độ chuyên môn",
+          "example": "This job requires a teaching qualification.",
+          "icon": "🎓",
+          "image": null
+        },
+        {
+          "id": 3,
+          "term": "engineer",
+          "meaning": "kỹ sư",
+          "example": "The engineer designs a stronger bridge.",
+          "icon": "🛠️",
+          "image": null
+        },
+        {
+          "id": 4,
+          "term": "architect",
+          "meaning": "kiến trúc sư",
+          "example": "The architect draws plans for a new library.",
+          "icon": "📐",
+          "image": null
+        },
+        {
+          "id": 5,
+          "term": "chef",
+          "meaning": "đầu bếp",
+          "example": "The chef prepares soup for the guests.",
+          "icon": "🧑‍🍳",
+          "image": "../../shared/assets/vocabulary-3d/chef-3d-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "interview",
+          "meaning": "cuộc phỏng vấn",
+          "example": "He prepares questions for his first job interview.",
+          "icon": "💬",
+          "image": null
+        },
+        {
+          "id": 7,
+          "term": "strength",
+          "meaning": "điểm mạnh",
+          "example": "Working well in a team is her strength.",
+          "icon": "💪",
+          "image": "../lop12/assets/images/pencil/unit9/10-vocab100-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "vocational training",
+          "meaning": "đào tạo nghề",
+          "example": "Vocational training teaches practical job skills.",
+          "icon": "🧰",
+          "image": null
+        }
+      ]
+    }
+  ],
+  "10": [
+    {
+      "id": "unit1",
+      "number": 1,
+      "title": "Family Life",
+      "vietnamese": "Cuộc sống gia đình",
+      "icon": "🏡",
+      "words": [
+        {
+          "id": 1,
+          "term": "household chore",
+          "meaning": "việc nhà",
+          "example": "We share a household chore after dinner.",
+          "icon": "🧹",
+          "image": "./assets/images/pencil/unit1/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "breadwinner",
+          "meaning": "người kiếm thu nhập chính",
+          "example": "Both parents can be breadwinners in a family.",
+          "icon": "💼",
+          "image": "./assets/images/pencil/unit1/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "responsibility",
+          "meaning": "trách nhiệm",
+          "example": "Feeding our cat is my responsibility.",
+          "icon": "🐈",
+          "image": "./assets/images/pencil/unit1/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "gratitude",
+          "meaning": "lòng biết ơn",
+          "example": "I show gratitude by helping my grandparents.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit1/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "strengthen",
+          "meaning": "củng cố, làm bền chặt",
+          "example": "Cooking together can strengthen family bonds.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit1/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "support",
+          "meaning": "hỗ trợ",
+          "example": "My sister gives me support before exams.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit1/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "do the laundry",
+          "meaning": "giặt quần áo",
+          "example": "I do the laundry on Sunday mornings.",
+          "icon": "🧺",
+          "image": "./assets/images/pencil/unit1/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "family bond",
+          "meaning": "sự gắn kết gia đình",
+          "example": "Sharing meals strengthens our family bond.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit1/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "extended family",
+          "meaning": "đại gia đình",
+          "example": "My extended family includes my grandparents, aunts and cousins.",
+          "icon": "🏡",
+          "image": "./assets/images/pencil/unit1/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "divide the chores",
+          "meaning": "phân chia việc nhà",
+          "example": "We divide the chores so that everyone helps at home.",
+          "icon": "🏡",
+          "image": "./assets/images/pencil/unit1/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#15803d"
+    },
+    {
+      "id": "unit2",
+      "number": 2,
+      "title": "Humans and the Environment",
+      "vietnamese": "Con người và môi trường",
+      "icon": "🌱",
+      "words": [
+        {
+          "id": 1,
+          "term": "carbon footprint",
+          "meaning": "lượng khí thải carbon do hoạt động tạo ra",
+          "example": "Cycling can reduce our carbon footprint.",
+          "icon": "👣",
+          "image": "./assets/images/pencil/unit2/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "eco-friendly",
+          "meaning": "thân thiện với môi trường",
+          "example": "We choose eco-friendly bags for shopping.",
+          "icon": "🌿",
+          "image": "./assets/images/pencil/unit2/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "reusable",
+          "meaning": "có thể tái sử dụng",
+          "example": "I carry a reusable bottle to school.",
+          "icon": "🫙",
+          "image": "./assets/images/pencil/unit2/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "conserve",
+          "meaning": "bảo tồn, tiết kiệm tài nguyên",
+          "example": "Turn off the tap to conserve water.",
+          "icon": "💧",
+          "image": "./assets/images/pencil/unit2/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "organic",
+          "meaning": "hữu cơ",
+          "example": "The farm grows organic vegetables.",
+          "icon": "🥬",
+          "image": "./assets/images/pencil/unit2/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "litter",
+          "meaning": "rác vứt bừa bãi",
+          "example": "The students collect litter near the lake.",
+          "icon": "🗑️",
+          "image": "./assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "recycle",
+          "meaning": "tái chế",
+          "example": "We recycle clean paper at school.",
+          "icon": "♻️",
+          "image": "./assets/images/pencil/unit2/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "green lifestyle",
+          "meaning": "lối sống xanh",
+          "example": "A green lifestyle includes using less plastic.",
+          "icon": "🌿",
+          "image": "./assets/images/pencil/unit2/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "renewable energy",
+          "meaning": "năng lượng tái tạo",
+          "example": "Our school uses renewable energy from the sun.",
+          "icon": "🌱",
+          "image": "./../lop7/assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "reduce waste",
+          "meaning": "giảm rác thải",
+          "example": "We use reusable shopping bags to reduce waste.",
+          "icon": "🌱",
+          "image": "./../lop6/assets/images/pencil/unit11/reduce-v1.webp"
+        }
+      ],
+      "color": "#be185d"
+    },
+    {
+      "id": "unit3",
+      "number": 3,
+      "title": "Music",
+      "vietnamese": "Âm nhạc",
+      "icon": "🎵",
+      "words": [
+        {
+          "id": 1,
+          "term": "audience",
+          "meaning": "khán giả",
+          "example": "The audience claps after the final song.",
+          "icon": "👏",
+          "image": "./assets/images/pencil/unit3/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "performance",
+          "meaning": "buổi biểu diễn",
+          "example": "Her first performance was in the school hall.",
+          "icon": "🎤",
+          "image": "./assets/images/pencil/unit3/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "judge",
+          "meaning": "giám khảo",
+          "example": "Each judge listens carefully to the singers.",
+          "icon": "🎧",
+          "image": "./assets/images/pencil/unit3/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "talented",
+          "meaning": "có tài năng",
+          "example": "The talented guitarist writes her own songs.",
+          "icon": "🎸",
+          "image": "./assets/images/pencil/unit3/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "release",
+          "meaning": "phát hành",
+          "example": "The band will release a new album in June.",
+          "icon": "💿",
+          "image": "./assets/images/pencil/unit3/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "contest",
+          "meaning": "cuộc thi",
+          "example": "Our music contest welcomes all students.",
+          "icon": "🏆",
+          "image": "./assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "composer",
+          "meaning": "nhà soạn nhạc",
+          "example": "The composer writes music for the school play.",
+          "icon": "🎼",
+          "image": "./assets/images/pencil/unit3/7-v2.webp"
+        },
+        {
+          "id": 8,
+          "term": "instrument",
+          "meaning": "nhạc cụ",
+          "example": "The flute is my favourite instrument.",
+          "icon": "🎻",
+          "image": "./assets/images/pencil/unit3/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "live concert",
+          "meaning": "buổi hòa nhạc trực tiếp",
+          "example": "The singer performed at a live concert.",
+          "icon": "🎵",
+          "image": "./assets/images/pencil/unit3/2-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "rehearsal",
+          "meaning": "buổi tập dượt",
+          "example": "The band has a rehearsal before the school concert.",
+          "icon": "🎵",
+          "image": "./assets/images/pencil/unit3/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#7c3aed"
+    },
+    {
+      "id": "unit4",
+      "number": 4,
+      "title": "For a Better Community",
+      "vietnamese": "Vì cộng đồng tốt đẹp hơn",
+      "icon": "🤝",
+      "words": [
+        {
+          "id": 1,
+          "term": "volunteer",
+          "meaning": "tình nguyện viên",
+          "example": "A volunteer reads stories to the children.",
+          "icon": "🙋",
+          "image": "./assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "donate",
+          "meaning": "quyên góp",
+          "example": "We donate warm clothes to the shelter.",
+          "icon": "🎁",
+          "image": "./assets/images/pencil/unit4/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "community",
+          "meaning": "cộng đồng",
+          "example": "Our community plants trees every year.",
+          "icon": "🏘️",
+          "image": "./assets/images/pencil/unit4/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "benefit",
+          "meaning": "lợi ích",
+          "example": "One benefit of volunteering is making friends.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit4/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "generous",
+          "meaning": "hào phóng",
+          "example": "Our generous neighbour shares her vegetables.",
+          "icon": "🧺",
+          "image": "./assets/images/pencil/unit4/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "charity",
+          "meaning": "tổ chức từ thiện",
+          "example": "The charity provides meals for older people.",
+          "icon": "🍲",
+          "image": "./assets/images/pencil/unit4/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "shelter",
+          "meaning": "nơi trú ngụ, mái ấm",
+          "example": "The shelter offers a safe place to sleep.",
+          "icon": "🏠",
+          "image": "./assets/images/pencil/unit4/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "raise funds",
+          "meaning": "gây quỹ",
+          "example": "We sell handmade cards to raise funds for the library.",
+          "icon": "🎁",
+          "image": "./assets/images/pencil/unit4/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "nursing home",
+          "meaning": "viện dưỡng lão",
+          "example": "Our club visits a nursing home every month.",
+          "icon": "🤝",
+          "image": "./../lop7/assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "charity sale",
+          "meaning": "buổi bán hàng gây quỹ từ thiện",
+          "example": "We held a charity sale to buy books for children.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit4/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#2563eb"
+    },
+    {
+      "id": "unit5",
+      "number": 5,
+      "title": "Inventions",
+      "vietnamese": "Những phát minh",
+      "icon": "💡",
+      "words": [
+        {
+          "id": 1,
+          "term": "device",
+          "meaning": "thiết bị",
+          "example": "This small device measures room temperature.",
+          "icon": "📱",
+          "image": "./assets/images/pencil/unit5/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "invention",
+          "meaning": "phát minh",
+          "example": "The invention helps people save time.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit5/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "portable",
+          "meaning": "dễ mang theo",
+          "example": "A portable charger fits in my school bag.",
+          "icon": "🔋",
+          "image": "./assets/images/pencil/unit5/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "experiment",
+          "meaning": "thí nghiệm",
+          "example": "We repeat the experiment to check the result.",
+          "icon": "🧪",
+          "image": "./assets/images/pencil/unit5/4-v2.webp"
+        },
+        {
+          "id": 5,
+          "term": "effective",
+          "meaning": "hiệu quả",
+          "example": "This filter is effective at removing dust.",
+          "icon": "⚙️",
+          "image": "./assets/images/pencil/unit5/5-v2.webp"
+        },
+        {
+          "id": 6,
+          "term": "application",
+          "meaning": "ứng dụng",
+          "example": "This application helps us organise our notes.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit5/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "robot",
+          "meaning": "người máy",
+          "example": "The robot sorts small objects by shape.",
+          "icon": "🤖",
+          "image": "./assets/images/pencil/unit5/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "solar panel",
+          "meaning": "tấm pin năng lượng mặt trời",
+          "example": "A solar panel turns sunlight into electricity.",
+          "icon": "☀️",
+          "image": "./assets/images/pencil/unit5/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "touchscreen",
+          "meaning": "màn hình cảm ứng",
+          "example": "Tap the touchscreen to open the learning app.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit5/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "labour-saving",
+          "meaning": "giúp tiết kiệm công sức lao động",
+          "example": "A washing machine is a labour-saving invention.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit5/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#15803d"
+    },
+    {
+      "id": "unit6",
+      "number": 6,
+      "title": "Gender Equality",
+      "vietnamese": "Bình đẳng giới",
+      "icon": "⚖️",
+      "words": [
+        {
+          "id": 1,
+          "term": "equality",
+          "meaning": "sự bình đẳng",
+          "example": "Equality gives everyone a fair chance.",
+          "icon": "⚖️",
+          "image": "./assets/images/pencil/unit6/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "opportunity",
+          "meaning": "cơ hội",
+          "example": "Every student deserves an opportunity to lead.",
+          "icon": "🚪",
+          "image": "./assets/images/pencil/unit6/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "discrimination",
+          "meaning": "sự phân biệt đối xử",
+          "example": "The club has rules against discrimination.",
+          "icon": "🛡️",
+          "image": "./assets/images/pencil/unit6/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "qualified",
+          "meaning": "đủ trình độ",
+          "example": "A qualified engineer checks the bridge.",
+          "icon": "👷",
+          "image": "./assets/images/pencil/unit6/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "encourage",
+          "meaning": "khuyến khích",
+          "example": "Our teachers encourage girls to study science.",
+          "icon": "🌟",
+          "image": "./assets/images/pencil/unit6/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "right",
+          "meaning": "quyền",
+          "example": "Education is a right for every child.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit6/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "equal pay",
+          "meaning": "trả lương bình đẳng",
+          "example": "Workers doing the same job deserve equal pay.",
+          "icon": "⚖️",
+          "image": "./assets/images/pencil/unit6/7-v2.webp"
+        },
+        {
+          "id": 8,
+          "term": "female firefighter",
+          "meaning": "nữ lính cứu hỏa",
+          "example": "The female firefighter checks her safety equipment.",
+          "icon": "👩‍🚒",
+          "image": "./assets/images/pencil/unit6/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "gender stereotype",
+          "meaning": "định kiến giới",
+          "example": "The story challenges the gender stereotype that only men can be engineers.",
+          "icon": "⚖️",
+          "image": "./assets/images/pencil/unit6/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "leadership",
+          "meaning": "khả năng lãnh đạo",
+          "example": "The project helped Mai develop her leadership skills.",
+          "icon": "⚖️",
+          "image": "./../lop11/assets/images/pencil/unit4/6-v1.webp"
+        }
+      ],
+      "color": "#be185d"
+    },
+    {
+      "id": "unit7",
+      "number": 7,
+      "title": "Viet Nam and International Organisations",
+      "vietnamese": "Việt Nam và các tổ chức quốc tế",
+      "icon": "🌏",
+      "words": [
+        {
+          "id": 1,
+          "term": "cooperate",
+          "meaning": "hợp tác",
+          "example": "Our schools cooperate on a reading project.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "peacekeeping",
+          "meaning": "gìn giữ hòa bình",
+          "example": "She learns about peacekeeping work abroad.",
+          "icon": "🕊️",
+          "image": "./assets/images/pencil/unit7/2-v4.webp"
+        },
+        {
+          "id": 3,
+          "term": "investment",
+          "meaning": "sự đầu tư",
+          "example": "Investment in libraries supports education.",
+          "icon": "🏫",
+          "image": "./assets/images/pencil/unit7/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "regional",
+          "meaning": "thuộc khu vực",
+          "example": "The regional meeting focuses on clean energy.",
+          "icon": "🌏",
+          "image": "./assets/images/pencil/unit7/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "commitment",
+          "meaning": "sự cam kết",
+          "example": "Our team shows a commitment to fair play.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "development",
+          "meaning": "sự phát triển",
+          "example": "Education supports the development of communities.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit7/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "humanitarian aid",
+          "meaning": "viện trợ nhân đạo",
+          "example": "Humanitarian aid includes food and clean water.",
+          "icon": "📦",
+          "image": "./assets/images/pencil/unit7/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "international",
+          "meaning": "mang tính quốc tế",
+          "example": "Our international team learns from different cultures.",
+          "icon": "🌏",
+          "image": "./assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "cultural exchange",
+          "meaning": "giao lưu văn hóa",
+          "example": "The cultural exchange helped us learn about our neighbours.",
+          "icon": "🌏",
+          "image": "./../lop11/assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "member state",
+          "meaning": "quốc gia thành viên",
+          "example": "Each member state sends representatives to the meeting.",
+          "icon": "🌏",
+          "image": "./assets/images/pencil/unit7/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#7c3aed"
+    },
+    {
+      "id": "unit8",
+      "number": 8,
+      "title": "New Ways to Learn",
+      "vietnamese": "Cách học mới",
+      "icon": "💻",
+      "words": [
+        {
+          "id": 1,
+          "term": "blended learning",
+          "meaning": "học kết hợp trực tiếp và trực tuyến",
+          "example": "Blended learning lets us study in different ways.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit8/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "digital",
+          "meaning": "thuộc kỹ thuật số",
+          "example": "Our digital notebook stores class notes.",
+          "icon": "📱",
+          "image": "./assets/images/pencil/unit8/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "interactive",
+          "meaning": "có tính tương tác",
+          "example": "The interactive quiz gives instant feedback.",
+          "icon": "🎮",
+          "image": "./assets/images/pencil/unit8/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "access",
+          "meaning": "truy cập, tiếp cận",
+          "example": "Students can access the lesson at home.",
+          "icon": "🔑",
+          "image": "./assets/images/pencil/unit8/4-v2.webp"
+        },
+        {
+          "id": 5,
+          "term": "self-study",
+          "meaning": "việc tự học",
+          "example": "I set aside twenty minutes for self-study.",
+          "icon": "📖",
+          "image": "./assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "resource",
+          "meaning": "tài nguyên, học liệu",
+          "example": "The library is a useful resource for research.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit8/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "online lesson",
+          "meaning": "bài học trực tuyến",
+          "example": "I join an online lesson from my desk at home.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit8/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "discussion",
+          "meaning": "cuộc thảo luận",
+          "example": "Our discussion helps us compare different ideas.",
+          "icon": "💬",
+          "image": "./assets/images/pencil/unit8/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "concentrate",
+          "meaning": "tập trung",
+          "example": "I put my phone away so I can concentrate on the lesson.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit8/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "take notes",
+          "meaning": "ghi chép",
+          "example": "I take notes while I listen to the lesson.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit8/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#2563eb"
+    },
+    {
+      "id": "unit9",
+      "number": 9,
+      "title": "Protecting the Environment",
+      "vietnamese": "Bảo vệ môi trường",
+      "icon": "🌳",
+      "words": [
+        {
+          "id": 1,
+          "term": "biodiversity",
+          "meaning": "đa dạng sinh học",
+          "example": "The forest has rich biodiversity.",
+          "icon": "🦋",
+          "image": "./assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "habitat",
+          "meaning": "môi trường sống",
+          "example": "The wetland is a habitat for many birds.",
+          "icon": "🦆",
+          "image": "./assets/images/pencil/unit9/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "deforestation",
+          "meaning": "nạn phá rừng",
+          "example": "Deforestation leaves many animals without homes.",
+          "icon": "🪵",
+          "image": "./assets/images/pencil/unit9/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "endangered",
+          "meaning": "có nguy cơ tuyệt chủng",
+          "example": "The reserve protects endangered animals.",
+          "icon": "🐢",
+          "image": "./assets/images/pencil/unit9/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "pollutant",
+          "meaning": "chất gây ô nhiễm",
+          "example": "Smoke can carry a harmful pollutant into the air.",
+          "icon": "🏭",
+          "image": "./assets/images/pencil/unit9/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "preserve",
+          "meaning": "gìn giữ, bảo tồn",
+          "example": "We must preserve the forest for the future.",
+          "icon": "🌲",
+          "image": "./assets/images/pencil/unit9/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "wildlife",
+          "meaning": "động vật hoang dã",
+          "example": "We watch wildlife from a safe distance.",
+          "icon": "🦜",
+          "image": "./assets/images/pencil/unit9/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "reforestation",
+          "meaning": "việc trồng lại rừng",
+          "example": "Reforestation brings trees back to damaged land.",
+          "icon": "🌳",
+          "image": "./assets/images/pencil/unit9/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "ecosystem",
+          "meaning": "hệ sinh thái",
+          "example": "A healthy forest ecosystem supports many species.",
+          "icon": "🌳",
+          "image": "./assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "conservation",
+          "meaning": "sự bảo tồn",
+          "example": "Our class joined a wildlife conservation project.",
+          "icon": "🌳",
+          "image": "./../lop11/assets/images/pencil/unit10/4-v1.webp"
+        }
+      ],
+      "color": "#15803d"
+    },
+    {
+      "id": "unit10",
+      "number": 10,
+      "title": "Ecotourism",
+      "vietnamese": "Du lịch sinh thái",
+      "icon": "🏞️",
+      "words": [
+        {
+          "id": 1,
+          "term": "ecotourism",
+          "meaning": "du lịch sinh thái",
+          "example": "Ecotourism can support local communities.",
+          "icon": "🏞️",
+          "image": "./assets/images/pencil/unit10/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "responsible",
+          "meaning": "có trách nhiệm",
+          "example": "A responsible visitor takes all rubbish home.",
+          "icon": "🎒",
+          "image": "./assets/images/pencil/unit10/2-v2.webp"
+        },
+        {
+          "id": 3,
+          "term": "destination",
+          "meaning": "điểm đến",
+          "example": "The island is a quiet destination for hikers.",
+          "icon": "🗺️",
+          "image": "./assets/images/pencil/unit10/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "local",
+          "meaning": "thuộc địa phương",
+          "example": "We buy fruit from local farmers.",
+          "icon": "🧺",
+          "image": "./assets/images/pencil/unit10/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "trail",
+          "meaning": "đường mòn",
+          "example": "Stay on the marked trail in the forest.",
+          "icon": "🥾",
+          "image": "./assets/images/pencil/unit10/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "impact",
+          "meaning": "tác động",
+          "example": "Small choices can reduce our impact on nature.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit10/6-v2.webp"
+        },
+        {
+          "id": 7,
+          "term": "tour guide",
+          "meaning": "hướng dẫn viên du lịch",
+          "example": "The tour guide explains how to protect the forest.",
+          "icon": "🧭",
+          "image": "./assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "souvenir",
+          "meaning": "đồ lưu niệm",
+          "example": "I buy a handmade souvenir from a local craftsperson.",
+          "icon": "🏺",
+          "image": "./assets/images/pencil/unit10/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "itinerary",
+          "meaning": "lịch trình chuyến đi",
+          "example": "Our itinerary includes a morning walk and a visit to a village.",
+          "icon": "🏞️",
+          "image": "./assets/images/pencil/unit10/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "local cuisine",
+          "meaning": "ẩm thực địa phương",
+          "example": "Visitors can try the local cuisine at family-run restaurants.",
+          "icon": "🏞️",
+          "image": "./assets/images/pencil/unit10/10-vocab100-v1.webp"
+        }
+      ],
+      "color": "#be185d"
+    }
+  ],
+  "11": [
+    {
+      "id": "unit1",
+      "number": 1,
+      "title": "A Long and Healthy Life",
+      "vietnamese": "Sống lâu và khỏe mạnh",
+      "icon": "🥗",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "balanced diet",
+          "meaning": "chế độ ăn cân bằng",
+          "example": "A balanced diet includes different food groups.",
+          "icon": "🥗",
+          "image": "./../lop7/assets/images/pencil/unit2/8-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "fitness",
+          "meaning": "thể lực",
+          "example": "Regular walking improves my fitness.",
+          "icon": "🏃",
+          "image": "./assets/images/pencil/unit1/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "nutrient",
+          "meaning": "chất dinh dưỡng",
+          "example": "Each nutrient plays a role in the body.",
+          "icon": "🥦",
+          "image": "./assets/images/pencil/unit1/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "life expectancy",
+          "meaning": "tuổi thọ trung bình",
+          "example": "Better living conditions can increase life expectancy.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit1/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "work out",
+          "meaning": "tập thể dục",
+          "example": "We work out gently before school.",
+          "icon": "👟",
+          "image": "./../lop7/assets/images/pencil/unit2/1-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "cut down on",
+          "meaning": "cắt giảm",
+          "example": "I want to cut down on sugary drinks.",
+          "icon": "🥤",
+          "image": "./assets/images/pencil/unit1/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "stay hydrated",
+          "meaning": "uống đủ nước",
+          "example": "Remember to stay hydrated during outdoor activities.",
+          "icon": "💧",
+          "image": "./../lop7/assets/images/pencil/unit2/5-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "get enough sleep",
+          "meaning": "ngủ đủ giấc",
+          "example": "I switch off my phone to get enough sleep.",
+          "icon": "🌙",
+          "image": "./../lop7/assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "physical activity",
+          "meaning": "hoạt động thể chất",
+          "example": "Regular physical activity can help us stay healthy.",
+          "icon": "🥗",
+          "image": "./assets/images/pencil/unit1/2-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "mental health",
+          "meaning": "sức khỏe tinh thần",
+          "example": "Talking to a trusted friend can support our mental health.",
+          "icon": "🥗",
+          "image": "./assets/images/pencil/unit1/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit2",
+      "number": 2,
+      "title": "The Generation Gap",
+      "vietnamese": "Khoảng cách thế hệ",
+      "icon": "👨‍👩‍👧",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "generation gap",
+          "meaning": "khoảng cách thế hệ",
+          "example": "The generation gap can affect family conversations.",
+          "icon": "👨‍👩‍👧",
+          "image": "./assets/images/pencil/unit2/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "conflict",
+          "meaning": "sự xung đột",
+          "example": "We discuss the conflict calmly.",
+          "icon": "💬",
+          "image": "./assets/images/pencil/unit2/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "independent",
+          "meaning": "độc lập",
+          "example": "My parents help me become independent.",
+          "icon": "🧭",
+          "image": "./../lop10/assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "viewpoint",
+          "meaning": "quan điểm",
+          "example": "I listen to my grandfather's viewpoint.",
+          "icon": "👂",
+          "image": "./../lop10/assets/images/pencil/unit8/8-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "curfew",
+          "meaning": "giờ phải về nhà",
+          "example": "My curfew is ten o'clock on Saturdays.",
+          "icon": "🕙",
+          "image": "./assets/images/pencil/unit2/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "respect",
+          "meaning": "tôn trọng",
+          "example": "We respect each other's choices.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "compromise",
+          "meaning": "thỏa hiệp",
+          "example": "We reached a compromise about my curfew.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit2/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "household rule",
+          "meaning": "quy tắc trong gia đình",
+          "example": "Our household rule is to share the chores.",
+          "icon": "🏠",
+          "image": "./assets/images/pencil/unit2/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "family gathering",
+          "meaning": "buổi sum họp gia đình",
+          "example": "At our family gathering, we listened to stories from different generations.",
+          "icon": "👨‍👩‍👧",
+          "image": "./../lop10/assets/images/pencil/unit1/8-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "privacy",
+          "meaning": "sự riêng tư",
+          "example": "My parents knock before entering my room to respect my privacy.",
+          "icon": "👨‍👩‍👧",
+          "image": "./assets/images/pencil/unit2/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit3",
+      "number": 3,
+      "title": "Cities of the Future",
+      "vietnamese": "Thành phố tương lai",
+      "icon": "🏙️",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "infrastructure",
+          "meaning": "cơ sở hạ tầng",
+          "example": "Good infrastructure makes travel easier.",
+          "icon": "🌉",
+          "image": "./assets/images/pencil/unit3/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "liveable",
+          "meaning": "đáng sống",
+          "example": "Green spaces make our city more liveable.",
+          "icon": "🌳",
+          "image": "./assets/images/pencil/unit3/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "sensor",
+          "meaning": "cảm biến",
+          "example": "A sensor turns the light on at night.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit3/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "pedestrian",
+          "meaning": "người đi bộ",
+          "example": "The bridge gives each pedestrian a safe route.",
+          "icon": "🚶",
+          "image": "./../lop7/assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "sustainable",
+          "meaning": "bền vững",
+          "example": "The city invests in sustainable transport.",
+          "icon": "🚲",
+          "image": "./../lop10/assets/images/pencil/unit2/8-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "efficient",
+          "meaning": "hiệu suất cao, ít lãng phí",
+          "example": "The new buses are energy efficient.",
+          "icon": "🚌",
+          "image": "./assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "public transport",
+          "meaning": "giao thông công cộng",
+          "example": "Better public transport can reduce traffic jams.",
+          "icon": "🚆",
+          "image": "./../lop7/assets/images/pencil/unit11/6-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "smart home",
+          "meaning": "nhà thông minh",
+          "example": "A smart home can switch off unused lights.",
+          "icon": "🏡",
+          "image": "./../lop6/assets/images/pencil/unit10/smart-home-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "green space",
+          "meaning": "không gian xanh",
+          "example": "The new green space gives residents a place to relax.",
+          "icon": "🏙️",
+          "image": "./assets/images/pencil/unit3/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "traffic congestion",
+          "meaning": "tình trạng ùn tắc giao thông",
+          "example": "Better bus services can help reduce traffic congestion.",
+          "icon": "🏙️",
+          "image": "./../lop7/assets/images/pencil/unit7/8-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit4",
+      "number": 4,
+      "title": "ASEAN and Viet Nam",
+      "vietnamese": "ASEAN và Việt Nam",
+      "icon": "🌏",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "cultural exchange",
+          "meaning": "giao lưu văn hóa",
+          "example": "The cultural exchange brings students together.",
+          "icon": "🎭",
+          "image": "./assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "solidarity",
+          "meaning": "tinh thần đoàn kết",
+          "example": "The teams show solidarity after the storm.",
+          "icon": "🤝",
+          "image": "./../lop10/assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "participant",
+          "meaning": "người tham gia",
+          "example": "Each participant prepares a short introduction.",
+          "icon": "🙋",
+          "image": "./../lop10/assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "contribution",
+          "meaning": "sự đóng góp",
+          "example": "Her contribution helped the project succeed.",
+          "icon": "🎁",
+          "image": "./../lop10/assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "promote",
+          "meaning": "thúc đẩy, quảng bá",
+          "example": "The festival promotes friendship through music.",
+          "icon": "🎵",
+          "image": "./assets/images/pencil/unit4/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "leadership",
+          "meaning": "khả năng lãnh đạo",
+          "example": "The project helps us develop leadership skills.",
+          "icon": "🧭",
+          "image": "./assets/images/pencil/unit4/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "regional cooperation",
+          "meaning": "hợp tác khu vực",
+          "example": "Regional cooperation helps communities solve shared problems.",
+          "icon": "🤝",
+          "image": "./../lop10/assets/images/pencil/unit7/4-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "mutual understanding",
+          "meaning": "sự thấu hiểu lẫn nhau",
+          "example": "Sharing stories builds mutual understanding.",
+          "icon": "💬",
+          "image": "./../lop10/assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "volunteer",
+          "meaning": "tình nguyện viên",
+          "example": "Each volunteer helps visitors find their way around the event.",
+          "icon": "🌏",
+          "image": "./../lop10/assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "partnership",
+          "meaning": "quan hệ đối tác",
+          "example": "The two schools formed a partnership to organise an exchange.",
+          "icon": "🌏",
+          "image": "./assets/images/pencil/unit4/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit5",
+      "number": 5,
+      "title": "Global Warming",
+      "vietnamese": "Sự nóng lên toàn cầu",
+      "icon": "🌡️",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "greenhouse gas",
+          "meaning": "khí nhà kính",
+          "example": "Carbon dioxide is a greenhouse gas.",
+          "icon": "🏭",
+          "image": "./assets/images/pencil/unit5/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "emission",
+          "meaning": "sự phát thải",
+          "example": "The factory measures each source of emission.",
+          "icon": "💨",
+          "image": "./../lop6/assets/images/pencil/unit11/pollution-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "fossil fuel",
+          "meaning": "nhiên liệu hóa thạch",
+          "example": "Coal is a fossil fuel.",
+          "icon": "🪨",
+          "image": "./../lop7/assets/images/pencil/unit10/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "renewable",
+          "meaning": "có thể tái tạo",
+          "example": "Wind is a renewable source of energy.",
+          "icon": "🌬️",
+          "image": "./../lop7/assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "climate change",
+          "meaning": "biến đổi khí hậu",
+          "example": "Climate change affects farming in many places.",
+          "icon": "🌍",
+          "image": "./assets/images/pencil/unit5/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "melt",
+          "meaning": "tan chảy",
+          "example": "The ice begins to melt in warm air.",
+          "icon": "🧊",
+          "image": "./assets/images/pencil/unit5/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "sea level",
+          "meaning": "mực nước biển",
+          "example": "A rising sea level puts coastal homes at risk.",
+          "icon": "🌊",
+          "image": "./assets/images/pencil/unit5/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "heatwave",
+          "meaning": "đợt nắng nóng",
+          "example": "The city opened cool spaces during the heatwave.",
+          "icon": "☀️",
+          "image": "./assets/images/pencil/unit5/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "drought",
+          "meaning": "hạn hán",
+          "example": "The long drought left farmers with too little water for their crops.",
+          "icon": "🌡️",
+          "image": "./assets/images/pencil/unit5/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "deforestation",
+          "meaning": "nạn phá rừng",
+          "example": "Deforestation can increase the amount of carbon dioxide in the atmosphere.",
+          "icon": "🌡️",
+          "image": "./../lop10/assets/images/pencil/unit9/3-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit6",
+      "number": 6,
+      "title": "Preserving Our Heritage",
+      "vietnamese": "Bảo tồn di sản",
+      "icon": "🏛️",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "heritage",
+          "meaning": "di sản",
+          "example": "The old theatre is part of our heritage.",
+          "icon": "🏛️",
+          "image": "./../lop6/assets/images/pencil/unit4/temple-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "restore",
+          "meaning": "trùng tu, khôi phục",
+          "example": "Workers restore the wooden doors carefully.",
+          "icon": "🪵",
+          "image": "./assets/images/pencil/unit6/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "monument",
+          "meaning": "đài tưởng niệm, công trình kỷ niệm",
+          "example": "The monument stands near the river.",
+          "icon": "🗿",
+          "image": "./../lop6/assets/images/pencil/unit9/landmark-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "preservation",
+          "meaning": "sự bảo tồn",
+          "example": "Preservation protects the building from further damage.",
+          "icon": "🛡️",
+          "image": "./assets/images/pencil/unit6/4-v2.webp"
+        },
+        {
+          "id": 5,
+          "term": "craft",
+          "meaning": "nghề thủ công",
+          "example": "The village is famous for its pottery craft.",
+          "icon": "🏺",
+          "image": "./../lop10/assets/images/pencil/unit10/8-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "historical",
+          "meaning": "thuộc lịch sử",
+          "example": "We study historical records about the town.",
+          "icon": "📜",
+          "image": "./../lop6/assets/images/pencil/unit9/palace-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "archaeological site",
+          "meaning": "di chỉ khảo cổ",
+          "example": "Visitors must not remove objects from an archaeological site.",
+          "icon": "🏺",
+          "image": "./assets/images/pencil/unit6/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "traditional costume",
+          "meaning": "trang phục truyền thống",
+          "example": "She wore a traditional costume at the heritage festival.",
+          "icon": "👘",
+          "image": "./assets/images/pencil/unit6/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "handicraft",
+          "meaning": "sản phẩm thủ công",
+          "example": "This bamboo handicraft was made by a local artisan.",
+          "icon": "🏛️",
+          "image": "./assets/images/pencil/unit6/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "pass down",
+          "meaning": "truyền lại",
+          "example": "Local artisans pass down their weaving skills to younger people.",
+          "icon": "🏛️",
+          "image": "./assets/images/pencil/unit6/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit7",
+      "number": 7,
+      "title": "Education Options for School-leavers",
+      "vietnamese": "Lựa chọn sau khi ra trường",
+      "icon": "🎓",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "vocational",
+          "meaning": "thuộc đào tạo nghề",
+          "example": "He chose a vocational course in cooking.",
+          "icon": "🧑‍🍳",
+          "image": "./assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "apprenticeship",
+          "meaning": "chương trình học nghề tại nơi làm việc",
+          "example": "An apprenticeship combines work and training.",
+          "icon": "🛠️",
+          "image": "./assets/images/pencil/unit7/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "qualification",
+          "meaning": "bằng cấp, chứng chỉ",
+          "example": "This qualification is useful for technicians.",
+          "icon": "📜",
+          "image": "./assets/images/pencil/unit7/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "tuition fee",
+          "meaning": "học phí",
+          "example": "She saves money to pay the tuition fee.",
+          "icon": "💰",
+          "image": "./assets/images/pencil/unit7/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "practical",
+          "meaning": "mang tính thực hành",
+          "example": "The course provides practical skills.",
+          "icon": "🔧",
+          "image": "./assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "school-leaver",
+          "meaning": "người vừa rời trường phổ thông",
+          "example": "The school-leaver is exploring training courses.",
+          "icon": "🎒",
+          "image": "./assets/images/pencil/unit7/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "career path",
+          "meaning": "lộ trình nghề nghiệp",
+          "example": "An apprenticeship can be the start of a career path.",
+          "icon": "🧭",
+          "image": "./assets/images/pencil/unit7/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "higher education",
+          "meaning": "giáo dục đại học",
+          "example": "He is comparing different options for higher education.",
+          "icon": "🎓",
+          "image": "./assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "vocational training",
+          "meaning": "đào tạo nghề",
+          "example": "Vocational training helps learners prepare for a specific job.",
+          "icon": "🎓",
+          "image": "./assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "graduate",
+          "meaning": "người tốt nghiệp",
+          "example": "The graduate is applying for an apprenticeship in engineering.",
+          "icon": "🎓",
+          "image": "./assets/images/pencil/unit7/3-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit8",
+      "number": 8,
+      "title": "Becoming Independent",
+      "vietnamese": "Trở nên độc lập",
+      "icon": "🧭",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "self-reliant",
+          "meaning": "tự lực",
+          "example": "She became more self-reliant at college.",
+          "icon": "🎒",
+          "image": "./../lop10/assets/images/pencil/unit1/7-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "time management",
+          "meaning": "quản lý thời gian",
+          "example": "Time management helps me finish tasks calmly.",
+          "icon": "🗓️",
+          "image": "./assets/images/pencil/unit8/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "budget",
+          "meaning": "ngân sách",
+          "example": "I plan a weekly budget for food.",
+          "icon": "💰",
+          "image": "./assets/images/pencil/unit8/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "decision-making",
+          "meaning": "việc ra quyết định",
+          "example": "The project develops decision-making skills.",
+          "icon": "🧠",
+          "image": "./assets/images/pencil/unit8/4-v2.webp"
+        },
+        {
+          "id": 5,
+          "term": "confidence",
+          "meaning": "sự tự tin",
+          "example": "Preparing well gives me confidence.",
+          "icon": "🌟",
+          "image": "./../lop6/assets/images/pencil/unit3/confident-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "cope with",
+          "meaning": "ứng phó với",
+          "example": "I take short breaks to cope with stress.",
+          "icon": "🌿",
+          "image": "./assets/images/pencil/unit8/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "household chore",
+          "meaning": "việc nhà",
+          "example": "Doing a household chore helps me become more independent.",
+          "icon": "🧹",
+          "image": "./../lop10/assets/images/pencil/unit1/1-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "problem-solving",
+          "meaning": "việc giải quyết vấn đề",
+          "example": "Planning the trip helped us practise problem-solving.",
+          "icon": "🧩",
+          "image": "./assets/images/pencil/unit8/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "do the laundry",
+          "meaning": "giặt quần áo",
+          "example": "I learned to do the laundry before moving away from home.",
+          "icon": "🧭",
+          "image": "./../lop10/assets/images/pencil/unit1/7-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "self-discipline",
+          "meaning": "tính tự giác, kỷ luật bản thân",
+          "example": "Self-discipline helps me finish my work before playing games.",
+          "icon": "🧭",
+          "image": "./assets/images/pencil/unit8/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit9",
+      "number": 9,
+      "title": "Social Issues",
+      "vietnamese": "Các vấn đề xã hội",
+      "icon": "💛",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "peer pressure",
+          "meaning": "áp lực từ bạn bè",
+          "example": "Peer pressure can influence our decisions.",
+          "icon": "👥",
+          "image": "./assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "bullying",
+          "meaning": "hành vi bắt nạt",
+          "example": "Students report bullying to a trusted adult.",
+          "icon": "🛡️",
+          "image": "./assets/images/pencil/unit9/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "awareness",
+          "meaning": "nhận thức",
+          "example": "The campaign raises awareness of online safety.",
+          "icon": "💡",
+          "image": "./assets/images/pencil/unit9/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "campaign",
+          "meaning": "chiến dịch",
+          "example": "Our campaign encourages kindness at school.",
+          "icon": "📣",
+          "image": "./../lop7/assets/images/pencil/unit3/8-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "poverty",
+          "meaning": "tình trạng nghèo đói",
+          "example": "Education can help reduce poverty.",
+          "icon": "🏘️",
+          "image": "./assets/images/pencil/unit9/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "cyberbullying",
+          "meaning": "bắt nạt trên mạng",
+          "example": "The class discusses how to report cyberbullying.",
+          "icon": "💻",
+          "image": "./assets/images/pencil/unit9/6-v2.webp"
+        },
+        {
+          "id": 7,
+          "term": "support network",
+          "meaning": "mạng lưới hỗ trợ",
+          "example": "Friends and trusted adults are part of my support network.",
+          "icon": "🫶",
+          "image": "./assets/images/pencil/unit9/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "seek help",
+          "meaning": "tìm sự giúp đỡ",
+          "example": "Students can seek help from a trusted teacher.",
+          "icon": "🙋",
+          "image": "./assets/images/pencil/unit9/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "discrimination",
+          "meaning": "sự phân biệt đối xử",
+          "example": "The school has clear rules against discrimination.",
+          "icon": "💛",
+          "image": "./../lop10/assets/images/pencil/unit6/3-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "raise awareness",
+          "meaning": "nâng cao nhận thức",
+          "example": "Our campaign aims to raise awareness of cyberbullying.",
+          "icon": "💛",
+          "image": "./assets/images/pencil/unit9/3-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit10",
+      "number": 10,
+      "title": "The Ecosystem",
+      "vietnamese": "Hệ sinh thái",
+      "icon": "🦋",
+      "color": "#854c40",
+      "words": [
+        {
+          "id": 1,
+          "term": "ecosystem",
+          "meaning": "hệ sinh thái",
+          "example": "A pond is a small ecosystem.",
+          "icon": "🏞️",
+          "image": "./../lop10/assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "food chain",
+          "meaning": "chuỗi thức ăn",
+          "example": "Each animal has a place in the food chain.",
+          "icon": "🐛",
+          "image": "./assets/images/pencil/unit10/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "species",
+          "meaning": "loài",
+          "example": "Many bird species live in the wetland.",
+          "icon": "🦜",
+          "image": "./../lop10/assets/images/pencil/unit9/7-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "conservation",
+          "meaning": "sự bảo tồn",
+          "example": "Conservation protects wildlife and habitats.",
+          "icon": "🌿",
+          "image": "./assets/images/pencil/unit10/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "balance",
+          "meaning": "sự cân bằng",
+          "example": "Removing one species can upset the balance.",
+          "icon": "⚖️",
+          "image": "./assets/images/pencil/unit10/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "organism",
+          "meaning": "sinh vật",
+          "example": "Each organism needs suitable living conditions.",
+          "icon": "🦠",
+          "image": "./assets/images/pencil/unit10/6-v2.webp"
+        },
+        {
+          "id": 7,
+          "term": "predator",
+          "meaning": "động vật săn mồi",
+          "example": "A hawk is a predator that hunts smaller animals.",
+          "icon": "🦅",
+          "image": "./assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "prey",
+          "meaning": "con mồi",
+          "example": "A rabbit can be prey for a fox.",
+          "icon": "🐇",
+          "image": "./assets/images/pencil/unit10/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "biodiversity",
+          "meaning": "đa dạng sinh học",
+          "example": "Protecting wetlands helps preserve biodiversity.",
+          "icon": "🦋",
+          "image": "./../lop10/assets/images/pencil/unit9/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "habitat",
+          "meaning": "môi trường sống",
+          "example": "A pond provides a habitat for ducks and other wildlife.",
+          "icon": "🦋",
+          "image": "./../lop10/assets/images/pencil/unit9/2-v1.webp"
+        }
+      ]
+    }
+  ],
+  "12": [
+    {
+      "id": "unit1",
+      "number": 1,
+      "title": "Life Stories We Admire",
+      "vietnamese": "Những cuộc đời đáng ngưỡng mộ",
+      "icon": "🌟",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "achievement",
+          "meaning": "thành tựu",
+          "example": "Her greatest achievement was opening a free library.",
+          "icon": "🏆",
+          "image": "./assets/images/pencil/unit1/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "dedication",
+          "meaning": "sự tận tâm",
+          "example": "His dedication inspired the whole team.",
+          "icon": "💛",
+          "image": "./../lop10/assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "resilient",
+          "meaning": "kiên cường",
+          "example": "The resilient athlete returned after a difficult year.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit1/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "biography",
+          "meaning": "tiểu sử",
+          "example": "I borrowed a biography of a famous scientist.",
+          "icon": "📖",
+          "image": "./assets/images/pencil/unit1/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "overcome",
+          "meaning": "vượt qua",
+          "example": "She worked hard to overcome each challenge.",
+          "icon": "⛰️",
+          "image": "./assets/images/pencil/unit1/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "inspire",
+          "meaning": "truyền cảm hứng",
+          "example": "Their stories inspire me to keep learning.",
+          "icon": "✨",
+          "image": "./../lop10/assets/images/pencil/unit6/5-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "perseverance",
+          "meaning": "sự kiên trì",
+          "example": "Her perseverance helped her finish the research despite many setbacks.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit1/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "legacy",
+          "meaning": "di sản để lại",
+          "example": "His legacy includes a free library for local children.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit1/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "role model",
+          "meaning": "hình mẫu để noi theo",
+          "example": "Her courage and kindness make her a role model for young people.",
+          "icon": "🌟",
+          "image": "./assets/images/pencil/unit1/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "determination",
+          "meaning": "sự quyết tâm",
+          "example": "His determination helped him keep studying after the setback.",
+          "icon": "🌟",
+          "image": "./assets/images/pencil/unit1/7-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit2",
+      "number": 2,
+      "title": "A Multicultural World",
+      "vietnamese": "Thế giới đa văn hóa",
+      "icon": "🌍",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "diversity",
+          "meaning": "sự đa dạng",
+          "example": "Cultural diversity enriches our community.",
+          "icon": "🌈",
+          "image": "./../lop10/assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "identity",
+          "meaning": "bản sắc",
+          "example": "Language is part of our cultural identity.",
+          "icon": "🪪",
+          "image": "./assets/images/pencil/unit2/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "custom",
+          "meaning": "phong tục",
+          "example": "We learn about a local custom before travelling.",
+          "icon": "🏮",
+          "image": "./../lop6/assets/images/pencil/unit6/celebrate-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "multicultural",
+          "meaning": "đa văn hóa",
+          "example": "Our multicultural club shares food and stories.",
+          "icon": "🌍",
+          "image": "./assets/images/pencil/unit2/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "adapt",
+          "meaning": "thích nghi",
+          "example": "It takes time to adapt to a new school.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit2/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "inclusive",
+          "meaning": "bao gồm và chào đón mọi người",
+          "example": "An inclusive classroom values every student.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "cultural exchange",
+          "meaning": "giao lưu văn hóa",
+          "example": "The cultural exchange helped students understand different traditions.",
+          "icon": "🤝",
+          "image": "./../lop11/assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "mutual respect",
+          "meaning": "sự tôn trọng lẫn nhau",
+          "example": "Mutual respect allows people with different beliefs to work together.",
+          "icon": "🫶",
+          "image": "./../lop11/assets/images/pencil/unit2/6-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "cultural heritage",
+          "meaning": "di sản văn hóa",
+          "example": "Old temples are an important part of our cultural heritage.",
+          "icon": "🌍",
+          "image": "./../lop6/assets/images/pencil/unit4/temple-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "language barrier",
+          "meaning": "rào cản ngôn ngữ",
+          "example": "Pictures helped us overcome the language barrier.",
+          "icon": "🌍",
+          "image": "./assets/images/pencil/unit2/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit3",
+      "number": 3,
+      "title": "Green Living",
+      "vietnamese": "Sống xanh",
+      "icon": "🌿",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "compost",
+          "meaning": "phân ủ hữu cơ",
+          "example": "We make compost from vegetable scraps.",
+          "icon": "🍂",
+          "image": "./assets/images/pencil/unit3/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "biodegradable",
+          "meaning": "có thể phân hủy sinh học",
+          "example": "The shop uses biodegradable packaging.",
+          "icon": "🌱",
+          "image": "./assets/images/pencil/unit3/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "landfill",
+          "meaning": "bãi chôn lấp rác",
+          "example": "Less food waste goes to landfill now.",
+          "icon": "🗑️",
+          "image": "./assets/images/pencil/unit3/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "reuse",
+          "meaning": "tái sử dụng",
+          "example": "We reuse glass jars to store rice.",
+          "icon": "🫙",
+          "image": "./../lop6/assets/images/pencil/unit11/reuse-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "packaging",
+          "meaning": "bao bì",
+          "example": "I choose products with less packaging.",
+          "icon": "📦",
+          "image": "./assets/images/pencil/unit3/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "sort",
+          "meaning": "phân loại",
+          "example": "Please sort paper and plastic into separate bins.",
+          "icon": "♻️",
+          "image": "./assets/images/pencil/unit3/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "carbon footprint",
+          "meaning": "lượng phát thải carbon",
+          "example": "Cycling to school can reduce your carbon footprint.",
+          "icon": "🚲",
+          "image": "./../lop10/assets/images/pencil/unit2/1-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "sustainable",
+          "meaning": "bền vững",
+          "example": "We are looking for sustainable ways to reduce household waste.",
+          "icon": "🌱",
+          "image": "./../lop10/assets/images/pencil/unit2/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "recycle",
+          "meaning": "tái chế",
+          "example": "We recycle clean paper instead of throwing it away.",
+          "icon": "🌿",
+          "image": "./../lop10/assets/images/pencil/unit2/7-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "reusable bag",
+          "meaning": "túi dùng nhiều lần",
+          "example": "She takes a reusable bag with her when she goes shopping.",
+          "icon": "🌿",
+          "image": "./../lop6/assets/images/pencil/unit11/reduce-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit4",
+      "number": 4,
+      "title": "Urbanisation",
+      "vietnamese": "Đô thị hóa",
+      "icon": "🏙️",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "urbanisation",
+          "meaning": "sự đô thị hóa",
+          "example": "Urbanisation changes how people live and work.",
+          "icon": "🏙️",
+          "image": "./assets/images/pencil/unit4/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "migration",
+          "meaning": "sự di cư",
+          "example": "Migration can increase the population of a city.",
+          "icon": "🧳",
+          "image": "./assets/images/pencil/unit4/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "affordable",
+          "meaning": "có giá phải chăng",
+          "example": "Workers need affordable housing near transport.",
+          "icon": "🏠",
+          "image": "./assets/images/pencil/unit4/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "congestion",
+          "meaning": "sự ùn tắc",
+          "example": "Better bus services can reduce traffic congestion.",
+          "icon": "🚦",
+          "image": "./../lop7/assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "resident",
+          "meaning": "cư dân",
+          "example": "Each resident can join the planning meeting.",
+          "icon": "🏘️",
+          "image": "./assets/images/pencil/unit4/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "expansion",
+          "meaning": "sự mở rộng",
+          "example": "The town's expansion creates new challenges.",
+          "icon": "🗺️",
+          "image": "./assets/images/pencil/unit4/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "infrastructure",
+          "meaning": "cơ sở hạ tầng",
+          "example": "The town needs better infrastructure, including roads and water pipes.",
+          "icon": "🏗️",
+          "image": "./../lop11/assets/images/pencil/unit3/1-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "housing shortage",
+          "meaning": "tình trạng thiếu nhà ở",
+          "example": "The growing city is facing a housing shortage.",
+          "icon": "🏘️",
+          "image": "./assets/images/pencil/unit4/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "public transport",
+          "meaning": "giao thông công cộng",
+          "example": "Affordable public transport helps residents travel across the city.",
+          "icon": "🏙️",
+          "image": "./../lop7/assets/images/pencil/unit11/6-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "densely populated",
+          "meaning": "có mật độ dân cư cao",
+          "example": "The densely populated district needs more public services.",
+          "icon": "🏙️",
+          "image": "./assets/images/pencil/unit4/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit5",
+      "number": 5,
+      "title": "The World of Work",
+      "vietnamese": "Thế giới việc làm",
+      "icon": "💼",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "vacancy",
+          "meaning": "vị trí tuyển dụng",
+          "example": "The company advertises a vacancy for an assistant.",
+          "icon": "📋",
+          "image": "./assets/images/pencil/unit5/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "applicant",
+          "meaning": "ứng viên",
+          "example": "Each applicant sends a short cover letter.",
+          "icon": "✉️",
+          "image": "./assets/images/pencil/unit5/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "recruit",
+          "meaning": "tuyển dụng",
+          "example": "The centre plans to recruit two technicians.",
+          "icon": "🤝",
+          "image": "./assets/images/pencil/unit5/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "shift",
+          "meaning": "ca làm việc",
+          "example": "Her morning shift starts at seven.",
+          "icon": "🕖",
+          "image": "./assets/images/pencil/unit5/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "rewarding",
+          "meaning": "đem lại sự hài lòng",
+          "example": "Teaching can be a rewarding career.",
+          "icon": "🌟",
+          "image": "./assets/images/pencil/unit5/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "qualification",
+          "meaning": "bằng cấp, chứng chỉ",
+          "example": "The job requires a technical qualification.",
+          "icon": "🎓",
+          "image": "./../lop11/assets/images/pencil/unit7/3-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "work experience",
+          "meaning": "kinh nghiệm làm việc",
+          "example": "The weekend job gave Mai useful work experience.",
+          "icon": "🧰",
+          "image": "./../lop11/assets/images/pencil/unit7/2-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "job satisfaction",
+          "meaning": "sự hài lòng trong công việc",
+          "example": "Helping patients gives the nurse a sense of job satisfaction.",
+          "icon": "😊",
+          "image": "./assets/images/pencil/unit5/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "job interview",
+          "meaning": "buổi phỏng vấn xin việc",
+          "example": "I prepared examples of teamwork for my job interview.",
+          "icon": "💼",
+          "image": "./assets/images/pencil/unit5/2-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "employee",
+          "meaning": "nhân viên",
+          "example": "The employee starts her evening shift at the cafe.",
+          "icon": "💼",
+          "image": "./assets/images/pencil/unit5/4-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit6",
+      "number": 6,
+      "title": "Artificial Intelligence",
+      "vietnamese": "Trí tuệ nhân tạo",
+      "icon": "🤖",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "algorithm",
+          "meaning": "thuật toán",
+          "example": "The algorithm sorts the results by date.",
+          "icon": "🧮",
+          "image": "./assets/images/pencil/unit6/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "automate",
+          "meaning": "tự động hóa",
+          "example": "This program can automate simple tasks.",
+          "icon": "⚙️",
+          "image": "./../lop6/assets/images/pencil/unit10/automatically-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "data",
+          "meaning": "dữ liệu",
+          "example": "We check the data before drawing conclusions.",
+          "icon": "📊",
+          "image": "./assets/images/pencil/unit6/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "privacy",
+          "meaning": "quyền riêng tư",
+          "example": "The app has settings to protect privacy.",
+          "icon": "🔒",
+          "image": "./assets/images/pencil/unit6/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "recognition",
+          "meaning": "sự nhận dạng",
+          "example": "Speech recognition can turn speech into text.",
+          "icon": "🎙️",
+          "image": "./../lop6/assets/images/pencil/unit12/recognise-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "virtual assistant",
+          "meaning": "trợ lý ảo",
+          "example": "A virtual assistant can set a reminder.",
+          "icon": "🤖",
+          "image": "./assets/images/pencil/unit6/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "machine learning",
+          "meaning": "học máy",
+          "example": "Machine learning helps the programme identify patterns in data.",
+          "icon": "🧠",
+          "image": "./assets/images/pencil/unit6/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "human oversight",
+          "meaning": "sự giám sát của con người",
+          "example": "The automated system still needs human oversight.",
+          "icon": "👀",
+          "image": "./assets/images/pencil/unit6/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "facial recognition",
+          "meaning": "nhận diện khuôn mặt",
+          "example": "Facial recognition systems compare patterns in images of faces.",
+          "icon": "🤖",
+          "image": "./assets/images/pencil/unit6/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "chatbot",
+          "meaning": "chương trình trò chuyện tự động",
+          "example": "The chatbot answers simple questions about opening hours.",
+          "icon": "🤖",
+          "image": "./assets/images/pencil/unit6/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit7",
+      "number": 7,
+      "title": "The World of Mass Media",
+      "vietnamese": "Thế giới truyền thông đại chúng",
+      "icon": "📰",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "reliable",
+          "meaning": "đáng tin cậy",
+          "example": "We look for reliable sources before sharing news.",
+          "icon": "✅",
+          "image": "./assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "broadcast",
+          "meaning": "phát sóng",
+          "example": "The station will broadcast the interview tonight.",
+          "icon": "📺",
+          "image": "./assets/images/pencil/unit7/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "headline",
+          "meaning": "tiêu đề tin",
+          "example": "The headline summarises the main event.",
+          "icon": "📰",
+          "image": "./assets/images/pencil/unit7/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "subscriber",
+          "meaning": "người đăng ký theo dõi",
+          "example": "Each subscriber receives a weekly newsletter.",
+          "icon": "📬",
+          "image": "./assets/images/pencil/unit7/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "misinformation",
+          "meaning": "thông tin sai lệch",
+          "example": "Checking facts helps stop misinformation.",
+          "icon": "🔎",
+          "image": "./assets/images/pencil/unit7/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "coverage",
+          "meaning": "việc đưa tin",
+          "example": "The report provides coverage of the local election.",
+          "icon": "🎥",
+          "image": "./assets/images/pencil/unit7/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "fact-check",
+          "meaning": "kiểm chứng thông tin",
+          "example": "Always fact-check a surprising claim before sharing it.",
+          "icon": "🔎",
+          "image": "./assets/images/pencil/unit7/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "source",
+          "meaning": "nguồn tin",
+          "example": "The report names the source of each statistic.",
+          "icon": "📰",
+          "image": "./assets/images/pencil/unit7/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "journalist",
+          "meaning": "nhà báo",
+          "example": "The journalist checked the facts before publishing the story.",
+          "icon": "📰",
+          "image": "./assets/images/pencil/unit7/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "audience",
+          "meaning": "khán giả, người tiếp nhận nội dung",
+          "example": "The audience applauded at the end of the show.",
+          "icon": "📰",
+          "image": "./../lop10/assets/images/pencil/unit3/1-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit8",
+      "number": 8,
+      "title": "Wildlife Conservation",
+      "vietnamese": "Bảo tồn động vật hoang dã",
+      "icon": "🐘",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "poaching",
+          "meaning": "săn bắt trái phép",
+          "example": "Rangers work together to stop poaching.",
+          "icon": "🛡️",
+          "image": "./assets/images/pencil/unit8/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "extinction",
+          "meaning": "sự tuyệt chủng",
+          "example": "Habitat loss can push species towards extinction.",
+          "icon": "🐾",
+          "image": "./assets/images/pencil/unit8/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "reserve",
+          "meaning": "khu bảo tồn",
+          "example": "The reserve provides a safe home for birds.",
+          "icon": "🌳",
+          "image": "./assets/images/pencil/unit8/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "threaten",
+          "meaning": "đe dọa",
+          "example": "Pollution can threaten river wildlife.",
+          "icon": "🏭",
+          "image": "./assets/images/pencil/unit8/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "breeding",
+          "meaning": "việc sinh sản, nhân giống",
+          "example": "The breeding programme supports a rare species.",
+          "icon": "🥚",
+          "image": "./assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "enforce",
+          "meaning": "thực thi",
+          "example": "The team helps enforce wildlife protection laws.",
+          "icon": "⚖️",
+          "image": "./assets/images/pencil/unit8/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "habitat loss",
+          "meaning": "sự mất môi trường sống",
+          "example": "Habitat loss leaves wild animals with fewer safe places to live.",
+          "icon": "🌳",
+          "image": "./../lop10/assets/images/pencil/unit9/3-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "endangered species",
+          "meaning": "loài có nguy cơ tuyệt chủng",
+          "example": "The reserve protects several endangered species.",
+          "icon": "🐾",
+          "image": "./assets/images/pencil/unit8/8-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "conservation",
+          "meaning": "sự bảo tồn",
+          "example": "Wildlife conservation requires long-term support from local communities.",
+          "icon": "🐘",
+          "image": "./../lop11/assets/images/pencil/unit10/4-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "ranger",
+          "meaning": "kiểm lâm viên",
+          "example": "The ranger patrols the reserve to protect wild animals.",
+          "icon": "🐘",
+          "image": "./assets/images/pencil/unit8/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit9",
+      "number": 9,
+      "title": "Career Paths",
+      "vietnamese": "Con đường nghề nghiệp",
+      "icon": "🧭",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "aptitude",
+          "meaning": "năng khiếu",
+          "example": "She has an aptitude for solving technical problems.",
+          "icon": "🧩",
+          "image": "./../lop10/assets/images/pencil/unit3/4-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "career adviser",
+          "meaning": "người tư vấn nghề nghiệp",
+          "example": "A career adviser helped me compare courses.",
+          "icon": "🧭",
+          "image": "./../lop11/assets/images/pencil/unit7/7-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "internship",
+          "meaning": "kỳ thực tập",
+          "example": "My internship helped me understand office work.",
+          "icon": "💼",
+          "image": "./assets/images/pencil/unit9/3-v1.webp"
+        },
+        {
+          "id": 4,
+          "term": "prospect",
+          "meaning": "triển vọng",
+          "example": "The course improves my prospect of finding work.",
+          "icon": "🔭",
+          "image": "./assets/images/pencil/unit9/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "transferable skill",
+          "meaning": "kỹ năng có thể áp dụng nhiều công việc",
+          "example": "Communication is a useful transferable skill.",
+          "icon": "💬",
+          "image": "./assets/images/pencil/unit9/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "long-term goal",
+          "meaning": "mục tiêu dài hạn",
+          "example": "My long-term goal is to become an engineer.",
+          "icon": "🎯",
+          "image": "./assets/images/pencil/unit9/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "professional development",
+          "meaning": "phát triển chuyên môn",
+          "example": "The company offers courses for professional development.",
+          "icon": "📈",
+          "image": "./assets/images/pencil/unit9/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "self-assessment",
+          "meaning": "tự đánh giá",
+          "example": "Self-assessment helps me identify the skills I need to improve.",
+          "icon": "🪞",
+          "image": "./assets/images/pencil/unit9/8-v2.webp"
+        },
+        {
+          "id": 9,
+          "term": "vocational training",
+          "meaning": "đào tạo nghề",
+          "example": "Vocational training is one possible route to a rewarding career.",
+          "icon": "🧭",
+          "image": "./../lop11/assets/images/pencil/unit7/1-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "strength",
+          "meaning": "điểm mạnh",
+          "example": "Problem-solving is a strength I can use in many jobs.",
+          "icon": "🧭",
+          "image": "./assets/images/pencil/unit9/10-vocab100-v1.webp"
+        }
+      ]
+    },
+    {
+      "id": "unit10",
+      "number": 10,
+      "title": "Lifelong Learning",
+      "vietnamese": "Học tập suốt đời",
+      "icon": "📚",
+      "color": "#3e527c",
+      "words": [
+        {
+          "id": 1,
+          "term": "lifelong learning",
+          "meaning": "học tập suốt đời",
+          "example": "Lifelong learning keeps our skills up to date.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit10/1-v1.webp"
+        },
+        {
+          "id": 2,
+          "term": "curiosity",
+          "meaning": "tính tò mò, ham học hỏi",
+          "example": "Curiosity encourages us to ask questions.",
+          "icon": "🔎",
+          "image": "./assets/images/pencil/unit10/2-v1.webp"
+        },
+        {
+          "id": 3,
+          "term": "upskill",
+          "meaning": "nâng cao kỹ năng",
+          "example": "Workers can upskill through short courses.",
+          "icon": "🛠️",
+          "image": "./assets/images/pencil/unit10/3-v2.webp"
+        },
+        {
+          "id": 4,
+          "term": "flexible",
+          "meaning": "linh hoạt",
+          "example": "A flexible schedule helps me study after work.",
+          "icon": "🗓️",
+          "image": "./assets/images/pencil/unit10/4-v1.webp"
+        },
+        {
+          "id": 5,
+          "term": "reflect",
+          "meaning": "suy ngẫm",
+          "example": "I reflect on what I learned each week.",
+          "icon": "💭",
+          "image": "./assets/images/pencil/unit10/5-v1.webp"
+        },
+        {
+          "id": 6,
+          "term": "motivation",
+          "meaning": "động lực",
+          "example": "Clear goals give me motivation to practise.",
+          "icon": "🌟",
+          "image": "./assets/images/pencil/unit10/6-v1.webp"
+        },
+        {
+          "id": 7,
+          "term": "learning opportunity",
+          "meaning": "cơ hội học tập",
+          "example": "The community workshop is a free learning opportunity.",
+          "icon": "🚪",
+          "image": "./assets/images/pencil/unit10/7-v1.webp"
+        },
+        {
+          "id": 8,
+          "term": "self-directed learning",
+          "meaning": "học tập tự định hướng",
+          "example": "Self-directed learning requires clear goals and regular reflection.",
+          "icon": "🧭",
+          "image": "./../lop10/assets/images/pencil/unit8/5-v1.webp"
+        },
+        {
+          "id": 9,
+          "term": "acquire knowledge",
+          "meaning": "tiếp thu kiến thức",
+          "example": "Adults can acquire knowledge through reading and practical experience.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit10/9-vocab100-v1.webp"
+        },
+        {
+          "id": 10,
+          "term": "critical thinking",
+          "meaning": "tư duy phản biện",
+          "example": "Critical thinking helps us evaluate information before accepting it.",
+          "icon": "📚",
+          "image": "./assets/images/pencil/unit10/10-vocab100-v1.webp"
+        }
+      ]
+    }
+  ]
+}

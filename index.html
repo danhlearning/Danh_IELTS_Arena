@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" id="meta-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Danh học IELTS">
+  <meta name="theme-color" id="meta-theme-color" content="#ffffff">
+  
+  <!-- Progressive Web App (PWA) cho iPhone iOS -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-512.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <title>Danh học IELTS</title>
+  
+  <!-- 2 Font chữ chính: Nunito & Be Vietnam Pro (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=2.8">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs (Không gian chất lỏng khúc xạ đa tầng iOS 27) -->
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+  <div class="ambient-glow orb-3"></div>
+
+  <!-- Desktop Wrapper: Trải nghiệm chuẩn mực cả trên PC và iPhone 17 Pro Max -->
+  <div class="desktop-wrapper">
+    
+    <div class="desktop-controls-bar">
+      <div class="device-pill">
+        <span class="pulsing-dot"></span>
+        <span>iPhone 17 Pro Max • 440 × 956pt</span>
+      </div>
+      <button id="btn-view-toggle" class="view-toggle-btn">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        <span>Tràn màn hình</span>
+      </button>
+    </div>
+
+    <!-- Khung Máy Vật Lý iPhone 17 Pro Max (Titan Tự Nhiên & Kính Ceramic Shield 2.0) -->
+    <div class="iphone-frame" id="iphone-frame">
+
+      <!-- Màn hình nội dung chính của Game (True OLED Liquid Glass Viewport) -->
+      <main class="screen-content" id="screen-content">
+
+        <!-- ==================== TOP BAR: TÍCH HỢP ĐỒNG NHẤT VỚI DYNAMIC ISLAND ==================== -->
+        <header class="ios-unified-header">
+          <!-- Giờ hệ thống bên trái -->
+          <span class="time-display">9:41</span>
+
+          <!-- Hộp Thoại Mô Phỏng Rớt Từ Dynamic Island Thật (Liquid Droplet Spring Dialog) -->
+          <div class="dynamic-island-drop" id="dynamic-island" aria-live="polite">
+            <div class="island-drop-capsule">
+              <span class="island-drop-icon" id="island-drop-icon">⚡</span>
+              <div class="island-drop-content">
+                <span class="island-drop-title" id="island-drop-title">DANH HỌC IELTS</span>
+                <span class="island-message" id="island-message">⚡ Chào mừng bạn!</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trạng thái sóng, wifi, pin bên phải -->
+          <div class="status-icons-group">
+            <span class="signal-badge">6G</span>
+            <svg class="status-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4zm0 4c3.34 0 6.38 1.37 8.58 3.58L12 19.17 3.42 11.58A12.02 12.02 0 0 1 12 8z"/></svg>
+            <svg class="status-icon battery-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h13c1.1 0 2-.9 2-2v-1h2c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1h-2V8c0-1.1-.9-2-2-2zm-1 10H5c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1h11c.55 0 1 .45 1 1v6c0 .55-.45 1-1 1z"/></svg>
+          </div>
+        </header>
+
+        <!-- ==================== TẦNG 1: MONITORING ZONE (QUAN SÁT THỤ ĐỘNG) ==================== -->
+        <section class="zone-header">
+          <div class="stats-row">
+            <!-- Cánh Trái (Left Wing): Viên nang 3 Trái tim sinh mệnh đối xứng -->
+            <div class="header-wing-left">
+              <div class="hearts-pill-capsule" title="Sinh mệnh còn lại (Hồi phục sau 4 combo)">
+                <div class="hearts-container" id="hearts-container">
+                  <div class="heart-wrapper" data-heart="1">
+                    <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </div>
+                  <div class="heart-wrapper" data-heart="2">
+                    <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </div>
+                  <div class="heart-wrapper" data-heart="3">
+                    <svg class="heart-svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Streak Combo Badge Rực Lửa Holographic (Bảo toàn DOM ID cho test suite, ẩn bằng CSS) -->
+            <div class="streak-pill" id="streak-pill">
+              <svg class="fire-svg" viewBox="0 0 24 24"><path d="M12 2c-.3 0-.6.1-.8.4C9.5 4.6 7 8.3 7 11.5c0 1.2.3 2.3.9 3.2-.2-.5-.3-1-.3-1.6 0-1.7 1-3.2 2.3-4.3.2-.2.5-.2.7 0 .2.2.3.4.2.7-.4 1.3-.2 2.7.5 3.8.4-.7 1-1.3 1.7-1.8.3-.2.6-.1.8.1.1.2.2.4.1.6-.4 1.8-.1 3.5.7 4.9.4.7 1 1.2 1.6 1.7.5-.5.9-1.2 1.1-1.9.3-1.1.2-2.3-.3-3.3-.2-.4 0-.8.4-1 .3-.1.7 0 .9.3 1 1.6 1.2 3.6.6 5.4-.1.4-.3.7-.5 1.1 2.3-1.5 3.8-4.1 3.8-7 0-4-3.4-7.8-6.9-12-.2-.3-.5-.4-.8-.4z"/></svg>
+              <span id="streak-text">0 COMBO</span>
+            </div>
+
+            <!-- Cánh Phải (Right Wing): Cụm điều khiển Kho từ vựng, Loa, Theme -->
+            <div class="header-wing-right">
+              <div class="top-actions">
+                <button class="grade-filter-pill-btn" id="btn-grade-filter" title="Chọn Khối Lớp / Band IELTS">
+                  <span class="g-icon">🎓</span>
+                  <span id="current-filter-pill-label">Lớp 6-12</span>
+                </button>
+                <button class="icon-btn" id="btn-sound-toggle" title="Bật/Tắt Âm thanh">
+                  <svg id="sound-icon-svg" class="action-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                </button>
+                <button class="icon-btn" id="btn-theme-toggle" title="Chuyển chế độ Sáng/Tối">
+                  <svg id="theme-icon-svg" class="action-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tiến trình, Điểm số & Đồng Hồ Đếm Số 10 Giây -->
+          <div class="progress-subrow">
+            <span id="progress-text" class="progress-badge">Câu 1/10</span>
+            
+            <!-- Đếm số thời gian thực (15.0 Giây) -->
+            <div class="countdown-digital-box" id="countdown-digital-box">
+              <svg class="clock-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="timer-seconds" class="timer-seconds-badge">15.0s</span>
+            </div>
+
+            <span class="score-display" id="score-display">0 XP</span>
+          </div>
+
+          <!-- Thanh Đếm Ngược Thời Gian Photon Liquid 15 GIÂY -->
+          <div class="timer-container">
+            <div class="timer-bar" id="timer-bar">
+              <div class="timer-plasma-head"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TẦNG 2: QUESTION CONTEXT (VÙNG ĐỌC HIỂU LIQUID GLASS) ==================== -->
+        <section class="zone-question">
+          <div class="question-card" id="question-card">
+            
+            <div class="question-tags">
+              <span class="grade-badge" id="grade-badge">LỚP 6</span>
+              <span class="band-badge" id="band-badge">BAND 7.0</span>
+              <span class="mastery-badge" id="mastery-badge">Lv.1 🌱</span>
+              <span class="mode-badge" id="mode-badge">🔤 Điền chữ cái</span>
+              <span class="topic-badge" id="topic-badge">🌿 Environment</span>
+            </div>
+
+            <p class="prompt-text" id="prompt-text">Điền các chữ cái còn thiếu vào từ vựng:</p>
+
+            <!-- Vùng hình ảnh minh họa từ vựng bút chì (Pencil Art từ Danh_English_Tutor) -->
+            <div class="vocab-image-container" id="vocab-image" style="display: none;">
+              <img id="vocab-img" src="" alt="Minh họa từ vựng" loading="lazy">
+            </div>
+
+            <!-- Ô chữ cái nổi 3D Liquid Crystal (cho chế độ Điền chữ cái) -->
+            <div class="masked-word-container" id="letter-box-container" style="display: none;">
+              <!-- Dynamic Letter Boxes -->
+            </div>
+
+            <!-- Câu văn học thuật / Nghĩa tiếng Việt -->
+            <h2 class="question-main-text" id="question-main-text">
+              Loading question...
+            </h2>
+
+            <!-- Dải thông tin bổ trợ học thuật & Phiên âm IPA (cân đối bố cục không gian) -->
+            <div class="question-meta-footer" id="question-meta-footer">
+              <span class="phonetic-guide" id="phonetic-guide">/prɪˈsɪp.ɪ.təs/</span>
+              <span class="academic-hint-pill" id="academic-hint-pill">💡 Academic Vocabulary</span>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==================== TẦNG 3: THUMB ACTION ARENA (VÙNG THAO TÁC CÔNG THÁI HỌC VÀNG) ==================== -->
+        <section class="zone-actions">
+          
+          <!-- 3 Power-ups Cứu Cánh Kính Thủy Tinh (Liquid Glass Pills) -->
+          <div class="powerups-row">
+            <button class="powerup-btn" id="btn-fifty" title="Loại bỏ 2 phương án sai">
+              <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>50:50</span>
+            </button>
+            <button class="powerup-btn" id="btn-freeze" title="Đóng băng thời gian 3 giây">
+              <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2.2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/></svg>
+              <span>Đóng băng</span>
+            </button>
+            <button class="powerup-btn" id="btn-hint" title="Xem gợi ý nghĩa tiếng Việt">
+              <svg class="p-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+              <span>Gợi ý</span>
+            </button>
+          </div>
+
+          <!-- 4 Nút Đáp Án Spatial Touch Kích Thước Lớn Chuẩn Ngón Cái (Tactile Buttons 60px) -->
+          <div class="answers-grid" id="answers-container">
+            <!-- Dynamic 4 Buttons -->
+          </div>
+
+        </section>
+
+        <!-- Ngăn Kéo Phản Hồi Tinh Gọn (Popup giải thích ngắn gọn, dễ hiểu - Bỏ Writing Task 2) -->
+        <div class="feedback-drawer" id="feedback-drawer">
+          <div class="drawer-handle"></div>
+          <div class="feedback-header-row">
+            <div class="feedback-title" id="feedback-title">✓ CHÍNH XÁC!</div>
+          </div>
+          <div class="feedback-vietnamese" id="feedback-vietnamese">tàn phá, hủy hoại</div>
+          
+          <!-- Giải thích ngắn gọn, súc tích, dễ hiểu -->
+          <p class="feedback-explanation" id="feedback-explanation">
+            'wreak havoc' là academic collocation chuẩn band 7+.
+          </p>
+
+          <!-- Ẩn hoàn toàn Writing Task 2 theo yêu cầu tinh gọn (bảo toàn DOM IDs cho test suite) -->
+          <div class="feedback-exam-context hidden-exam-context" id="feedback-exam-context" style="display: none !important;" aria-hidden="true">
+            <span class="exam-task-label" id="exam-task-label">Writing Task 2</span>
+            <div class="exam-sentence-quote" id="exam-sentence-quote">"The chart illustrates a precipitous decline."</div>
+            <div class="common-mistake-text" id="common-mistake-text">💡 Thí sinh hay nhầm chính tả.</div>
+          </div>
+
+          <button class="feedback-btn" id="btn-next">
+            <span>Tiếp tục</span>
+            <svg class="next-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <!-- Modal Kết Thúc Trận Đấu & Xếp Hạng Band -->
+        <div class="modal-overlay" id="modal-overlay">
+          <div class="modal-card">
+            <div class="victory-trophy">🏆</div>
+            <h2 class="band-grade-title" id="band-grade">IELTS 7.5+ Speed Demon</h2>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <span class="val" id="final-score">0 XP</span>
+                <span class="lbl">TỔNG ĐIỂM</span>
+              </div>
+              <div class="stat-box">
+                <span class="val" id="max-streak">0</span>
+                <span class="lbl">CHUỖI MAX</span>
+              </div>
+              <div class="stat-box">
+                <span class="val" id="avg-time">0.0s</span>
+                <span class="lbl">TỐC ĐỘ TB</span>
+              </div>
+              <div class="stat-box">
+                <span class="val" id="accuracy-rate">0%</span>
+                <span class="lbl">ĐỘ CHÍNH XÁC</span>
+              </div>
+            </div>
+
+            <!-- Nút Mở Kho Ứng Dụng Phòng Thi -->
+            <button class="btn-vault-open" id="btn-vault-open">
+              <svg class="btn-vault-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/></svg>
+              <span>Sổ Tay Từ Vựng Vừa Luyện (10 từ)</span>
+            </button>
+
+            <!-- Bảng Emoji Kết Quả Kiểu Wordle -->
+            <div class="wordle-card" id="wordle-grid">
+              🟩🟩🟩🟩🟩<br>🟩🟨🟩🟩🟩
+            </div>
+
+            <button class="btn-share" id="btn-share">
+              <svg class="share-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+              <span>Copy Kết Quả Khoe Bạn Bè</span>
+            </button>
+
+            <button class="btn-replay" id="btn-replay">
+              <span>Chơi Lại Vòng Mới 🚀</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Sổ Tay Ứng Dụng Phòng Thi (Exam Application Vault) -->
+        <div class="vault-overlay" id="vault-overlay">
+          <div class="vault-header">
+            <h3>📖 Sổ Tay Từ Vựng Vừa Luyện</h3>
+            <button class="vault-close-btn" id="btn-vault-close">✕</button>
+          </div>
+          <div class="vault-list" id="vault-list">
+            <!-- Danh sách các từ và câu ứng dụng -->
+          </div>
+        </div>
+
+        <!-- Modal Chọn Khối Lớp & Band IELTS (Grade & Band Selection Sheet) -->
+        <div class="grade-modal-overlay" id="grade-modal-overlay">
+          <div class="grade-modal-sheet">
+            <div class="sheet-handle"></div>
+            <div class="grade-modal-header">
+              <h3>🎯 Đấu Trường Từ Vựng Adaptive</h3>
+              <button class="modal-close-icon-btn" id="btn-grade-modal-close">✕</button>
+            </div>
+            <p class="grade-modal-subtitle">Thuật toán tự động học theo phản xạ • IELTS Band 5.0-7.5 & TOEIC 400-700</p>
+            
+            <div class="grade-options-list">
+              <button class="grade-option-btn active" data-filter="all">
+                <div class="g-info">
+                  <span class="g-title">🌐 Hỗn Hợp Toàn Bộ (Adaptive Mixed Arena)</span>
+                  <span class="g-desc">Toàn bộ 371 câu hỏi IELTS & TOEIC • Thuật toán tự điều phối độ khó tăng tiến</span>
+                </div>
+                <span class="g-badge">371 câu</span>
+              </button>
+
+              <div class="grade-category-divider">💼 CHUYÊN ĐỀ TOEIC THƯƠNG MẠI & CÔNG SỞ</div>
+
+              <button class="grade-option-btn" data-filter="toeic">
+                <div class="g-info">
+                  <span class="g-title">💼 TOEIC 400 - 700 (Đa Giác Quan 6 Game/Từ)</span>
+                  <span class="g-desc">35 từ vựng then chốt Part 5, 6, 7 • Mỗi từ rèn luyện đủ 6 chế độ toàn diện</span>
+                </div>
+                <span class="g-badge">210 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="ielts">
+                <div class="g-info">
+                  <span class="g-title">🎓 IELTS & SGK Phổ Thông (Lớp 6 - 12)</span>
+                  <span class="g-desc">161 câu học thuật Global Success • Band 5.0 - 7.5+</span>
+                </div>
+                <span class="g-badge">161 câu</span>
+              </button>
+              
+              <div class="grade-category-divider">KHỐI TRUNG HỌC CƠ SỞ (THCS)</div>
+              
+              <button class="grade-option-btn" data-filter="g6">
+                <div class="g-info">
+                  <span class="g-title">🎒 Tiếng Anh Lớp 6 • Band 5.0</span>
+                  <span class="g-desc">Trường học, Nhà cửa, Bạn bè, Thế giới xanh, Người máy</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="g7">
+                <div class="g-info">
+                  <span class="g-title">🎨 Tiếng Anh Lớp 7 • Band 5.0 - 5.5</span>
+                  <span class="g-desc">Sở thích, Sống khỏe, Phục vụ cộng đồng, Năng lượng, Giao thông</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="g8">
+                <div class="g-info">
+                  <span class="g-title">🏕️ Tiếng Anh Lớp 8 • Band 5.5 - 6.0</span>
+                  <span class="g-desc">Thanh thiếu niên, Dân tộc, Phong tục tập quán, Thiên tai, Khoa học</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="g9">
+                <div class="g-info">
+                  <span class="g-title">🏙️ Tiếng Anh Lớp 9 • Band 6.0 - 6.5</span>
+                  <span class="g-desc">Làng nghề, Cuộc sống thành thị, Di sản quá khứ, Quản lý thời gian</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <div class="grade-category-divider">KHỐI TRUNG HỌC PHỔ THÔNG (THPT) & IELTS</div>
+
+              <button class="grade-option-btn" data-filter="g10">
+                <div class="g-info">
+                  <span class="g-title">🌿 Tiếng Anh Lớp 10 • Band 6.5 - 7.0</span>
+                  <span class="g-desc">Gia đình & Bình đẳng giới, Bảo vệ sinh thái, Dấu chân carbon, Du lịch sinh thái</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="g11">
+                <div class="g-info">
+                  <span class="g-title">⚡ Tiếng Anh Lớp 11 • Band 7.0</span>
+                  <span class="g-desc">Sống thọ, Đô thị thông minh, Hiệu ứng nhà kính, Tự chủ độc lập</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <button class="grade-option-btn" data-filter="g12">
+                <div class="g-info">
+                  <span class="g-title">🏆 Tiếng Anh Lớp 12 • Band 7.0 - 7.5</span>
+                  <span class="g-desc">Kiên cường, Đa văn hóa, Đô thị hóa, Trí tuệ nhân tạo (AI), Tuyệt chủng sinh vật</span>
+                </div>
+                <span class="g-badge">18 câu</span>
+              </button>
+
+              <div class="grade-category-divider">CHUYÊN ĐỀ MỤC TIÊU BAND ĐIỂM</div>
+
+              <button class="grade-option-btn" data-filter="band7">
+                <div class="g-info">
+                  <span class="g-title">🎯 Bứt Phá Điểm Band 7.0 - 7.5</span>
+                  <span class="g-desc">Tập trung toàn bộ từ vựng học thuật đỉnh cao phục vụ Writing Task 2 & Speaking</span>
+                </div>
+                <span class="g-badge">41 câu</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canvas Pháo Hoa Giấy Confetti -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- iOS 17/18/27 Home Indicator Bar (Thanh Vuốt Đáy Màn Hình) -->
+        <div class="home-indicator"></div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Nạp Dữ Liệu Từ Vựng & Hình Ảnh Pencil & Sound Engine & Logic Game (Auto-Cache Busting v2.8) -->
+  <script src="data.js?v=2.8"></script>
+  <script src="vocab-images.js?v=2.8"></script>
+  <script src="sound.js?v=2.8"></script>
+  <script src="app.js?v=2.8"></script>
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js?v=2.8').then(reg => {
+          reg.update();
+        }).catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
