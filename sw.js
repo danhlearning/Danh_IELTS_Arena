@@ -1,5 +1,5 @@
 // Service Worker cho Danh học IELTS (PWA Network-First Auto-Update tối ưu WebKit & iOS Safari)
-const CACHE_NAME = 'danh-hoc-ielts-v3.0';
+const CACHE_NAME = 'danh-hoc-ielts-v3.2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

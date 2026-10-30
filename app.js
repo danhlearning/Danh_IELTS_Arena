@@ -104,8 +104,12 @@ class GameEngine {
         lastSeen: 0,
         avgResponseTime: 6.0,
         masteryLevel: 1,
-        retention: 25
+        retention: 25,
+        spellingStep: 1
       };
+    }
+    if (typeof this.memoryProfiles[key].spellingStep === 'undefined') {
+      this.memoryProfiles[key].spellingStep = 1;
     }
     return this.memoryProfiles[key];
   }
@@ -343,6 +347,52 @@ class GameEngine {
     };
     document.addEventListener('touchstart', unlockAudio, { once: true });
     document.addEventListener('click', unlockAudio, { once: true });
+
+    // Hỗ trợ gõ phím máy tính (Physical Keyboard: A-Z, Backspace, 1-4)
+    if (typeof window !== 'undefined' && window.addEventListener) {
+      window.addEventListener('keydown', (e) => {
+        if (this.isAnsweringLocked) return;
+        if (this.feedbackDrawer && this.feedbackDrawer.classList.contains('active')) {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
+            this.nextQuestion();
+          }
+          return;
+        }
+
+        const q = this.questions[this.currentIndex];
+        if (!q) return;
+
+        if (q.mode === 'letter_fill') {
+          if (e.key === 'Backspace') {
+            const btnUndo = document.getElementById('btn-letter-undo');
+            if (btnUndo) btnUndo.click();
+          } else if (e.key === 'Escape' || e.key === 'Delete') {
+            const btnClear = document.getElementById('btn-letter-clear');
+            if (btnClear) btnClear.click();
+          } else if (/^[a-zA-Z]$/.test(e.key)) {
+            const char = e.key.toUpperCase();
+            if (this.answersContainer && this.answersContainer.querySelectorAll) {
+              const tileBtns = Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'));
+              const availableTile = tileBtns.find(t => t.dataset && t.dataset.char === char && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
+              if (availableTile) {
+                availableTile.click();
+              }
+            }
+          }
+        } else {
+          // Các dạng trắc nghiệm 4 đáp án (1, 2, 3, 4 hoặc A, B, C, D)
+          const key = e.key.toUpperCase();
+          const keyMap = { '1': 0, 'A': 0, '2': 1, 'B': 1, '3': 2, 'C': 2, '4': 3, 'D': 3 };
+          if (typeof keyMap[key] !== 'undefined' && this.answersContainer && this.answersContainer.querySelectorAll) {
+            const idx = keyMap[key];
+            const allBtns = Array.from(this.answersContainer.querySelectorAll('.btn-tactile'));
+            if (allBtns[idx] && !allBtns[idx].disabled && !allBtns[idx].classList.contains('eliminated')) {
+              allBtns[idx].click();
+            }
+          }
+        }
+      });
+    }
   }
 
   applyPersistedSettings() {
@@ -531,11 +581,119 @@ class GameEngine {
       }
     }
 
+    // Thiết lập tiến trình bậc thang (1 -> 2 -> 3 -> FULL toàn bộ chữ) cho toàn bộ câu letter_fill
+    selected.forEach(q => {
+      if (q.mode === 'letter_fill') {
+        const prof = this.getWordProfile(q);
+        q.scaffoldStep = prof.spellingStep || 1;
+      }
+    });
+
     // Ghi nhận ID đã chọn vào usedQuestionIds để chống lặp tuyệt đối
     selected.forEach(q => this.usedQuestionIds.add(q.id));
     this.saveUsedQuestionIds();
 
     return selected;
+  }
+
+  // Thiết kế lộ trình 4 bậc thang điền chữ cái: 1 -> 2 -> 3 -> FULL toàn bộ chữ
+  getScaffoldedConfig(q) {
+    if (!q || !q.target_word) {
+      return {
+        masked: q.masked || '',
+        missing: q.missing || [],
+        stepNum: (q.missing || []).length || 1,
+        hint: '💡 Điền chữ cái'
+      };
+    }
+
+    const cleanWord = q.target_word.trim().toUpperCase();
+    const letters = cleanWord.split('');
+    const totalLetters = letters.filter(ch => /[A-Z]/.test(ch)).length;
+
+    // Xác định bậc thang (Step 1, 2, 3, hoặc 4 = FULL toàn bộ từ)
+    let step = q.scaffoldStep;
+    if (!step) {
+      const prof = this.getWordProfile(q);
+      step = prof.spellingStep || 1;
+    }
+
+    // Nếu step >= 4 hoặc là 'full' -> Nhập FULL toàn bộ từ!
+    if (step === 'full' || step >= 4 || step >= totalLetters) {
+      const maskedChars = letters.map(ch => /[A-Z]/.test(ch) ? '_' : ch);
+      const missingChars = letters.filter(ch => /[A-Z]/.test(ch));
+      return {
+        step: 'full',
+        stepNum: 4,
+        blankCount: totalLetters,
+        masked: maskedChars.join(' '),
+        missing: missingChars,
+        hint: `🏆 Thử thách Master: Nhập FULL toàn bộ từ (${totalLetters} chữ)!`
+      };
+    }
+
+    const blankCount = Math.min(Math.max(1, step), totalLetters);
+
+    // Nếu q.masked và q.missing ban đầu khớp chính xác số blankCount thì tái sử dụng
+    if (q.masked && q.missing) {
+      const origMissingArr = Array.isArray(q.missing) ? q.missing : q.missing.split('');
+      if (origMissingArr.length === blankCount) {
+        const stepLabels = { 1: '🌱 Bậc 1: Nhập 1 chữ cái', 2: '🌿 Bậc 2: Nhập 2 chữ cái', 3: '🌸 Bậc 3: Nhập 3 chữ cái' };
+        return {
+          step: `step_${blankCount}`,
+          stepNum: blankCount,
+          blankCount,
+          masked: q.masked,
+          missing: origMissingArr,
+          hint: stepLabels[blankCount] || `💡 Điền ${blankCount} chữ cái`
+        };
+      }
+    }
+
+    // Tự động sinh vị trí ô trống thông minh (ưu tiên nguyên âm & vị trí giữa từ)
+    const alphaIndices = [];
+    letters.forEach((ch, idx) => {
+      if (/[A-Z]/.test(ch)) alphaIndices.push(idx);
+    });
+
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+    const vowelIndices = alphaIndices.filter(i => vowels.includes(letters[i]));
+    const consonantIndices = alphaIndices.filter(i => !vowels.includes(letters[i]));
+
+    const chosenIndices = [];
+    // Chọn từ nguyên âm trước (từ giữa từ tỏa ra 2 bên)
+    const sortedVowels = [...vowelIndices].sort((a, b) => Math.abs(a - cleanWord.length / 2) - Math.abs(b - cleanWord.length / 2));
+    for (const idx of sortedVowels) {
+      if (chosenIndices.length < blankCount) {
+        chosenIndices.push(idx);
+      }
+    }
+    // Nếu chưa đủ số ô trống, chọn tiếp phụ âm
+    const sortedConsonants = [...consonantIndices].sort((a, b) => Math.abs(a - cleanWord.length / 2) - Math.abs(b - cleanWord.length / 2));
+    for (const idx of sortedConsonants) {
+      if (chosenIndices.length < blankCount) {
+        chosenIndices.push(idx);
+      }
+    }
+
+    chosenIndices.sort((a, b) => a - b);
+
+    const maskedChars = letters.map((ch, idx) => {
+      if (chosenIndices.includes(idx)) return '_';
+      return ch;
+    });
+
+    const missingChars = chosenIndices.map(idx => letters[idx]);
+    const stepLabels = { 1: '🌱 Bậc 1: Nhập 1 chữ cái', 2: '🌿 Bậc 2: Nhập 2 chữ cái', 3: '🌸 Bậc 3: Nhập 3 chữ cái' };
+
+    return {
+      step: `step_${blankCount}`,
+      stepNum: blankCount,
+      blankCount,
+      masked: maskedChars.join(' '),
+      missing: missingChars,
+      hint: stepLabels[blankCount] || `💡 Điền ${blankCount} chữ cái`
+    };
   }
 
   // Khởi tạo vòng chơi 10 câu độc nhất 100%, tự động hóa thông minh theo Adaptive Learning
@@ -660,7 +818,15 @@ class GameEngine {
     }
 
     if (q.mode === 'letter_fill') {
-      this.promptText.textContent = 'Chạm các chữ cái bên dưới để hoàn thành từ:';
+      const scaffold = this.getScaffoldedConfig(q);
+      q._activeMasked = scaffold.masked;
+      q._activeMissing = scaffold.missing;
+      q._activeStep = scaffold.stepNum;
+      q._activeHint = scaffold.hint;
+
+      this.promptText.textContent = scaffold.stepNum >= 4 
+        ? 'Nhập toàn bộ các chữ cái để hoàn thành từ vựng:' 
+        : 'Chạm các chữ cái bên dưới để hoàn thành từ:';
       this.letterBoxContainer.style.display = 'flex';
       this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
       this.renderInteractiveLetterFill(q);
@@ -689,8 +855,12 @@ class GameEngine {
     }
     if (this.academicHintPill) {
       if (q.mode === 'letter_fill') {
-        const missLen = Array.isArray(q.missing) ? q.missing.length : (q.missing ? q.missing.length : 1);
-        this.academicHintPill.innerHTML = `💡 Thiếu ${missLen} chữ cái`;
+        if (q._activeHint) {
+          this.academicHintPill.innerHTML = q._activeHint;
+        } else {
+          const missLen = Array.isArray(q._activeMissing || q.missing) ? (q._activeMissing || q.missing).length : 1;
+          this.academicHintPill.innerHTML = `💡 Thiếu ${missLen} chữ cái`;
+        }
       } else if (q.mode === 'collocation') {
         this.academicHintPill.innerHTML = `💡 Academic Collocation Band 7+`;
       } else if (q.mode === 'word_class') {
@@ -726,7 +896,9 @@ class GameEngine {
     this.answersContainer.innerHTML = '';
     this.letterBoxContainer.innerHTML = '';
 
-    const chars = q.masked.split(' ');
+    const maskedStr = q._activeMasked || q.masked || '';
+    const activeMissing = q._activeMissing || q.missing || [];
+    const chars = maskedStr.split(' ');
     const blankBoxes = [];
     let blankIdx = 0;
 
@@ -765,14 +937,16 @@ class GameEngine {
       this.letterBoxContainer.appendChild(box);
     });
 
-    // Tạo 8 phím chữ cái (gồm các ký tự cần điền + các ký tự nhiễu)
-    const missingLetters = (Array.isArray(q.missing) ? [...q.missing] : q.missing.split('')).map(c => c.toUpperCase());
+    // Tạo phím chữ cái (gồm các ký tự cần điền + các ký tự nhiễu)
+    const missingLetters = (Array.isArray(activeMissing) ? [...activeMissing] : activeMissing.split('')).map(c => c.toUpperCase());
     const candidateDistractors = ['A', 'E', 'I', 'O', 'U', 'R', 'S', 'T', 'L', 'N', 'D', 'C', 'M', 'P', 'B'];
-    const neededDistractors = Math.max(0, 8 - missingLetters.length);
+    const neededDistractors = missingLetters.length >= 7 
+      ? 2 
+      : Math.max(0, 8 - missingLetters.length);
     const filteredDistractors = shuffleArray(candidateDistractors.filter(ch => !missingLetters.includes(ch)));
     const selectedDistractors = filteredDistractors.slice(0, neededDistractors);
     while (selectedDistractors.length < neededDistractors) {
-      selectedDistractors.push('A');
+      selectedDistractors.push('E');
     }
 
     const tileChars = shuffleArray([...missingLetters, ...selectedDistractors]);
@@ -781,7 +955,7 @@ class GameEngine {
     tilesContainer.className = 'letter-tiles-container';
 
     const tilesGrid = document.createElement('div');
-    tilesGrid.className = 'letter-tiles-grid';
+    tilesGrid.className = tileChars.length > 8 ? 'letter-tiles-grid compact-grid' : 'letter-tiles-grid';
 
     tileChars.forEach((ch, idx) => {
       const tileBtn = document.createElement('button');
@@ -794,16 +968,28 @@ class GameEngine {
 
       tileBtn.addEventListener('click', () => {
         if (this.isAnsweringLocked) return;
+
+        // Nếu phím này đã được bấm (used), kiểm tra xem có phím cùng chữ cái chưa dùng hay không (trường hợp từ có 2 chữ giống nhau như 2 chữ O trong ACCOMMODATE)
+        let activeTile = tileBtn;
+        if (activeTile.classList.contains('used')) {
+          const allTiles = Array.from(tilesGrid.querySelectorAll('.letter-tile-btn'));
+          const sibling = allTiles.find(t => t.dataset && t.dataset.char === ch && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
+          if (sibling) {
+            activeTile = sibling;
+          } else {
+            return;
+          }
+        }
+
         const emptySlot = blankBoxes.find(b => b.classList.contains('empty'));
         if (!emptySlot) return;
 
         emptySlot.textContent = ch;
         emptySlot.classList.remove('empty');
         emptySlot.classList.add('filled');
-        emptySlot.dataset.tileId = tileBtn.dataset.tileId;
+        emptySlot.dataset.tileId = activeTile.dataset.tileId;
 
-        tileBtn.classList.add('used');
-        tileBtn.disabled = true;
+        activeTile.classList.add('used');
         soundEngine.playTick(false);
 
         const allFilled = blankBoxes.every(b => b.classList.contains('filled'));
@@ -879,8 +1065,9 @@ class GameEngine {
   }
 
   evaluateLetterFill(q, blankBoxes) {
+    const activeMissing = q._activeMissing || q.missing || [];
     const filledChars = blankBoxes.map(b => b.textContent.trim().toUpperCase());
-    const missingChars = (Array.isArray(q.missing) ? q.missing : q.missing.split('')).map(m => m.trim().toUpperCase());
+    const missingChars = (Array.isArray(activeMissing) ? activeMissing : activeMissing.split('')).map(m => m.trim().toUpperCase());
     const isCorrect = filledChars.join('') === missingChars.join('');
 
     if (isCorrect) {
@@ -897,7 +1084,11 @@ class GameEngine {
       const timeTaken = (Date.now() - this.questionStartTime) / 1000;
       this.responseTimes.push(timeTaken);
       const retentionRate = this.updateWordRetention(q.id, true);
-      this.updateMemoryProfile(q, true, timeTaken);
+      const prof = this.updateMemoryProfile(q, true, timeTaken);
+      if (prof) {
+        prof.spellingStep = Math.min(4, (prof.spellingStep || 1) + 1);
+        this.saveMemoryProfiles();
+      }
       this.handleCorrectAnswer(timeTaken);
       this.roundResults.push(true);
       this.showFeedbackDrawer(true, q, false, retentionRate);
@@ -907,7 +1098,7 @@ class GameEngine {
       blankBoxes.forEach(b => b.classList.add('wrong-word'));
 
       // Hiển thị ký tự đúng để học sinh nhận diện từ đúng
-      const missingLetters = Array.isArray(q.missing) ? q.missing : q.missing.split('');
+      const missingLetters = Array.isArray(activeMissing) ? activeMissing : activeMissing.split('');
       blankBoxes.forEach((b, i) => {
         b.textContent = missingLetters[i] || '_';
         b.classList.remove('empty');
@@ -921,7 +1112,11 @@ class GameEngine {
       const timeTaken = (Date.now() - this.questionStartTime) / 1000;
       this.responseTimes.push(timeTaken);
       const retentionRate = this.updateWordRetention(q.id, false);
-      this.updateMemoryProfile(q, false, timeTaken);
+      const prof = this.updateMemoryProfile(q, false, timeTaken);
+      if (prof) {
+        prof.spellingStep = Math.max(1, (prof.spellingStep || 1) - 1);
+        this.saveMemoryProfiles();
+      }
       this.roundResults.push(false);
 
       // Với câu sai: Hiện feedback drawer giải thích và đợi học sinh bấm nút "Tiếp tục"
@@ -1071,9 +1266,10 @@ class GameEngine {
     this.responseTimes.push(this.maxTimeSeconds);
     this.roundResults.push(false);
 
-    if (q.mode === 'letter_fill' && q.missing && this.letterBoxContainer && this.letterBoxContainer.querySelectorAll) {
+    const activeMissing = q._activeMissing || q.missing;
+    if (q.mode === 'letter_fill' && activeMissing && this.letterBoxContainer && this.letterBoxContainer.querySelectorAll) {
       const blanks = this.letterBoxContainer.querySelectorAll('.letter-box.blank');
-      const missingLetters = Array.isArray(q.missing) ? q.missing : q.missing.split('');
+      const missingLetters = Array.isArray(activeMissing) ? activeMissing : activeMissing.split('');
       if (blanks && blanks.forEach) {
         blanks.forEach((b, i) => {
           b.textContent = missingLetters[i] || '_';
@@ -1093,7 +1289,11 @@ class GameEngine {
     }
 
     const retentionRate = this.updateWordRetention(q.id, false);
-    this.updateMemoryProfile(q, false, this.maxTimeSeconds);
+    const prof = this.updateMemoryProfile(q, false, this.maxTimeSeconds);
+    if (prof && q.mode === 'letter_fill') {
+      prof.spellingStep = Math.max(1, (prof.spellingStep || 1) - 1);
+      this.saveMemoryProfiles();
+    }
     this.handleWrongAnswer(true);
 
     this.showFeedbackDrawer(false, q, true, retentionRate);
@@ -1281,7 +1481,8 @@ class GameEngine {
     const q = this.questions[this.currentIndex];
 
     if (q.mode === 'letter_fill') {
-      const missingLetters = (Array.isArray(q.missing) ? q.missing : q.missing.split('')).map(m => m.toUpperCase());
+      const activeMissing = q._activeMissing || q.missing;
+      const missingLetters = (Array.isArray(activeMissing) ? activeMissing : activeMissing.split('')).map(m => m.toUpperCase());
       const tileBtns = this.answersContainer.querySelectorAll 
         ? Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'))
         : [];

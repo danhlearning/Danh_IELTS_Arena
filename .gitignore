@@ -1,5 +1,6 @@
 # Antigravity system generated logs and temporary artifacts
 .system_generated/
+scratch/
 *.log
 
 # Node dependencies
