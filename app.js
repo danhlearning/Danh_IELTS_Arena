@@ -428,13 +428,23 @@ class GameEngine {
       this.btnScannerBack.addEventListener('click', () => this.switchArenaView('vocab'));
     }
 
-    // Camera & Gallery inputs
-    if (this.btnCameraTrigger && this.cameraFileInput) {
-      this.btnCameraTrigger.addEventListener('click', () => this.cameraFileInput.click());
-    }
-    if (this.btnGalleryTrigger && this.galleryFileInput) {
-      this.btnGalleryTrigger.addEventListener('click', () => this.galleryFileInput.click());
-    }
+    // Camera & Gallery inputs (Native mobile camera trigger + Keyboard accessibility)
+    const setupFileInputTrigger = (triggerEl, inputEl) => {
+      if (!triggerEl || !inputEl) return;
+      triggerEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          inputEl.click();
+        }
+      });
+      // Fallback: If not a <label>, trigger click manually
+      if (triggerEl.tagName !== 'LABEL') {
+        triggerEl.addEventListener('click', () => inputEl.click());
+      }
+    };
+
+    setupFileInputTrigger(this.btnCameraTrigger, this.cameraFileInput);
+    setupFileInputTrigger(this.btnGalleryTrigger, this.galleryFileInput);
     if (this.cameraFileInput) {
       this.cameraFileInput.addEventListener('change', (e) => {
         if (e.target.files && e.target.files[0]) {
@@ -3254,6 +3264,15 @@ ${emojiBlocks}
     this.closeGeminiKeyModal();
 
     const keyType = val.startsWith('AQ.') ? 'Chuẩn mới AQ' : (val.startsWith('AIza') ? 'Chuẩn AIza' : 'Gemini');
+    if (this.pendingExamPhoto) {
+      const pendingBase64 = this.pendingExamPhoto;
+      this.pendingExamPhoto = null;
+      this.flashDynamicIsland(`🔑 Đã lưu API Key (${keyType}). Bắt đầu phân tích ảnh...`);
+      setTimeout(() => {
+        this.processExamBase64(pendingBase64);
+      }, 400);
+      return;
+    }
     this.flashDynamicIsland(`🔑 Đã lưu API Key (${keyType})`);
   }
 
@@ -3343,37 +3362,44 @@ ${emojiBlocks}
   async handleImageFileSelect(file) {
     if (!file) return;
     try {
+      this.flashDynamicIsland('📸 Đang chuẩn bị ảnh đề thi...');
+      const base64 = await this.compressImageToJpegBase64(file);
+
       if (!this.geminiApiKey) {
+        this.pendingExamPhoto = base64;
         this.openGeminiKeyModal();
-        this.flashDynamicIsland('🔑 Vui lòng nhập Gemini API Key trước khi quét đề');
+        this.flashDynamicIsland('🔑 Vui lòng nhập Gemini API Key để số hóa đề');
         return;
       }
 
-      this.flashDynamicIsland('📸 Đang nén và phân tích ảnh đề thi...');
-      const base64 = await this.compressImageToJpegBase64(file);
-      const questions = await this.callGeminiFlashExamExtractor(base64, 1, []);
-
-      if (questions && questions.length > 0) {
-        const newExam = {
-          id: `exam_${Date.now()}`,
-          title: `Đề thi quét camera #${this.scannedExams.length + 1}`,
-          date: new Date().toLocaleDateString('vi-VN'),
-          questionCount: questions.length,
-          base64Image: base64,
-          totalBatchesGenerated: 1,
-          questions: questions
-        };
-
-        this.scannedExams.unshift(newExam);
-        this.saveScannedExams();
-        this.renderScannedExamsShelf();
-        this.flashDynamicIsland(`🎉 Đã số hóa thành công 10 câu hỏi! Chuyển vào chơi ngay`);
-
-        this.playScannedExam(newExam.id);
-      }
+      await this.processExamBase64(base64);
     } catch (err) {
       console.error('Lỗi quét đề thi:', err);
       alert(`Không thể số hóa đề thi: ${err.message}\n\nVui lòng kiểm tra lại Gemini API Key hoặc kết nối mạng.`);
+    }
+  }
+
+  async processExamBase64(base64) {
+    this.flashDynamicIsland('🤖 Gemini Flash đang phân tích câu hỏi trong đề...');
+    const questions = await this.callGeminiFlashExamExtractor(base64, 1, []);
+
+    if (questions && questions.length > 0) {
+      const newExam = {
+        id: `exam_${Date.now()}`,
+        title: `Đề thi quét camera #${this.scannedExams.length + 1}`,
+        date: new Date().toLocaleDateString('vi-VN'),
+        questionCount: questions.length,
+        base64Image: base64,
+        totalBatchesGenerated: 1,
+        questions: questions
+      };
+
+      this.scannedExams.unshift(newExam);
+      this.saveScannedExams();
+      this.renderScannedExamsShelf();
+      this.flashDynamicIsland(`🎉 Đã số hóa thành công 10 câu hỏi! Chuyển vào chơi ngay`);
+
+      this.playScannedExam(newExam.id);
     }
   }
 
@@ -3483,6 +3509,22 @@ YÊU CẦU ĐẶC BIỆT QUAN TRỌNG:
         let cleanText = rawJsonText.trim();
         if (cleanText.startsWith('```')) {
           cleanText = cleanText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+        }
+
+        // Robust bracket slice: extract outer JSON array or object even if surrounded by text
+        const firstBracket = cleanText.indexOf('[');
+        const lastBracket = cleanText.lastIndexOf(']');
+        const firstCurly = cleanText.indexOf('{');
+        const lastCurly = cleanText.lastIndexOf('}');
+
+        if (firstBracket !== -1 && lastBracket > firstBracket) {
+          if (firstCurly === -1 || firstBracket < firstCurly) {
+            cleanText = cleanText.substring(firstBracket, lastBracket + 1);
+          } else if (lastCurly > firstCurly) {
+            cleanText = cleanText.substring(firstCurly, lastCurly + 1);
+          }
+        } else if (firstCurly !== -1 && lastCurly > firstCurly) {
+          cleanText = cleanText.substring(firstCurly, lastCurly + 1);
         }
 
         const parsed = JSON.parse(cleanText);

@@ -270,25 +270,25 @@
 
             <!-- Cụm Nút Chụp & Tải Ảnh Đề Thi -->
             <div class="scanner-actions-card">
-              <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display:none;">
-              <input type="file" id="gallery-file-input" accept="image/*" style="display:none;">
+              <input type="file" id="camera-file-input" accept="image/*" capture="environment" class="camera-hidden-input">
+              <input type="file" id="gallery-file-input" accept="image/*" class="camera-hidden-input">
 
               <div class="scanner-btn-grid">
-                <button type="button" class="btn-scan-primary" id="btn-snap-camera">
+                <label for="camera-file-input" class="btn-scan-primary" id="btn-snap-camera" role="button" tabindex="0">
                   <div class="scan-icon-wrap">📸</div>
                   <div class="scan-btn-text">
                     <span class="scan-btn-title">Chụp Ảnh Đề Thi</span>
                     <span class="scan-btn-sub">Mở Camera chụp ngay</span>
                   </div>
-                </button>
+                </label>
 
-                <button type="button" class="btn-scan-secondary" id="btn-snap-gallery">
+                <label for="gallery-file-input" class="btn-scan-secondary" id="btn-snap-gallery" role="button" tabindex="0">
                   <div class="scan-icon-wrap">🖼️</div>
                   <div class="scan-btn-text">
                     <span class="scan-btn-title">Chọn Ảnh Từ Máy</span>
                     <span class="scan-btn-sub">Tải ảnh đề có sẵn</span>
                   </div>
-                </button>
+                </label>
               </div>
 
               <!-- Hộp trạng thái AI Scanning Radar -->

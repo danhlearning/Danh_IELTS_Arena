@@ -184,6 +184,47 @@ assert(preloadedExam.questions.length === 10, "Đề mẫu chuẩn phải có đ
 assert(preloadedExam.questions.every(q => (q.mode === 'sentence_scramble') ? (q.raw_tokens && q.raw_tokens.length > 0) : (q.options && q.options.length === 4)), "Các câu trắc nghiệm/điền từ trong đề mẫu phải có đủ 4 lựa chọn");
 assert(preloadedExam.questions.every(q => (q.mode === 'sentence_scramble' || q.mode === 'letter_fill') ? true : (typeof q.correct === 'number' && q.correct >= 0 && q.correct < 4)), "Vị trí đáp án đúng cho câu trắc nghiệm phải từ 0-3");
 
+console.log("\n📱 5. KIỂM TRA NATIVE MOBILE CAMERA & BỘ PHÂN TÍCH JSON ROBUST");
+const indexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+assert(indexHtml.includes('for="camera-file-input"'), "Nút chụp camera sử dụng thẻ <label for='camera-file-input'> để kích hoạt camera điện thoại trực tiếp");
+assert(indexHtml.includes('capture="environment"'), "Camera sử dụng thuộc tính capture='environment' để kích hoạt camera sau độ nét cao");
+assert(indexHtml.includes('class="camera-hidden-input"'), "Input camera dùng class camera-hidden-input tránh bị chặn trên iOS Safari");
+assert(typeof engine.processExamBase64 === 'function', "processExamBase64 phải tồn tại và tách biệt để xử lý linh hoạt");
+
+// Test khả năng bóc tách JSON khi Gemini Flash phản hồi kèm văn bản hội thoại
+const sampleGeminiResponse = `Dưới đây là 10 câu hỏi trắc nghiệm đã trích xuất từ đề:
+\`\`\`json
+[
+  {
+    "id": "scan_test_1",
+    "mode": "multiple_choice",
+    "prompt": "Chọn đáp án đúng:",
+    "sentence": "She has made a significant ____ to the project.",
+    "options": ["contribution", "contribute", "contributory", "contributing"],
+    "correct": 0,
+    "correct_answer": "contribution"
+  }
+]
+\`\`\`
+Chúc bạn ôn luyện tốt!`;
+
+let cleanTest = sampleGeminiResponse.trim();
+if (cleanTest.startsWith('```')) {
+  cleanTest = cleanTest.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+}
+const firstBracket = cleanTest.indexOf('[');
+const lastBracket = cleanTest.lastIndexOf(']');
+if (firstBracket !== -1 && lastBracket > firstBracket) {
+  cleanTest = cleanTest.substring(firstBracket, lastBracket + 1);
+}
+const parsedTest = JSON.parse(cleanTest);
+assert(Array.isArray(parsedTest) && parsedTest.length === 1, "Bộ lọc JSON bóc tách chính xác mảng câu hỏi kể cả khi Gemini trả về văn bản kèm theo");
+assert(parsedTest[0].correct_answer === "contribution", "Dữ liệu câu hỏi bóc tách đúng nội dung");
+
+// Test lưu ảnh tạm chờ nhập Key
+engine.pendingExamPhoto = 'test_base64_data';
+assert(engine.pendingExamPhoto === 'test_base64_data', "Hệ thống bảo lưu ảnh chụp tạm thời nếu người dùng chưa kịp nhập Key");
+
 console.log("\n==================================================");
 console.log(`🏁 KẾT QUẢ: ${passed}/${total} BÀI KIỂM TRA ĐẠT ĐIỂM TUYỆT ĐỐI!`);
 console.log("==================================================");

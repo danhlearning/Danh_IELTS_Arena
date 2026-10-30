@@ -3388,6 +3388,17 @@ body.light-theme .scanner-actions-card {
   border-color: #cbd5e1;
 }
 
+.camera-hidden-input {
+  position: fixed !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0.001 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+}
+
 .scanner-btn-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3408,6 +3419,8 @@ body.light-theme .scanner-actions-card {
   text-align: left;
   border: none;
   touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .btn-scan-primary {
