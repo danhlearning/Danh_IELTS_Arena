@@ -668,25 +668,33 @@ body.light-theme .icon-btn {
 .zone-question {
   flex: 1 1 auto;
   min-height: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
   padding: 0;
-  margin: clamp(20px, 3.2vh, 38px) auto clamp(10px, 1.6vh, 18px) auto;
+  margin: clamp(16px, 2.8vh, 32px) auto clamp(8px, 1.4vh, 16px) auto;
   z-index: 10;
   overflow: visible;
 }
 
 .question-card {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: rgba(15, 23, 42, 0.94);
   backdrop-filter: blur(36px) saturate(210%);
   -webkit-backdrop-filter: blur(36px) saturate(210%);
   border: 2px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 5px 0 #0f172a, 0 8px 32px rgba(0, 0, 0, 0.45);
   border-radius: 22px;
-  padding: clamp(8px, 1.2vh, 12px) 14px;
+  padding: clamp(10px, 1.4vh, 14px) clamp(12px, 3.2vw, 18px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -694,7 +702,7 @@ body.light-theme .icon-btn {
   height: auto;
   min-height: 0;
   max-height: none;
-  gap: clamp(3px, 0.6vh, 6px);
+  gap: clamp(4px, 0.7vh, 8px);
   overflow: visible;
   animation: cardEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   transition: transform 0.25s ease, border-color 0.25s ease;
@@ -762,8 +770,10 @@ body.light-theme .vocab-image-container {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .band-badge {
@@ -806,32 +816,70 @@ body.light-theme .vocab-image-container {
 }
 
 .prompt-text {
-  font-size: 0.92rem;
+  font-size: clamp(0.85rem, 1.8vh, 0.95rem);
   font-weight: 600;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.42;
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  text-wrap: balance;
+  text-wrap: pretty;
+  padding: 0 4px;
 }
 
 .question-main-text {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.4vh, 1.35rem);
+  font-size: clamp(1.05rem, 2.2vh, 1.28rem);
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.48;
   color: var(--text-primary);
   text-align: center;
   overflow: visible;
   max-height: none;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-break: loose;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: balance;
+  text-wrap: pretty;
+  padding: 0 4px;
 }
 
 .meaning-highlight {
   display: block;
-  font-size: 1.3rem;
+  font-size: clamp(1.15rem, 2.4vh, 1.32rem);
   font-weight: 800;
   color: #ffffff;
-  line-height: 1.5;
+  line-height: 1.48;
   text-shadow: 0 2px 14px rgba(99, 102, 241, 0.45);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-break: loose;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: balance;
+  text-wrap: pretty;
+  padding: 0 4px;
 }
 
 body.light-theme .meaning-highlight {
@@ -847,23 +895,33 @@ body.light-theme .meaning-highlight {
   padding: 0 4px;
   margin: 0 2px;
   letter-spacing: 2px;
+  white-space: nowrap;
+  max-width: 100%;
+  vertical-align: baseline;
+  box-sizing: border-box;
   animation: pulseBlank 2s infinite;
 }
 
-/* Chữ Cái Liền Mạch (Seamless Word Typography - Không chia khối hộp) */
+/* Chữ Cái Liền Mạch (Seamless Word Typography - Tự động xuống hàng khi từ dài) */
 .masked-word-container {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
   gap: 3px;
+  row-gap: 6px;
   width: 100%;
-  flex-wrap: nowrap;
-  padding: 6px 0;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Cho phép xuống hàng khi từ dài vượt quá chiều rộng */
+  padding: 6px 4px;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.8vh, 2.2rem);
+  font-size: clamp(1.25rem, 2.8vh, 1.85rem);
   font-weight: 900;
-  letter-spacing: 2px;
-  overflow-x: auto;
+  letter-spacing: 1.5px;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .letter-box {
@@ -871,7 +929,9 @@ body.light-theme .meaning-highlight {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  min-width: 0.65em;
+  min-width: 0.6em;
+  max-width: 100%;
+  box-sizing: border-box;
   height: auto;
   padding: 0 1px;
   display: inline-block;
@@ -1045,8 +1105,12 @@ body.light-theme .letter-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px clamp(8px, 2vw, 16px);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 2px;
@@ -1062,6 +1126,11 @@ body.light-theme .question-meta-footer {
   color: var(--accent-primary);
   letter-spacing: 0.4px;
   font-family: var(--font-main), 'Lucida Sans Unicode', 'Arial Unicode MS', sans-serif;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  text-align: center;
 }
 
 .academic-hint-pill {
@@ -1072,6 +1141,11 @@ body.light-theme .question-meta-footer {
   padding: 3px 9px;
   border-radius: 8px;
   border: 1px solid rgba(245, 158, 11, 0.25);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  text-align: center;
 }
 
 @keyframes pulseBlank {
@@ -1156,7 +1230,7 @@ body.light-theme .powerup-btn {
 .btn-tactile {
   width: 100%;
   min-height: clamp(50px, 6vh, 56px);
-  height: clamp(50px, 6vh, 56px);
+  height: auto;
   border-radius: 18px;
   background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
   border: 1.5px solid rgba(255, 255, 255, 0.22);
@@ -1168,11 +1242,14 @@ body.light-theme .powerup-btn {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 16px;
+  padding: 6px 16px;
   text-align: left;
   cursor: pointer;
   position: relative;
   transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), border-bottom-width 0.1s ease, background 0.15s ease, opacity 0.2s ease;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
 }
 
 body.light-theme .btn-tactile {
@@ -1207,15 +1284,22 @@ body.light-theme .btn-tactile .btn-badge {
 
 .btn-tactile .btn-label {
   color: #ffffff;
-  font-size: clamp(1.08rem, 2.3vh, 1.25rem);
+  font-size: clamp(1rem, 2.2vh, 1.2rem);
   font-weight: 800;
   letter-spacing: 0.2px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
 }
 
 body.light-theme .btn-tactile .btn-label {
   color: #0f172a;
-  font-size: clamp(1.08rem, 2.3vh, 1.25rem);
+  font-size: clamp(1rem, 2.2vh, 1.2rem);
   font-weight: 800;
   text-shadow: none;
 }
@@ -1377,9 +1461,15 @@ body.light-theme .feedback-drawer.wrong-state .feedback-btn {
 .feedback-vietnamese {
   display: flex;
   align-items: center;
-  font-size: clamp(1.2rem, 2.4vh, 1.4rem);
+  font-size: clamp(1.15rem, 2.3vh, 1.35rem);
   font-weight: 800;
   color: var(--accent-primary);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
+  line-height: 1.4;
 }
 
 .feedback-explanation {
@@ -1387,10 +1477,15 @@ body.light-theme .feedback-drawer.wrong-state .feedback-btn {
   border-left: 4px solid var(--accent-primary);
   border-radius: 12px;
   padding: 12px 16px;
-  font-size: clamp(1.02rem, 2.1vh, 1.16rem);
+  font-size: clamp(0.98rem, 2vh, 1.12rem);
   line-height: 1.5;
   color: var(--text-primary);
   font-weight: 600;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  min-width: 0;
 }
 
 body.light-theme .feedback-explanation {
