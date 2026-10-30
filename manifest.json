@@ -1,7 +1,7 @@
 {
-  "name": "Danh học IELTS",
-  "short_name": "Danh học IELTS",
-  "description": "Luyện từ vựng IELTS tốc độ cao chuẩn Cambridge",
+  "name": "IELTS 9.0 Arena",
+  "short_name": "IELTS 9.0",
+  "description": "Luyện từ vựng IELTS & Tiếng Anh phản xạ tốc độ cao chuẩn Cambridge & ETS",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",

@@ -279,9 +279,12 @@ class GameEngine {
     this.avgTimeEl = document.getElementById('avg-time');
     this.accuracyEl = document.getElementById('accuracy-rate');
     this.bandGradeEl = document.getElementById('band-grade');
+    this.victoryTrophyEl = document.getElementById('victory-trophy-icon');
+    this.victoryPraiseEl = document.getElementById('victory-praise');
     this.wordleGridEl = document.getElementById('wordle-grid');
     this.btnShare = document.getElementById('btn-share');
     this.btnReplay = document.getElementById('btn-replay');
+    this.btnResultChangeMode = document.getElementById('btn-result-change-mode');
     this.btnVaultOpen = document.getElementById('btn-vault-open');
 
     // Exam Vault Modal
@@ -315,8 +318,18 @@ class GameEngine {
     this.btnHint.addEventListener('click', () => this.useHint());
 
     this.btnNext.addEventListener('click', () => this.nextQuestion());
-    this.btnReplay.addEventListener('click', () => this.startNewRound());
-    this.btnShare.addEventListener('click', () => this.copyShareCard());
+    if (this.btnReplay) {
+      this.btnReplay.addEventListener('click', () => this.startNewRound());
+    }
+    if (this.btnShare) {
+      this.btnShare.addEventListener('click', () => this.copyShareCard());
+    }
+    if (this.btnResultChangeMode) {
+      this.btnResultChangeMode.addEventListener('click', () => {
+        if (this.modalOverlay) this.modalOverlay.classList.remove('active');
+        this.openGradeModal();
+      });
+    }
 
     if (this.btnVaultOpen) {
       this.btnVaultOpen.addEventListener('click', () => this.openVault());
@@ -2174,14 +2187,25 @@ class GameEngine {
       : '0.0';
 
     let bandTitle = "IELTS 5.5 Novice";
-    if (accuracy >= 90 && this.score >= 9000) {
+    let praiseText = "🌱 Hãy kiên trì! Mỗi vòng đấu đều giúp tăng độ bền trí nhớ";
+    let trophyIcon = "🌱";
+
+    if (accuracy >= 90) {
       bandTitle = "🏆 IELTS 7.5+ Speed Demon";
-    } else if (accuracy >= 80 && this.score >= 7000) {
+      praiseText = "🌟 Phong độ đỉnh cao! Phản xạ xuất sắc & chuẩn xác tuyệt đối";
+      trophyIcon = "🏆";
+    } else if (accuracy >= 75) {
       bandTitle = "⚡ IELTS 7.0 Master";
+      praiseText = "⚡ Rất tốt! Bạn làm chủ từ vựng và ngữ pháp vững vàng";
+      trophyIcon = "🥇";
     } else if (accuracy >= 60) {
       bandTitle = "🎯 IELTS 6.5 Competent";
+      praiseText = "🎯 Hoàn thành tốt! Hãy ôn lại các từ chưa vững trong Sổ tay";
+      trophyIcon = "🎯";
     } else {
       bandTitle = "📚 IELTS 5.5 - 6.0 Achiever";
+      praiseText = "🌱 Cố lên! Ôn tập đều đặn sẽ giúp phản xạ bứt phá nhanh chóng";
+      trophyIcon = "📚";
     }
 
     if (this.finalScoreEl) this.finalScoreEl.textContent = `${this.score.toLocaleString()} XP`;
@@ -2189,14 +2213,16 @@ class GameEngine {
     if (this.avgTimeEl) this.avgTimeEl.textContent = `${avgTime}s`;
     if (this.accuracyEl) this.accuracyEl.textContent = `${accuracy}% (${correctCount}/${totalAnswered})`;
     if (this.bandGradeEl) this.bandGradeEl.textContent = bandTitle;
+    if (this.victoryPraiseEl) this.victoryPraiseEl.textContent = praiseText;
+    if (this.victoryTrophyEl) this.victoryTrophyEl.textContent = trophyIcon;
 
     const emojiBlocks = this.roundResults.map(res => res ? '🟩' : '🟥').join('');
     this.generatedEmojiGrid = 
-`⚡ Danh học IELTS ⚡
+`🎓 IELTS 9.0 Arena 🎓
 🏆 Score: ${this.score.toLocaleString()} XP | Grade: ${bandTitle}
 🔥 Max Streak: ${this.maxStreak} | ⏱️ Avg Time: ${avgTime}s
 ${emojiBlocks}
-🎯 Học từ vựng phản xạ cùng: Danh học IELTS`;
+🎯 Luyện phản xạ từ vựng IELTS 9.0`;
 
     if (this.wordleGridEl) this.wordleGridEl.textContent = emojiBlocks;
     if (this.modalOverlay) this.modalOverlay.classList.add('active');

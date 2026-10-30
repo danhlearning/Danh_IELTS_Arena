@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" id="meta-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Danh học IELTS">
+  <meta name="apple-mobile-web-app-title" content="IELTS 9.0">
   <meta name="theme-color" id="meta-theme-color" content="#ffffff">
   
   <!-- Chống lưu Cache trên WebKit/Safari để luôn cập nhật dữ liệu mới nhất -->
@@ -14,11 +14,12 @@
   <meta http-equiv="Expires" content="0">
   
   <!-- Progressive Web App (PWA) cho iPhone iOS -->
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-512.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
-  <link rel="icon" type="image/png" href="icons/icon-192.png">
-  <title>Danh học IELTS</title>
+  <link rel="manifest" href="manifest.json?v=3.5">
+  <link rel="apple-touch-icon" href="icons/icon-512.png?v=3.5">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png?v=3.5">
+  <link rel="icon" type="image/png" href="favicon.png?v=3.5">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=3.5">
+  <title>IELTS 9.0 Arena</title>
   
   <!-- 2 Font chữ chính: Nunito & Be Vietnam Pro (Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,10 +63,10 @@
           <!-- Hộp Thoại Mô Phỏng Rớt Từ Dynamic Island Thật (Liquid Droplet Spring Dialog) -->
           <div class="dynamic-island-drop" id="dynamic-island" aria-live="polite">
             <div class="island-drop-capsule">
-              <span class="island-drop-icon" id="island-drop-icon">⚡</span>
+              <span class="island-drop-icon" id="island-drop-icon"><span class="mini-ielts-badge">9.0</span></span>
               <div class="island-drop-content">
-                <span class="island-drop-title" id="island-drop-title">DANH HỌC IELTS</span>
-                <span class="island-message" id="island-message">⚡ Chào mừng bạn!</span>
+                <span class="island-drop-title" id="island-drop-title">IELTS 9.0 ARENA</span>
+                <span class="island-message" id="island-message">Chào mừng bạn đến với IELTS Arena!</span>
               </div>
             </div>
           </div>
@@ -232,26 +233,41 @@
           </button>
         </div>
 
-        <!-- Modal Kết Thúc Trận Đấu & Xếp Hạng Band -->
+        <!-- Modal Kết Thúc Trận Đấu & Xếp Hạng Band (Bảng Kết Quả Hiện Đại Bắt Mắt) -->
         <div class="modal-overlay" id="modal-overlay">
           <div class="modal-card">
-            <div class="victory-trophy">🏆</div>
-            <h2 class="band-grade-title" id="band-grade">IELTS 7.5+ Speed Demon</h2>
+            
+            <!-- Aura phát sáng cúp chiến thắng -->
+            <div class="victory-header-container">
+              <div class="victory-trophy-glow"></div>
+              <div class="victory-trophy" id="victory-trophy-icon">🏆</div>
+            </div>
 
+            <div class="victory-title-group">
+              <span class="victory-subtitle">KẾT QUẢ VÒNG ĐẤU</span>
+              <h2 class="band-grade-title" id="band-grade">IELTS 7.5+ Speed Demon</h2>
+              <p class="victory-praise" id="victory-praise">Xuất sắc! Phản xạ học thuật chuẩn xác & tốc độ bứt phá</p>
+            </div>
+
+            <!-- Lưới 4 chỉ số kết quả Holographic Glassmorphism -->
             <div class="stats-grid">
-              <div class="stat-box">
+              <div class="stat-box stat-xp">
+                <div class="stat-icon-wrap">🌟</div>
                 <span class="val" id="final-score">0 XP</span>
                 <span class="lbl">TỔNG ĐIỂM</span>
               </div>
-              <div class="stat-box">
+              <div class="stat-box stat-streak">
+                <div class="stat-icon-wrap">🔥</div>
                 <span class="val" id="max-streak">0</span>
                 <span class="lbl">CHUỖI MAX</span>
               </div>
-              <div class="stat-box">
+              <div class="stat-box stat-speed">
+                <div class="stat-icon-wrap">⚡</div>
                 <span class="val" id="avg-time">0.0s</span>
                 <span class="lbl">TỐC ĐỘ TB</span>
               </div>
-              <div class="stat-box">
+              <div class="stat-box stat-accuracy">
+                <div class="stat-icon-wrap">🎯</div>
                 <span class="val" id="accuracy-rate">0%</span>
                 <span class="lbl">ĐỘ CHÍNH XÁC</span>
               </div>
@@ -260,22 +276,19 @@
             <!-- Nút Mở Kho Ứng Dụng Phòng Thi -->
             <button class="btn-vault-open" id="btn-vault-open">
               <svg class="btn-vault-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15z"/></svg>
-              <span>Sổ Tay Từ Vựng Vừa Luyện (10 từ)</span>
+              <span>Xem Sổ Tay 10 Từ Vừa Luyện</span>
             </button>
 
-            <!-- Bảng Emoji Kết Quả Kiểu Wordle -->
-            <div class="wordle-card" id="wordle-grid">
-              🟩🟩🟩🟩🟩<br>🟩🟨🟩🟩🟩
+            <!-- Cụm nút hành động chính (Bỏ hoàn toàn nút copy kết quả khoe) -->
+            <div class="result-actions-group">
+              <button class="btn-replay" id="btn-replay">
+                <span>Chơi Lại Vòng Mới 🚀</span>
+              </button>
+              <button class="btn-change-mode" id="btn-result-change-mode">
+                <span>🎯 Đổi Chế Độ / Khối Lớp</span>
+              </button>
             </div>
 
-            <button class="btn-share" id="btn-share">
-              <svg class="share-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
-              <span>Copy Kết Quả Khoe Bạn Bè</span>
-            </button>
-
-            <button class="btn-replay" id="btn-replay">
-              <span>Chơi Lại Vòng Mới 🚀</span>
-            </button>
           </div>
         </div>
 

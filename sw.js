@@ -1,5 +1,5 @@
-// Service Worker cho Danh học IELTS (PWA Network-First Auto-Update tối ưu WebKit & iOS Safari)
-const CACHE_NAME = 'danh-hoc-ielts-v3.3';
+// Service Worker cho IELTS 9.0 Arena (PWA Network-First Auto-Update tối ưu WebKit & iOS Safari)
+const CACHE_NAME = 'danh-hoc-ielts-v3.5';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -11,7 +11,8 @@ const ASSETS_TO_CACHE = [
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './apple-touch-icon.png'
+  './apple-touch-icon.png',
+  './favicon.png'
 ];
 
 self.addEventListener('install', (event) => {
