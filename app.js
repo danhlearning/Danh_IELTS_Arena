@@ -379,13 +379,13 @@ class GameEngine {
     this.scannerKeyStatusBadge = document.getElementById('scanner-key-status-badge');
 
     // Camera & Scanner triggers
-    this.btnCameraTrigger = document.getElementById('btn-camera-trigger');
-    this.btnGalleryTrigger = document.getElementById('btn-gallery-trigger');
+    this.btnCameraTrigger = document.getElementById('btn-snap-camera') || document.getElementById('btn-camera-trigger');
+    this.btnGalleryTrigger = document.getElementById('btn-snap-gallery') || document.getElementById('btn-gallery-trigger');
     this.cameraFileInput = document.getElementById('camera-file-input');
     this.galleryFileInput = document.getElementById('gallery-file-input');
-    this.scanningRadarStatus = document.getElementById('scanning-radar-status');
-    this.scannedExamsShelf = document.getElementById('scanned-exams-shelf');
-    this.scannerLogStatus = document.getElementById('scanner-log-status');
+    this.scanningRadarStatus = document.getElementById('scanner-status-box') || document.getElementById('scanning-radar-status');
+    this.scannedExamsShelf = document.getElementById('scanned-exams-list') || document.getElementById('scanned-exams-shelf');
+    this.scannerLogStatus = document.getElementById('scanner-status-main') || document.getElementById('scanner-log-status');
 
     // Listening Player Container & Play Button
     this.listeningPlayerContainer = document.getElementById('listening-player-container');
@@ -393,7 +393,7 @@ class GameEngine {
 
     // Gemini API Key Modal
     this.geminiKeyModal = document.getElementById('gemini-key-modal');
-    this.geminiKeyInput = document.getElementById('gemini-key-input');
+    this.geminiKeyInput = document.getElementById('input-gemini-key') || document.getElementById('gemini-key-input');
     this.btnToggleKeyEye = document.getElementById('btn-toggle-key-eye');
     this.btnCloseKeyModal = document.getElementById('btn-close-key-modal');
     this.btnCancelKey = document.getElementById('btn-cancel-key');
@@ -3210,8 +3210,9 @@ ${emojiBlocks}
 
   openGeminiKeyModal() {
     if (!this.geminiKeyModal) return;
-    if (this.geminiKeyInput) {
-      this.geminiKeyInput.value = this.geminiApiKey || '';
+    const inputEl = this.geminiKeyInput || document.getElementById('input-gemini-key') || document.getElementById('gemini-key-input');
+    if (inputEl) {
+      inputEl.value = this.geminiApiKey || '';
     }
     this.geminiKeyModal.classList.add('active');
   }
@@ -3223,9 +3224,10 @@ ${emojiBlocks}
   }
 
   toggleKeyVisibility() {
-    if (!this.geminiKeyInput) return;
-    const isPassword = this.geminiKeyInput.type === 'password';
-    this.geminiKeyInput.type = isPassword ? 'text' : 'password';
+    const inputEl = this.geminiKeyInput || document.getElementById('input-gemini-key') || document.getElementById('gemini-key-input');
+    if (!inputEl) return;
+    const isPassword = inputEl.type === 'password';
+    inputEl.type = isPassword ? 'text' : 'password';
     if (this.btnToggleKeyEye) {
       this.btnToggleKeyEye.innerHTML = isPassword
         ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
@@ -3234,8 +3236,9 @@ ${emojiBlocks}
   }
 
   saveGeminiKeyFromInput() {
-    if (!this.geminiKeyInput) return;
-    const val = this.geminiKeyInput.value.trim();
+    const inputEl = this.geminiKeyInput || document.getElementById('input-gemini-key') || document.getElementById('gemini-key-input');
+    if (!inputEl) return;
+    const val = inputEl.value.trim();
     if (!val) {
       this.geminiApiKey = '';
       localStorage.removeItem('ielts_gemini_api_key');
@@ -3249,22 +3252,44 @@ ${emojiBlocks}
     localStorage.setItem('ielts_gemini_api_key', val);
     this.updateGeminiKeyBadge();
     this.closeGeminiKeyModal();
-    this.flashDynamicIsland('🔑 Đã lưu Gemini API Key');
+
+    const keyType = val.startsWith('AQ.') ? 'Chuẩn mới AQ' : (val.startsWith('AIza') ? 'Chuẩn AIza' : 'Gemini');
+    this.flashDynamicIsland(`🔑 Đã lưu API Key (${keyType})`);
   }
 
   updateGeminiKeyBadge() {
-    if (!this.scannerKeyStatusBadge) return;
+    const dot = document.getElementById('scanner-key-dot');
+    const textEl = document.getElementById('scanner-key-text');
+    const badge = this.scannerKeyStatusBadge || document.getElementById('scanner-key-status-badge');
+
     if (this.geminiApiKey) {
+      const isNewAuthKey = this.geminiApiKey.startsWith('AQ.');
+      const prefix = isNewAuthKey ? 'AQ' : (this.geminiApiKey.startsWith('AIza') ? 'AIza' : 'Key');
       const masked = this.geminiApiKey.length > 8
         ? `${this.geminiApiKey.slice(0, 4)}...${this.geminiApiKey.slice(-4)}`
         : 'Đã lưu';
-      this.scannerKeyStatusBadge.textContent = `🔑 Key: ${masked}`;
-      this.scannerKeyStatusBadge.style.background = 'rgba(16, 185, 129, 0.2)';
-      this.scannerKeyStatusBadge.style.color = '#34d399';
+
+      if (textEl) textEl.textContent = `🔑 ${prefix}: ${masked}`;
+      if (dot) {
+        dot.style.background = '#10b981';
+        dot.style.boxShadow = '0 0 8px rgba(16, 185, 129, 0.7)';
+      }
+      if (badge && badge !== dot) {
+        badge.textContent = `🔑 Key: ${masked}`;
+        badge.style.background = 'rgba(16, 185, 129, 0.2)';
+        badge.style.color = '#34d399';
+      }
     } else {
-      this.scannerKeyStatusBadge.textContent = '⚠️ Chưa nhập Key';
-      this.scannerKeyStatusBadge.style.background = 'rgba(239, 68, 68, 0.2)';
-      this.scannerKeyStatusBadge.style.color = '#f87171';
+      if (textEl) textEl.textContent = '🔑 Nhập Key';
+      if (dot) {
+        dot.style.background = '#ef4444';
+        dot.style.boxShadow = 'none';
+      }
+      if (badge && badge !== dot) {
+        badge.textContent = '⚠️ Chưa nhập Key';
+        badge.style.background = 'rgba(239, 68, 68, 0.2)';
+        badge.style.color = '#f87171';
+      }
     }
   }
 
@@ -3364,8 +3389,8 @@ ${emojiBlocks}
     }
     if (this.scannerLogStatus) {
       this.scannerLogStatus.textContent = batchNum === 1
-        ? '🤖 Gemini Flash đang phân tích đề thi và tạo 10 câu đầu...'
-        : `🤖 Gemini Flash đang tự động sinh 10 câu tiếp theo (Đợt ${batchNum})...`;
+        ? '🤖 Gemini Flash (gemini-flash-latest) đang phân tích đề thi và tạo 10 câu đầu...'
+        : `🤖 Gemini Flash (gemini-flash-latest) đang tự động sinh 10 câu tiếp theo (Đợt ${batchNum})...`;
     }
 
     const existingSummary = (existingQuestions || [])
@@ -3424,15 +3449,23 @@ YÊU CẦU ĐẶC BIỆT QUAN TRỌNG:
       }
     };
 
-    const modelsToTry = ['gemini-2.5-flash', 'gemini-1.5-flash'];
+    const modelsToTry = [
+      'gemini-flash-latest',
+      'gemini-2.5-flash',
+      'gemini-2.0-flash',
+      'gemini-1.5-flash'
+    ];
     let lastError = null;
 
     for (const model of modelsToTry) {
       try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${this.geminiApiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(this.geminiApiKey)}`;
         const response = await fetch(url, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': this.geminiApiKey
+          },
           body: JSON.stringify(requestBody)
         });
 

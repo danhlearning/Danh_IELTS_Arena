@@ -88,7 +88,8 @@ global.navigator = { vibrate: () => true };
 // Evaluate data.js, sound.js, app.js
 vm.runInThisContext(fs.readFileSync(path.join(__dirname, 'data.js'), 'utf8'));
 vm.runInThisContext(fs.readFileSync(path.join(__dirname, 'sound.js'), 'utf8'));
-vm.runInThisContext(fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8'));
+const appCode = fs.readFileSync(path.join(__dirname, 'app.js'), 'utf8');
+vm.runInThisContext(appCode);
 
 console.log("📝 1. KIỂM TRA CHÍNH TẢ & BỘ GÕ VIỆT NAM (IME) & UK/US");
 assert(typeof stripDiacritics === 'function', "stripDiacritics phải là một hàm");
@@ -164,6 +165,19 @@ console.log("\n📸 4. KIỂM TRA ĐỀ THI QUÉT GEMINI FLASH & BATCHING 60 CÂ
 assert(typeof engine.loadScannedExams === 'function', "loadScannedExams phải tồn tại");
 assert(typeof engine.getPreloadedSampleExam === 'function', "getPreloadedSampleExam phải tồn tại");
 assert(typeof engine.callGeminiFlashExamExtractor === 'function', "callGeminiFlashExamExtractor phải tồn tại");
+
+// Kiểm tra hỗ trợ chuẩn Key mới (AQ...) và key cũ (AIza...)
+engine.geminiApiKey = 'AQ.Ab8RN6TestNewKey12345';
+engine.updateGeminiKeyBadge();
+assert(engine.geminiApiKey.startsWith('AQ.'), "Hệ thống hỗ trợ chuẩn Authorization Key mới của Google (AQ...)");
+
+engine.geminiApiKey = 'AIzaSyLegacyKeyTest67890';
+engine.updateGeminiKeyBadge();
+assert(engine.geminiApiKey.startsWith('AIza'), "Hệ thống hỗ trợ chuẩn API Key truyền thống (AIza...)");
+
+// Kiểm tra mã nguồn gọi mô hình gemini-flash-latest
+assert(appCode.includes("'gemini-flash-latest'"), "Mô hình mục tiêu ưu tiên số 1 phải là 'gemini-flash-latest'");
+assert(appCode.includes("'x-goog-api-key'"), "Header xác thực phải có 'x-goog-api-key' chuẩn Google GenAI");
 
 const preloadedExam = engine.getPreloadedSampleExam();
 assert(preloadedExam.questions.length === 10, "Đề mẫu chuẩn phải có đủ 10 câu hỏi");

@@ -247,7 +247,7 @@
             <div class="scanner-header-actions">
               <button type="button" class="btn-key-pill" id="btn-scanner-key-config" title="Cấu hình Google Gemini Flash API Key">
                 <span class="key-dot" id="scanner-key-dot"></span>
-                <span>🔑 API Key</span>
+                <span id="scanner-key-text">🔑 API Key</span>
               </button>
             </div>
           </div>
@@ -545,15 +545,15 @@
               <button type="button" class="btn-modal-close-x" id="btn-close-key-modal">✕</button>
             </div>
             <p class="modal-desc-simple">
-              Nhập API Key cá nhân của bạn để sử dụng mô hình Gemini Flash phân tích ảnh đề thi và tạo câu hỏi tự động.
+              Nhập API Key cá nhân của bạn để sử dụng mô hình <strong>gemini-flash-latest</strong> tự động cập nhật bản mới nhất. Hỗ trợ chuẩn key mới <code>AQ...</code> và chuẩn key cũ <code>AIza...</code>.
             </p>
             <div class="key-input-wrapper">
-              <input type="password" id="input-gemini-key" class="key-input-field" placeholder="Dán API Key (AIzaSy...)" autocomplete="off">
+              <input type="password" id="input-gemini-key" class="key-input-field" placeholder="Dán Gemini API Key (AQ... hoặc AIza...)" autocomplete="off">
               <button type="button" class="btn-toggle-key-eye" id="btn-toggle-key-eye" title="Hiện / Ẩn key">👁️</button>
             </div>
             <div class="key-help-links">
               <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="link-get-key">
-                👉 Lấy API Key miễn phí từ Google AI Studio (aistudio.google.com)
+                👉 Lấy API Key mới miễn phí tại Google AI Studio (aistudio.google.com)
               </a>
             </div>
             <div class="modal-actions-row">
