@@ -1032,10 +1032,11 @@ body.light-theme .letter-box.blank.filled {
   height: clamp(52px, 6.2vh, 60px);
   min-height: clamp(52px, 6.2vh, 60px);
   border-radius: 16px;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  border-bottom: 4px solid #060911;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 4px 14px rgba(0, 0, 0, 0.4);
   color: #ffffff !important;
   font-family: var(--font-main);
   font-size: clamp(1.3rem, 2.6vh, 1.55rem);
@@ -1044,20 +1045,26 @@ body.light-theme .letter-box.blank.filled {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, opacity 0.2s ease;
+  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, opacity 0.2s ease, box-shadow 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.letter-tile-btn:active:not(:disabled) {
+  transform: scale(0.96) translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 body.light-theme .letter-tile-btn {
   background: #ffffff !important;
-  border: 1.5px solid #94a3b8 !important;
-  border-bottom: 4px solid #64748b !important;
+  border: 2px solid #e2e8f0 !important;
+  box-shadow: 0 3px 0 #cbd5e1, 0 4px 10px rgba(0, 0, 0, 0.06) !important;
   color: #0f172a !important;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-.letter-tile-btn:active:not(:disabled) {
-  transform: translateY(3px) scale(0.96);
-  border-bottom-width: 1px;
+body.light-theme .letter-tile-btn:active:not(:disabled) {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 0 1px 0 #cbd5e1 !important;
 }
 
 .letter-tile-btn.used {
@@ -1148,9 +1155,8 @@ body.light-theme .letter-action-btn {
   min-width: 0;
   height: clamp(42px, 5.2vh, 48px);
   padding: 0;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3.5px solid #060911;
+  background: linear-gradient(180deg, #243044 0%, #172033 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 9px;
   color: #ffffff !important;
   font-family: var(--font-main);
@@ -1160,27 +1166,26 @@ body.light-theme .letter-action-btn {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.1s ease, border-color 0.1s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 2px 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 body.light-theme .kbd-key {
   background: #ffffff !important;
-  border: 1.5px solid #94a3b8 !important;
-  border-bottom: 3.5px solid #64748b !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 2.5px 0 #94a3b8, 0 2px 5px rgba(0, 0, 0, 0.06);
   color: #0f172a !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .kbd-key:active,
 .kbd-key.key-pressed {
-  transform: translateY(2px) scale(0.94);
-  border-bottom-width: 1px;
+  transform: translateY(2px) scale(0.95);
   background: #2563eb !important;
   color: #ffffff !important;
   border-color: #3b82f6 !important;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.5) !important;
 }
 
 .kbd-key.kbd-action-key {
@@ -1453,32 +1458,37 @@ body.light-theme .scramble-action-btn:active {
   justify-content: center;
   padding: clamp(7px, 1.4vh, 11px) clamp(11px, 2.4vw, 17px);
   min-height: clamp(40px, 5vh, 46px);
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 3.5px solid #060911;
-  border-radius: 11px;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 3px 10px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
   color: #ffffff !important;
   font-family: var(--font-main);
   font-size: clamp(0.92rem, 1.95vh, 1.12rem);
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.12s ease, opacity 0.15s ease;
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.12s ease, opacity 0.15s ease, box-shadow 0.12s ease;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
 body.light-theme .word-chip {
   background: #ffffff !important;
-  border: 1.5px solid #94a3b8 !important;
-  border-bottom: 3.5px solid #64748b !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 3px 0 #94a3b8, 0 3px 8px rgba(0, 0, 0, 0.06);
   color: #0f172a !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .word-chip:active:not(.used):not(:disabled) {
-  transform: translateY(2px) scale(0.95);
-  border-bottom-width: 1px;
+  transform: scale(0.96) translateY(1px);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+body.light-theme .word-chip:active:not(.used):not(:disabled) {
+  transform: translateY(2px) scale(0.97);
+  box-shadow: 0 1px 0 #94a3b8 !important;
 }
 
 .word-chip.used {
@@ -1655,67 +1665,97 @@ body.light-theme .powerup-btn {
   gap: clamp(6px, 1vh, 8px);
 }
 
+/* ==========================================================================
+   ZONE 3: THUMB ACTION ARENA - 4 NÚT ĐÁP ÁN (DARK & LIGHT THEME CHUYÊN BIỆT)
+   Khắc phục hoàn toàn lỗi khuyết góc / đổ bóng xỉn màu ở chế độ tối
+   ========================================================================== */
+.answers-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.2vh, 10px);
+}
+
+/* --- CHẾ ĐỘ TỐI (DARK MODE): LIQUID GLASS & AMBIENT SPECULAR HIGHLIGHT --- */
 .btn-tactile {
   width: 100%;
-  min-height: clamp(50px, 6vh, 56px);
+  min-height: clamp(52px, 6.2vh, 60px);
   height: auto;
   border-radius: 18px;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  border-bottom: 4px solid #060911;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  color: #ffffff;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  /* Dùng shadow đối xứng mềm mại, KHÔNG dùng border-bottom lệch gây khuyết góc */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    0 4px 18px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #f8fafc;
   font-size: clamp(1rem, 2.1vh, 1.18rem);
-  font-weight: 800;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 6px 16px;
+  padding: 8px 18px;
   text-align: left;
   cursor: pointer;
   position: relative;
-  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), border-bottom-width 0.1s ease, background 0.15s ease, opacity 0.2s ease;
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.18s ease, 
+              background 0.18s ease, 
+              box-shadow 0.18s ease, 
+              opacity 0.2s ease;
   box-sizing: border-box;
   max-width: 100%;
   min-width: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body.light-theme .btn-tactile {
-  background: #ffffff !important;
-  border: 2px solid #e2e8f0 !important;
-  border-bottom: 4px solid #cbd5e1 !important;
-  color: #1e293b !important;
-  box-shadow: 0 4px 0 #cbd5e1 !important;
+/* Hover & Focus ở chế độ tối */
+.btn-tactile:hover {
+  border-color: rgba(99, 102, 241, 0.55);
+  background: linear-gradient(145deg, rgba(49, 46, 129, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 6px 22px rgba(99, 102, 241, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
 }
 
+/* Khi chạm / nhấn phím ở chế độ tối */
+.btn-tactile:active:not(:disabled) {
+  transform: scale(0.985) translateY(1px);
+  box-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.5),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  border-color: rgba(99, 102, 241, 0.7);
+}
+
+/* Badge A, B, C, D ở chế độ tối */
 .btn-tactile .btn-badge {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
-  background: #4f46e5;
-  border: 1.5px solid #818cf8;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(79, 70, 229, 0.22) 100%);
+  border: 1.5px solid rgba(165, 180, 252, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 14px;
   font-size: 1rem;
   font-weight: 900;
-  color: #ffffff !important;
+  color: #e0e7ff !important;
   flex-shrink: 0;
-}
-
-body.light-theme .btn-tactile .btn-badge {
-  background: #2563eb;
-  border: 1.5px solid #60a5fa;
-  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+  transition: all 0.18s ease;
 }
 
 .btn-tactile .btn-label {
-  color: #ffffff;
+  color: #f8fafc;
   font-size: clamp(1rem, 2.2vh, 1.2rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.2px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   white-space: normal;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -1725,72 +1765,142 @@ body.light-theme .btn-tactile .btn-badge {
   min-width: 0;
 }
 
+/* Trạng thái ĐÚNG ở chế độ tối */
+body:not(.light-theme) .btn-tactile.correct {
+  background: linear-gradient(145deg, rgba(6, 78, 59, 0.85) 0%, rgba(6, 95, 70, 0.95) 100%) !important;
+  border: 2px solid #10b981 !important;
+  color: #ecfdf5 !important;
+  box-shadow: 
+    0 0 28px rgba(16, 185, 129, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  animation: answerVibrateSuccess 0.38s ease-out;
+}
+
+body:not(.light-theme) .btn-tactile.correct .btn-label {
+  color: #ecfdf5 !important;
+}
+
+body:not(.light-theme) .btn-tactile.correct .btn-badge {
+  background: #10b981 !important;
+  border-color: #34d399 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.7) !important;
+  transform: scale(1.12);
+}
+
+/* Trạng thái SAI ở chế độ tối */
+body:not(.light-theme) .btn-tactile.wrong {
+  background: linear-gradient(145deg, rgba(127, 29, 29, 0.85) 0%, rgba(153, 27, 27, 0.95) 100%) !important;
+  border: 2px solid #ef4444 !important;
+  color: #fef2f2 !important;
+  box-shadow: 
+    0 0 28px rgba(239, 68, 68, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  animation: answerVibrateWrong 0.4s ease-in-out;
+}
+
+body:not(.light-theme) .btn-tactile.wrong .btn-label {
+  color: #fef2f2 !important;
+}
+
+body:not(.light-theme) .btn-tactile.wrong .btn-badge {
+  background: #ef4444 !important;
+  border-color: #f87171 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.7) !important;
+}
+
+/* --- CHẾ ĐỘ SÁNG (LIGHT MODE): CLEAN CRISP TACTILE WITH 100% PERFECT CORNERS --- */
+body.light-theme .btn-tactile {
+  background: #ffffff !important;
+  border: 2px solid #e2e8f0 !important;
+  /* Tạo cảm giác nổi 3D vật lý bằng box-shadow thay vì border-bottom để giữ góc bo tròn hoàn hảo */
+  box-shadow: 
+    0 4px 0 #cbd5e1,
+    0 6px 14px rgba(15, 23, 42, 0.06) !important;
+  color: #0f172a !important;
+}
+
+body.light-theme .btn-tactile:hover {
+  background: #f8fafc !important;
+  border-color: #93c5fd !important;
+  box-shadow: 
+    0 5px 0 #60a5fa,
+    0 8px 18px rgba(37, 99, 235, 0.12) !important;
+  transform: translateY(-2px);
+}
+
+body.light-theme .btn-tactile:active:not(:disabled) {
+  transform: translateY(3px) scale(0.99);
+  box-shadow: 
+    0 1px 0 #cbd5e1,
+    0 2px 4px rgba(15, 23, 42, 0.06) !important;
+  border-color: #2563eb !important;
+}
+
+body.light-theme .btn-tactile .btn-badge {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  color: #2563eb !important;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.12);
+}
+
+body.light-theme .btn-tactile:hover .btn-badge {
+  background: #2563eb;
+  border-color: #1d4ed8;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
 body.light-theme .btn-tactile .btn-label {
   color: #0f172a;
-  font-size: clamp(1rem, 2.2vh, 1.2rem);
-  font-weight: 800;
+  font-weight: 700;
   text-shadow: none;
 }
 
-.btn-tactile:active:not(:disabled) {
-  transform: translateY(3px) scale(0.99);
-  border-bottom-width: 2px;
-}
-
-.btn-tactile.correct {
-  background: #e3f8e9 !important;
-  border: 2.5px solid #16a34a !important;
-  border-bottom: 4px solid #15803d !important;
-  color: #166534 !important;
+/* Trạng thái ĐÚNG ở chế độ sáng */
+body.light-theme .btn-tactile.correct {
+  background: #ecfdf5 !important;
+  border: 2px solid #10b981 !important;
+  box-shadow: 
+    0 4px 0 #059669,
+    0 8px 20px rgba(16, 185, 129, 0.22) !important;
+  color: #065f46 !important;
   animation: answerVibrateSuccess 0.38s ease-out;
-  box-shadow: 0 0 0 5px rgba(22, 163, 74, 0.25), 0 4px 0 #15803d !important;
 }
 
-.btn-tactile.correct .btn-label {
-  color: #166534 !important;
+body.light-theme .btn-tactile.correct .btn-label {
+  color: #065f46 !important;
 }
 
-.btn-tactile.correct .btn-badge {
-  background: #16a34a !important;
+body.light-theme .btn-tactile.correct .btn-badge {
+  background: #10b981 !important;
+  border-color: #059669 !important;
   color: #ffffff !important;
-  border: none !important;
-  transform: scale(1.15);
-  transition: transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35) !important;
+  transform: scale(1.12);
 }
 
-.btn-tactile.wrong {
-  background: #fff0ef !important;
-  border: 2.5px solid #dc2626 !important;
-  border-bottom: 4px solid #b91c1c !important;
-  color: #9a4848 !important;
+/* Trạng thái SAI ở chế độ sáng */
+body.light-theme .btn-tactile.wrong {
+  background: #fef2f2 !important;
+  border: 2px solid #ef4444 !important;
+  box-shadow: 
+    0 4px 0 #dc2626,
+    0 8px 20px rgba(239, 68, 68, 0.22) !important;
+  color: #991b1b !important;
   animation: answerVibrateWrong 0.4s ease-in-out;
-  box-shadow: 0 0 0 5px rgba(220, 38, 38, 0.25), 0 4px 0 #b91c1c !important;
 }
 
-.btn-tactile.wrong .btn-label {
-  color: #9a4848 !important;
+body.light-theme .btn-tactile.wrong .btn-label {
+  color: #991b1b !important;
 }
 
-.btn-tactile.wrong .btn-badge {
-  background: #dc2626 !important;
+body.light-theme .btn-tactile.wrong .btn-badge {
+  background: #ef4444 !important;
+  border-color: #dc2626 !important;
   color: #ffffff !important;
-  border: none !important;
-}
-
-body:not(.light-theme) .btn-tactile.correct {
-  background: #143826 !important;
-  border: 2.5px solid #22c55e !important;
-  border-bottom: 4px solid #15803d !important;
-  color: #86efac !important;
-  box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3), 0 4px 0 #15803d !important;
-}
-
-body:not(.light-theme) .btn-tactile.wrong {
-  background: #3b1717 !important;
-  border: 2.5px solid #ef4444 !important;
-  border-bottom: 4px solid #b91c1c !important;
-  color: #fca5a5 !important;
-  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.3), 0 4px 0 #b91c1c !important;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35) !important;
 }
 
 @keyframes answerVibrateSuccess {
