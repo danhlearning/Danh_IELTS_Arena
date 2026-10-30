@@ -8,6 +8,11 @@
   <meta name="apple-mobile-web-app-title" content="Danh học IELTS">
   <meta name="theme-color" id="meta-theme-color" content="#ffffff">
   
+  <!-- Chống lưu Cache trên WebKit/Safari để luôn cập nhật dữ liệu mới nhất -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
   <!-- Progressive Web App (PWA) cho iPhone iOS -->
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/icon-512.png">
@@ -20,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=2.8">
+  <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
 
@@ -406,17 +411,41 @@
 
   </div>
 
-  <!-- Nạp Dữ Liệu Từ Vựng & Hình Ảnh Pencil & Sound Engine & Logic Game (Auto-Cache Busting v2.8) -->
-  <script src="data.js?v=2.8"></script>
-  <script src="vocab-images.js?v=2.8"></script>
-  <script src="sound.js?v=2.8"></script>
-  <script src="app.js?v=2.8"></script>
+  <!-- Nạp Dữ Liệu Từ Vựng & Hình Ảnh Pencil & Sound Engine & Logic Game (Auto-Cache Busting v3.0) -->
+  <script src="data.js?v=3.0"></script>
+  <script src="vocab-images.js?v=3.0"></script>
+  <script src="sound.js?v=3.0"></script>
+  <script src="app.js?v=3.0"></script>
   <script>
+    // 1. WebKit bfcache (Back-Forward Cache): Khi mở lại trang từ bộ nhớ nền Safari / WebKit, nạp lại dữ liệu mới nhất
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
+
+    // 2. Tự động kiểm tra và cập nhật Service Worker ngay lập tức cho WebKit / Safari
     if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js?v=2.8').then(reg => {
+        navigator.serviceWorker.register('./sw.js?v=3.0').then(reg => {
           reg.update();
         }).catch(() => {});
+      });
+
+      // Tự động reload khi có phiên bản Service Worker mới được kích hoạt
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+
+      // Khi người dùng chuyển tab hoặc mở lại từ màn hình khóa điện thoại
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          navigator.serviceWorker.ready.then(reg => reg.update()).catch(() => {});
+        }
       });
     }
   </script>

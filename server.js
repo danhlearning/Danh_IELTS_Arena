@@ -69,7 +69,8 @@ const server = http.createServer((req, res) => {
       'Content-Length': stats.size,
       'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
       'Pragma': 'no-cache',
-      'Expires': '0'
+      'Expires': '0',
+      'Surrogate-Control': 'no-store'
     });
 
     const stream = fs.createReadStream(filePath);

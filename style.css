@@ -891,15 +891,17 @@ body.light-theme .meaning-highlight {
   display: inline-block;
   color: var(--accent-primary);
   font-weight: 800;
-  border-bottom: 2.5px dashed var(--accent-primary);
-  padding: 0 4px;
-  margin: 0 2px;
+  border: none !important;
+  border-bottom: none !important;
+  padding: 0 2px;
+  margin: 0 1px;
   letter-spacing: 2px;
   white-space: nowrap;
   max-width: 100%;
   vertical-align: baseline;
   box-sizing: border-box;
-  animation: pulseBlank 2s infinite;
+  text-decoration: none;
+  animation: pulseBlank 2s infinite ease-in-out;
 }
 
 /* Chữ Cái Liền Mạch (Seamless Word Typography - Tự động xuống hàng khi từ dài) */
@@ -1150,8 +1152,20 @@ body.light-theme .question-meta-footer {
 }
 
 @keyframes pulseBlank {
-  0%, 100% { border-color: var(--accent-primary); box-shadow: 0 0 6px var(--accent-glow); }
-  50% { border-color: #a5b4fc; box-shadow: 0 0 14px var(--accent-glow); }
+  0%, 100% {
+    color: var(--accent-primary);
+    text-shadow: 0 0 6px var(--accent-glow);
+  }
+  50% {
+    color: #a5b4fc;
+    text-shadow: 0 0 14px var(--accent-glow);
+  }
+}
+
+body.light-theme .blank-slot {
+  color: #4f46e5;
+  border: none !important;
+  border-bottom: none !important;
 }
 
 /* ==========================================================================
@@ -1462,6 +1476,8 @@ body.light-theme .feedback-drawer.wrong-state .feedback-btn {
 .feedback-vietnamese {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   font-size: clamp(1.15rem, 2.3vh, 1.35rem);
   font-weight: 800;
   color: var(--accent-primary);
@@ -1471,6 +1487,37 @@ body.light-theme .feedback-drawer.wrong-state .feedback-btn {
   word-break: break-word;
   min-width: 0;
   line-height: 1.4;
+}
+
+.feedback-word-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.feedback-vn-text {
+  color: var(--text-primary);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2.2vh, 1.35rem);
+  line-height: 1.35;
+}
+
+body.light-theme .feedback-vn-text {
+  color: #0f172a;
+}
+
+.feedback-phonetic-badge {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  font-family: var(--font-nunito);
+  opacity: 0.95;
+}
+
+body.light-theme .feedback-phonetic-badge {
+  color: #4f46e5;
 }
 
 .feedback-explanation {
@@ -1524,32 +1571,76 @@ body.light-theme .feedback-explanation {
   border-bottom-width: 1px;
 }
 
-/* Nút phát âm âm thanh */
+/* Nút phát âm âm thanh to rõ đẹp */
 .btn-audio-replay {
-  background: rgba(99, 102, 241, 0.18);
-  border: 1px solid var(--accent-primary);
-  color: var(--accent-primary);
-  width: 32px;
-  height: 32px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(139, 92, 246, 0.28) 100%);
+  border: 1.5px solid rgba(129, 140, 248, 0.45);
+  color: #818cf8;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: 8px;
+  flex-shrink: 0;
+  margin-left: 10px;
   vertical-align: middle;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.btn-audio-replay:active {
-  transform: scale(0.9);
+.btn-audio-replay:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.35) 0%, rgba(139, 92, 246, 0.42) 100%);
+  border-color: #a5b4fc;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.42), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.btn-audio-replay:active,
+.btn-audio-replay.playing {
+  transform: scale(0.92);
   background: var(--accent-primary);
-  color: #fff;
+  color: #ffffff;
+  box-shadow: 0 0 18px var(--accent-glow);
 }
 
 .btn-audio-replay svg {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.btn-audio-replay.playing svg {
+  animation: speakerWave 0.6s ease infinite alternate;
+}
+
+@keyframes speakerWave {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+body.light-theme .btn-audio-replay {
+  background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
+  border: 1.5px solid #a5b4fc;
+  color: #4338ca;
+  box-shadow: 0 3px 12px rgba(99, 102, 241, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+body.light-theme .btn-audio-replay:hover {
+  background: linear-gradient(135deg, #c7d2fe 0%, #ddd6fe 100%);
+  color: #312e81;
+  border-color: #818cf8;
+}
+
+body.light-theme .btn-audio-replay:active,
+body.light-theme .btn-audio-replay.playing {
+  background: var(--accent-primary);
+  color: #ffffff;
 }
 
 .btn-vault-speak {

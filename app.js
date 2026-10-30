@@ -672,7 +672,7 @@ class GameEngine {
     } else if (q.sentence) {
       this.promptText.textContent = q.prompt || 'Chọn đáp án học thuật chính xác:';
       this.letterBoxContainer.style.display = 'none';
-      const highlightedSentence = q.sentence.replace(/_{3,}/g, '<span class="blank-slot">_______</span>');
+      const highlightedSentence = q.sentence.replace(/_{2,}/g, '<span class="blank-slot">____</span>');
       this.questionMainText.innerHTML = highlightedSentence;
       this.renderAnswerButtons(q);
     } else {
@@ -1209,9 +1209,16 @@ class GameEngine {
     }
 
     this.feedbackVietnamese.innerHTML = `
-      <span>${q.vietnamese} ${q.phonetic ? `• ${q.phonetic}` : ''}</span>
-      <button class="btn-audio-replay" id="btn-audio-replay" title="Nghe lại phát âm">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      <div class="feedback-word-info">
+        <span class="feedback-vn-text">${q.vietnamese}</span>
+        ${q.phonetic ? `<span class="feedback-phonetic-badge">${q.phonetic}</span>` : ''}
+      </div>
+      <button class="btn-audio-replay" id="btn-audio-replay" title="Nghe lại phát âm chuẩn" aria-label="Nghe lại phát âm chuẩn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fill-opacity="0.25"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+        </svg>
       </button>
     `;
 
@@ -1219,7 +1226,9 @@ class GameEngine {
     if (replayBtn) {
       replayBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const word = q.target_word || q.options[q.correct];
+        replayBtn.classList.add('playing');
+        setTimeout(() => replayBtn.classList.remove('playing'), 900);
+        const word = q.target_word || (q.options && q.options[q.correct]) || '';
         if (typeof speechEngine !== 'undefined') speechEngine.speakWord(word);
       });
     }
