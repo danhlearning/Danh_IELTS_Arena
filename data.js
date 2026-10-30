@@ -11421,7 +11421,7 @@ const IELTS_VOCAB_BANK = [
       "guarantee",
       "complaint",
       "itinerary",
-      "itinerary"
+      "invoice"
     ],
     "correct": 0,
     "vietnamese": "sự bảo đảm, cam kết chất lượng hoặc quyền lợi",

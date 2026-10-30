@@ -49,6 +49,9 @@ class GameEngine {
     this.scrambleStreak = 0;
     this.scrambleFails = 0;
 
+    // Tự động chuyển câu (Auto Next) - Mặc định BẬT (true), đồng bộ theo tùy chọn người dùng
+    this.isAutoNextEnabled = (localStorage.getItem('ielts_auto_next') !== 'false');
+
     this.initDOMElements();
     this.bindEvents();
     this.applyPersistedSettings();
@@ -271,6 +274,8 @@ class GameEngine {
     this.examSentenceQuote = document.getElementById('exam-sentence-quote');
     this.commonMistakeText = document.getElementById('common-mistake-text');
     this.btnNext = document.getElementById('btn-next');
+    this.btnAutoNext = document.getElementById('btn-auto-next');
+    this.autoNextBadge = document.getElementById('auto-next-badge');
 
     // Victory Modal
     this.modalOverlay = document.getElementById('modal-overlay');
@@ -318,6 +323,9 @@ class GameEngine {
     this.btnHint.addEventListener('click', () => this.useHint());
 
     this.btnNext.addEventListener('click', () => this.nextQuestion());
+    if (this.btnAutoNext) {
+      this.btnAutoNext.addEventListener('click', () => this.toggleAutoNext());
+    }
     if (this.btnReplay) {
       this.btnReplay.addEventListener('click', () => this.startNewRound());
     }
@@ -490,6 +498,7 @@ class GameEngine {
     }
 
     this.updateSoundIcon(soundEngine.isMuted);
+    this.updateAutoNextUI();
   }
 
   updateThemeIcon(isLight) {
@@ -539,6 +548,57 @@ class GameEngine {
     const spanText = this.btnViewToggle.querySelector('span');
     if (spanText) {
       spanText.textContent = isFullscreen ? 'Khung iPhone' : 'Tràn màn hình';
+    }
+  }
+
+  toggleAutoNext() {
+    this.isAutoNextEnabled = !this.isAutoNextEnabled;
+    try {
+      localStorage.setItem('ielts_auto_next', this.isAutoNextEnabled ? 'true' : 'false');
+    } catch (e) {}
+
+    this.updateAutoNextUI();
+
+    if (typeof soundEngine !== 'undefined' && typeof soundEngine.playTick === 'function') {
+      soundEngine.playTick();
+    }
+
+    if (!this.isAutoNextEnabled) {
+      // Huỷ timer tự chuyển câu ngay lập tức nếu người dùng tắt tính năng
+      clearTimeout(this.autoAdvanceTimer);
+      this.autoAdvanceTimer = null;
+      this.flashDynamicIsland('⏸️ Auto Next: TẮT (Chuyển câu thủ công)');
+    } else {
+      this.flashDynamicIsland('⚡ Auto Next: BẬT (Tự động chuyển câu)');
+      // Nếu popup đang mở ở câu trả lời đúng, kích hoạt timer chuyển câu
+      if (this.feedbackDrawer && this.feedbackDrawer.classList.contains('active') && this.feedbackDrawer.classList.contains('correct-state')) {
+        if (this.hearts > 0 && this.currentIndex < this.questions.length - 1 && !this.autoAdvanceTimer) {
+          this.autoAdvanceTimer = setTimeout(() => {
+            if (this.feedbackDrawer && this.feedbackDrawer.classList.contains('active')) {
+              this.nextQuestion();
+            }
+          }, 1400);
+        }
+      }
+    }
+  }
+
+  updateAutoNextUI() {
+    if (!this.btnAutoNext) return;
+    if (this.isAutoNextEnabled) {
+      this.btnAutoNext.classList.add('active');
+      if (typeof this.btnAutoNext.setAttribute === 'function') {
+        this.btnAutoNext.setAttribute('aria-pressed', 'true');
+        this.btnAutoNext.setAttribute('title', 'Auto Next đang BẬT (Bấm để Tắt)');
+      }
+      if (this.autoNextBadge) this.autoNextBadge.textContent = 'BẬT';
+    } else {
+      this.btnAutoNext.classList.remove('active');
+      if (typeof this.btnAutoNext.setAttribute === 'function') {
+        this.btnAutoNext.setAttribute('aria-pressed', 'false');
+        this.btnAutoNext.setAttribute('title', 'Auto Next đang TẮT (Bấm để Bật)');
+      }
+      if (this.autoNextBadge) this.autoNextBadge.textContent = 'TẮT';
     }
   }
 
@@ -1990,11 +2050,12 @@ class GameEngine {
 
     clearTimeout(this.autoAdvanceTimer);
     this.autoAdvanceTimer = null;
+    this.updateAutoNextUI();
 
-    // CHỈ tự động chuyển sang câu tiếp theo khi học sinh trả lời ĐÚNG (sau 1.8s).
-    // Với câu trả lời SAI hoặc HẾT GIỜ: TUYỆT ĐỐI KHÔNG tự động đổi câu.
+    // CHỈ tự động chuyển sang câu tiếp theo khi học sinh trả lời ĐÚNG và Auto Next đang BẬT (sau 1.8s).
+    // Với câu trả lời SAI hoặc HẾT GIỜ, hoặc khi người dùng TẮT Auto Next: TUYỆT ĐỐI KHÔNG tự động đổi câu.
     // Giữ nguyên giao diện để học sinh xem kỹ giải thích, CHỈ đổi câu khi học sinh bấm nút "Tiếp tục".
-    if (isCorrect && this.hearts > 0 && this.currentIndex < this.questions.length - 1) {
+    if (this.isAutoNextEnabled && isCorrect && this.hearts > 0 && this.currentIndex < this.questions.length - 1) {
       this.autoAdvanceTimer = setTimeout(() => {
         if (this.feedbackDrawer && this.feedbackDrawer.classList.contains('active')) {
           this.nextQuestion();

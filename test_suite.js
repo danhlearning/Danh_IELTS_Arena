@@ -43,29 +43,36 @@ vm.runInThisContext(dataFileContent);
 assert(Array.isArray(IELTS_VOCAB_BANK), "IELTS_VOCAB_BANK should be an array");
 assert(IELTS_VOCAB_BANK.length >= 20, `IELTS_VOCAB_BANK should have at least 20 items (Found: ${IELTS_VOCAB_BANK.length})`);
 
-const validModes = ['letter_fill', 'meaning_match', 'collocation', 'word_class', 'preposition', 'sentence_cloze'];
+const validModes = ['letter_fill', 'meaning_match', 'collocation', 'word_class', 'preposition', 'sentence_cloze', 'sentence_scramble'];
 const coveredModes = new Set();
 let allQuestionsValid = true;
 
 IELTS_VOCAB_BANK.forEach((q, idx) => {
   coveredModes.add(q.mode);
   
-  if (!q.id || !q.mode || !q.band || !q.topic || !Array.isArray(q.options) || q.options.length !== 4) {
-    allQuestionsValid = false;
-    console.error(`Question at index ${idx} has invalid schema`, q);
-  }
-  if (typeof q.correct !== 'number' || q.correct < 0 || q.correct > 3) {
-    allQuestionsValid = false;
-    console.error(`Question at index ${idx} has invalid correct index: ${q.correct}`);
-  }
-  if (!q.real_exam_sentence || !q.exam_task || !q.common_mistake) {
-    allQuestionsValid = false;
-    console.error(`Question at index ${idx} is missing exam application fields!`, q.id);
+  if (q.mode === 'sentence_scramble') {
+    if (!q.id || !q.mode || !q.band || !q.topic || !Array.isArray(q.tokens) || !q.correct_sentence || !q.vietnamese) {
+      allQuestionsValid = false;
+      console.error(`Sentence scramble question at index ${idx} has invalid schema`, q);
+    }
+  } else {
+    if (!q.id || !q.mode || !q.band || !q.topic || !Array.isArray(q.options) || q.options.length !== 4) {
+      allQuestionsValid = false;
+      console.error(`Question at index ${idx} has invalid schema`, q);
+    }
+    if (typeof q.correct !== 'number' || q.correct < 0 || q.correct > 3) {
+      allQuestionsValid = false;
+      console.error(`Question at index ${idx} has invalid correct index: ${q.correct}`);
+    }
+    if (!q.real_exam_sentence || !q.exam_task || !q.common_mistake) {
+      allQuestionsValid = false;
+      console.error(`Question at index ${idx} is missing exam application fields!`, q.id);
+    }
   }
 });
 
-assert(allQuestionsValid, "All questions must contain valid IDs, bands, 4 options, valid correct index, and real exam sentences");
-assert(validModes.every(m => coveredModes.has(m)), `All 6 required game modes must be represented (Modes covered: ${[...coveredModes].join(', ')})`);
+assert(allQuestionsValid, "All questions must contain valid IDs, bands, options/tokens, and correct structures");
+assert(validModes.every(m => coveredModes.has(m)), `All required game modes must be represented (Modes covered: ${[...coveredModes].join(', ')})`);
 
 // ----------------------------------------------------
 // TEST GROUP 2: ACTIVE RECALL & SRS VARIATION LOGIC
@@ -134,9 +141,9 @@ const requiredElementIds = [
   'dynamic-island', 'island-message', 'band-badge', 'mode-badge', 'topic-badge',
   'prompt-text', 'question-main-text', 'letter-box-container', 'answers-container',
   'btn-fifty', 'btn-freeze', 'btn-hint', 'feedback-drawer', 'feedback-title',
-  'feedback-vietnamese', 'exam-task-label', 'exam-sentence-quote', 'common-mistake-text',
+  'feedback-vietnamese', 'btn-auto-next', 'exam-task-label', 'exam-sentence-quote', 'common-mistake-text',
   'btn-next', 'modal-overlay', 'final-score', 'max-streak', 'avg-time', 'accuracy-rate',
-  'band-grade', 'wordle-grid', 'btn-share', 'btn-replay', 'btn-vault-open',
+  'band-grade', 'btn-replay', 'btn-vault-open', 'btn-result-change-mode', 'btn-grade-filter',
   'vault-overlay', 'vault-list', 'btn-vault-close', 'btn-theme-toggle', 'btn-sound-toggle',
   'confetti-canvas'
 ];

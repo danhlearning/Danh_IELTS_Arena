@@ -45,6 +45,13 @@ let validPrepositions = true;
 let validCollocations = true;
 
 IELTS_VOCAB_BANK.forEach((q, idx) => {
+  if (q.mode === 'sentence_scramble') {
+    if (!q.tokens || !q.correct_sentence || !q.vietnamese) {
+      console.error(`Câu hỏi scramble ${q.id} thiếu dữ liệu!`);
+    }
+    return;
+  }
+
   const uniqueOptions = new Set(q.options.map(o => o.trim().toLowerCase()));
   if (uniqueOptions.size !== 4) {
     noDuplicateOptions = false;
@@ -71,7 +78,7 @@ IELTS_VOCAB_BANK.forEach((q, idx) => {
 
   if (q.mode === 'preposition') {
     const correctPrep = q.options[q.correct].toLowerCase();
-    if (!['to', 'from', 'with', 'on', 'of', 'for', 'in', 'upon', 'at', 'by'].some(p => correctPrep.includes(p))) {
+    if (!['to', 'from', 'with', 'on', 'of', 'for', 'in', 'upon', 'at', 'by', 'about', 'into', 'under', 'over'].some(p => correctPrep.includes(p))) {
       validPrepositions = false;
       console.error(`Câu hỏi giới từ ${q.id} có đáp án không phải giới từ: ${correctPrep}`);
     }
@@ -134,6 +141,8 @@ function createMockElement(id) {
     innerHTML: '',
     children: [],
     appendChild(c) { this.children.push(c); },
+    setAttribute(k, v) { this[k] = v; },
+    getAttribute(k) { return this[k] || null; },
     querySelector() { return createMockElement('child'); },
     querySelectorAll() { 
       return [createMockElement('btn0'), createMockElement('btn1'), createMockElement('btn2'), createMockElement('btn3')]; 
