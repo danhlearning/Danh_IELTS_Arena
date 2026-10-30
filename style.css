@@ -1114,6 +1114,407 @@ body.light-theme .letter-action-btn {
   color: #fff;
 }
 
+/* ==========================================================================
+   Full QWERTY Keyboard Layout (Chuẩn thiết bị cho Bậc 4 - Master Challenge)
+   Tối ưu hoàn hảo cho cả Điện thoại (iPhone / Android) & Máy tính bảng (iPad)
+   ========================================================================== */
+.full-keyboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, 0.9vh, 7px);
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 4px 2px 2px;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(3px, 0.9vw, 6px);
+  width: 100%;
+}
+
+.kbd-spacer {
+  flex: 0.5;
+  height: 100%;
+  pointer-events: none;
+}
+
+.kbd-key {
+  flex: 1;
+  min-width: 0;
+  height: clamp(42px, 5.2vh, 48px);
+  padding: 0;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3.5px solid #060911;
+  border-radius: 9px;
+  color: #ffffff !important;
+  font-family: var(--font-main);
+  font-size: clamp(1.05rem, 2.2vh, 1.3rem);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.1s ease, border-color 0.1s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.light-theme .kbd-key {
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  border-bottom: 3.5px solid #64748b !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.kbd-key:active,
+.kbd-key.key-pressed {
+  transform: translateY(2px) scale(0.94);
+  border-bottom-width: 1px;
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+}
+
+.kbd-key.kbd-action-key {
+  flex: 1.45;
+  background: #334155 !important;
+  font-size: clamp(0.85rem, 1.8vh, 1.05rem);
+  border-color: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+}
+
+body.light-theme .kbd-key.kbd-action-key {
+  background: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+  color: #1e293b !important;
+}
+
+.kbd-key.kbd-action-key:active {
+  background: #475569 !important;
+  color: #ffffff !important;
+}
+
+.kbd-key.eliminated {
+  opacity: 0.15;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+/* Tablet & Màn hình rộng (iPad / iPad Pro / Surface / Desktop) */
+@media (min-width: 600px) {
+  .full-keyboard-container {
+    max-width: 560px;
+    gap: 8px;
+    padding: 8px 6px;
+  }
+  .keyboard-row {
+    gap: 7px;
+  }
+  .kbd-key {
+    height: 52px;
+    font-size: 1.35rem;
+    border-radius: 12px;
+  }
+  .kbd-key.kbd-action-key {
+    flex: 1.55;
+    font-size: 1.1rem;
+  }
+}
+
+/* Điện thoại màn hình hẹp (iPhone SE, Galaxy A-series <= 375px) */
+@media (max-width: 375px) {
+  .keyboard-row {
+    gap: 2.5px;
+  }
+  .kbd-key {
+    height: 40px;
+    font-size: 0.98rem;
+    border-radius: 7px;
+  }
+  .kbd-key.kbd-action-key {
+    flex: 1.35;
+    font-size: 0.82rem;
+  }
+}
+
+/* ==========================================================================
+   Game Đặt Câu Thích Ứng (Sentence Scramble / Sentence Builder)
+   Adaptive Engine: 4 Cấp độ (Dễ ➔ Trung bình ➔ Nâng cao ➔ Master)
+   Tối ưu hoàn hảo cho Mobile (iPhone/Android) & Tablet (iPad/Surface)
+   ========================================================================== */
+.scramble-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.5vh, 12px);
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Khung ghép câu (Sentence Assembly Area) */
+.sentence-assembly-area {
+  min-height: clamp(74px, 11vh, 105px);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: rgba(15, 23, 42, 0.72);
+  border: 2px dashed rgba(99, 102, 241, 0.45);
+  border-radius: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: 7px 8px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.light-theme .sentence-assembly-area {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sentence-assembly-area.correct-state {
+  border: 2px solid #10b981 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.3) !important;
+}
+
+.sentence-assembly-area.wrong-state {
+  border: 2px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+.sentence-assembly-area.wrong-shake {
+  animation: scrambleShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  border-color: #ef4444 !important;
+}
+
+@keyframes scrambleShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.assembly-placeholder {
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: clamp(0.85rem, 1.8vh, 0.95rem);
+  font-style: italic;
+  pointer-events: none;
+  line-height: 1.4;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Thẻ từ đã đặt lên khung ghép câu */
+.placed-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: clamp(0.92rem, 1.9vh, 1.08rem);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+  transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  animation: chipPopIn 0.15s ease;
+}
+
+@keyframes chipPopIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.placed-chip:active {
+  transform: scale(0.92);
+}
+
+.placed-chip .placed-chip-remove {
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.75;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.placed-chip.correct-chip {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.45) !important;
+}
+
+.placed-chip.misplaced {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  border-color: #fbbf24 !important;
+}
+
+/* Thanh điều khiển thao tác ghép câu */
+.scramble-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.scramble-counter-badge {
+  font-size: clamp(0.78rem, 1.6vh, 0.86rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-theme .scramble-counter-badge {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+.scramble-btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+.scramble-action-btn {
+  padding: 5px 12px;
+  height: 32px;
+  border-radius: 8px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-secondary);
+  font-family: var(--font-main);
+  font-size: clamp(0.76rem, 1.6vh, 0.84rem);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.12s ease;
+}
+
+body.light-theme .scramble-action-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.scramble-action-btn:active {
+  transform: scale(0.94);
+  background: #334155;
+  color: #ffffff;
+}
+
+body.light-theme .scramble-action-btn:active {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Khay thẻ từ xáo trộn ở phía dưới */
+.scramble-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 10px);
+  width: 100%;
+  padding: 4px 0 2px;
+}
+
+.word-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(7px, 1.4vh, 11px) clamp(11px, 2.4vw, 17px);
+  min-height: clamp(40px, 5vh, 46px);
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 3.5px solid #060911;
+  border-radius: 11px;
+  color: #ffffff !important;
+  font-family: var(--font-main);
+  font-size: clamp(0.92rem, 1.95vh, 1.12rem);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.12s ease, opacity 0.15s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.light-theme .word-chip {
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  border-bottom: 3.5px solid #64748b !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.word-chip:active:not(.used):not(:disabled) {
+  transform: translateY(2px) scale(0.95);
+  border-bottom-width: 1px;
+}
+
+.word-chip.used {
+  opacity: 0.22;
+  pointer-events: none;
+  transform: translateY(2px) scale(0.94);
+  border-bottom-width: 1px;
+  filter: grayscale(0.7);
+}
+
+.word-chip.eliminated {
+  opacity: 0.12;
+  text-decoration: line-through;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+/* Gợi ý mỏ neo từ đầu câu cho Cấp độ 1 (Scaffolded Beginner) */
+.word-chip.starter-anchor {
+  border-color: rgba(245, 158, 11, 0.8) !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+/* Feedback drawer - dòng câu tiếng Anh hoàn chỉnh */
+.feedback-sentence-correct {
+  display: block;
+  margin-top: 4px;
+  font-size: clamp(0.95rem, 2vh, 1.15rem);
+  font-weight: 800;
+  color: #10b981;
+  line-height: 1.4;
+}
+
 /* Footer dải thông tin học thuật trong thẻ câu hỏi */
 .question-meta-footer {
   display: flex;

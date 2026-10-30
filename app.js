@@ -41,6 +41,14 @@ class GameEngine {
     this.memoryProfiles = this.loadMemoryProfiles();
     this.currentGradeFilter = 'all'; // Mặc định luôn luôn là adaptive toàn diện theo yêu cầu người dùng
 
+    // Game Đặt Câu Thích Ứng (Adaptive Sentence Scramble Engine)
+    this.scrambleAdaptiveLevel = parseInt(localStorage.getItem('ielts_scramble_level') || '1', 10);
+    if (isNaN(this.scrambleAdaptiveLevel) || this.scrambleAdaptiveLevel < 1 || this.scrambleAdaptiveLevel > 4) {
+      this.scrambleAdaptiveLevel = 1;
+    }
+    this.scrambleStreak = 0;
+    this.scrambleFails = 0;
+
     this.initDOMElements();
     this.bindEvents();
     this.applyPersistedSettings();
@@ -364,19 +372,58 @@ class GameEngine {
 
         if (q.mode === 'letter_fill') {
           if (e.key === 'Backspace') {
-            const btnUndo = document.getElementById('btn-letter-undo');
-            if (btnUndo) btnUndo.click();
+            const btnUndo = document.getElementById('btn-letter-undo') || (this.answersContainer && this.answersContainer.querySelector('.kbd-backspace'));
+            if (btnUndo) {
+              btnUndo.click();
+              btnUndo.classList.add('key-pressed');
+              setTimeout(() => btnUndo.classList.remove('key-pressed'), 120);
+            }
           } else if (e.key === 'Escape' || e.key === 'Delete') {
-            const btnClear = document.getElementById('btn-letter-clear');
-            if (btnClear) btnClear.click();
+            const btnClear = document.getElementById('btn-letter-clear') || (this.answersContainer && this.answersContainer.querySelector('.kbd-clear'));
+            if (btnClear) {
+              btnClear.click();
+              btnClear.classList.add('key-pressed');
+              setTimeout(() => btnClear.classList.remove('key-pressed'), 120);
+            }
           } else if (/^[a-zA-Z]$/.test(e.key)) {
             const char = e.key.toUpperCase();
             if (this.answersContainer && this.answersContainer.querySelectorAll) {
-              const tileBtns = Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'));
-              const availableTile = tileBtns.find(t => t.dataset && t.dataset.char === char && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
-              if (availableTile) {
-                availableTile.click();
+              // Bậc 4: Full QWERTY keyboard
+              const kbdKey = this.answersContainer.querySelector(`.kbd-key[data-char="${char}"]`);
+              if (kbdKey) {
+                kbdKey.click();
+                kbdKey.classList.add('key-pressed');
+                setTimeout(() => kbdKey.classList.remove('key-pressed'), 120);
+              } else {
+                // Bậc 1-3: Tile bank
+                const tileBtns = Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'));
+                const availableTile = tileBtns.find(t => t.dataset && t.dataset.char === char && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
+                if (availableTile) {
+                  availableTile.click();
+                }
               }
+            }
+          }
+        } else if (q.mode === 'sentence_scramble') {
+          if (e.key === 'Backspace') {
+            const btnUndo = document.getElementById('btn-scramble-undo');
+            if (btnUndo) {
+              btnUndo.click();
+              btnUndo.classList.add('active');
+              setTimeout(() => btnUndo.classList.remove('active'), 120);
+            }
+          } else if (e.key === 'Escape') {
+            const btnClear = document.getElementById('btn-scramble-clear');
+            if (btnClear) {
+              btnClear.click();
+              btnClear.classList.add('active');
+              setTimeout(() => btnClear.classList.remove('active'), 120);
+            }
+          } else if (/^[1-9]$/.test(e.key)) {
+            const num = parseInt(e.key, 10) - 1;
+            const chips = Array.from(this.answersContainer.querySelectorAll('.word-chip:not(.used):not(.eliminated):not(:disabled)'));
+            if (chips[num]) {
+              chips[num].click();
             }
           }
         } else {
@@ -486,6 +533,9 @@ class GameEngine {
     if (!this.currentGradeFilter || this.currentGradeFilter === 'all') {
       return [...IELTS_VOCAB_BANK];
     }
+    if (this.currentGradeFilter === 'scramble') {
+      return IELTS_VOCAB_BANK.filter(q => q.mode === 'sentence_scramble');
+    }
     if (this.currentGradeFilter === 'toeic') {
       return IELTS_VOCAB_BANK.filter(q => q.category === 'toeic' || q.topic_category === 'toeic' || (q.id && q.id.startsWith('toeic_')));
     }
@@ -521,10 +571,10 @@ class GameEngine {
     // Phân loại câu hỏi theo 3 tầng nhận thức tự nhiên (Cognitive Progression Tiers):
     // Tầng 1 (Khởi động - Nhận diện & Mặt chữ): meaning_match, letter_fill
     // Tầng 2 (Tăng tốc - Ngữ pháp & Cụm từ): word_class, collocation
-    // Tầng 3 (Về đích - Ngữ cảnh thực chiến & Giới từ): preposition, sentence_cloze
+    // Tầng 3 (Về đích - Ngữ cảnh thực chiến & Đặt câu): preposition, sentence_cloze, sentence_scramble
     const tier1Modes = ['meaning_match', 'letter_fill'];
     const tier2Modes = ['word_class', 'collocation'];
-    const tier3Modes = ['preposition', 'sentence_cloze'];
+    const tier3Modes = ['preposition', 'sentence_cloze', 'sentence_scramble'];
 
     const t1Pool = workingPool.filter(q => tier1Modes.includes(q.mode));
     const t2Pool = workingPool.filter(q => tier2Modes.includes(q.mode));
@@ -533,8 +583,10 @@ class GameEngine {
     // Sắp xếp theo trọng số ưu tiên Adaptive (kết hợp jitter ngẫu nhiên 0 - 0.2 để tăng tính biến hóa)
     const sortByPriority = (arr) => {
       return [...arr].sort((a, b) => {
-        const scoreA = this.calculatePriorityScore(a) + (Math.random() * 0.2);
-        const scoreB = this.calculatePriorityScore(b) + (Math.random() * 0.2);
+        const diffA = (a.mode === 'sentence_scramble') ? Math.abs((a.difficulty_level || 1) - this.scrambleAdaptiveLevel) * 0.4 : 0;
+        const diffB = (b.mode === 'sentence_scramble') ? Math.abs((b.difficulty_level || 1) - this.scrambleAdaptiveLevel) * 0.4 : 0;
+        const scoreA = this.calculatePriorityScore(a) - diffA + (Math.random() * 0.2);
+        const scoreB = this.calculatePriorityScore(b) - diffB + (Math.random() * 0.2);
         return scoreB - scoreA;
       });
     };
@@ -628,7 +680,7 @@ class GameEngine {
         blankCount: totalLetters,
         masked: maskedChars.join(' '),
         missing: missingChars,
-        hint: `🏆 Thử thách Master: Nhập FULL toàn bộ từ (${totalLetters} chữ)!`
+        hint: `🏆 Bậc 4 Master: Bàn phím Full Layout (${totalLetters} chữ)!`
       };
     }
 
@@ -786,6 +838,7 @@ class GameEngine {
 
     const modeLabels = {
       letter_fill: '🔤 Điền chữ cái',
+      sentence_scramble: '🧩 Đặt câu thích ứng',
       meaning_match: '🇻🇳 ➔ 🇬🇧 Chọn từ đúng',
       collocation: '🧩 Ghép Collocation',
       word_class: '🏷️ Phân biệt từ loại',
@@ -803,6 +856,9 @@ class GameEngine {
       this.modeBadge.style.color = `var(--text-secondary)`;
     }
 
+    // Thời gian làm bài: 25 giây cho Đặt câu, 15 giây cho các dạng trắc nghiệm
+    this.maxTimeSeconds = (q.mode === 'sentence_scramble') ? 25.0 : 15.0;
+
     // Hiển thị hình ảnh minh họa chì (Pencil Art từ repo Danh_English_Tutor)
     if (this.vocabImageContainer && this.vocabImg) {
       const targetKey = (q.target_word || '').trim().toLowerCase();
@@ -817,7 +873,12 @@ class GameEngine {
       }
     }
 
-    if (q.mode === 'letter_fill') {
+    if (q.mode === 'sentence_scramble') {
+      this.promptText.textContent = 'Chạm các thẻ từ bên dưới theo thứ tự để ghép thành câu đúng:';
+      this.letterBoxContainer.style.display = 'none';
+      this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
+      this.renderSentenceScramble(q);
+    } else if (q.mode === 'letter_fill') {
       const scaffold = this.getScaffoldedConfig(q);
       q._activeMasked = scaffold.masked;
       q._activeMissing = scaffold.missing;
@@ -854,7 +915,16 @@ class GameEngine {
       this.phoneticGuide.style.display = 'none';
     }
     if (this.academicHintPill) {
-      if (q.mode === 'letter_fill') {
+      if (q.mode === 'sentence_scramble') {
+        const level = this.scrambleAdaptiveLevel || 1;
+        const levelLabels = {
+          1: '💡 Cấp 1 (Khởi động): Câu cơ bản 4-6 từ',
+          2: '💡 Cấp 2 (Tăng tốc): Mở rộng 7-8 từ',
+          3: '💡 Cấp 3 (Thử thách): Có từ gây nhiễu',
+          4: '💡 Cấp 4 (Master): Cú pháp học thuật cao'
+        };
+        this.academicHintPill.innerHTML = levelLabels[level] || '💡 Game Đặt Câu Thích Ứng';
+      } else if (q.mode === 'letter_fill') {
         if (q._activeHint) {
           this.academicHintPill.innerHTML = q._activeHint;
         } else {
@@ -875,6 +945,319 @@ class GameEngine {
     }
 
     this.startTimer();
+  }
+
+  // ==========================================================================
+  // GAME ĐẶT CÂU THÍCH ỨNG (SENTENCE SCRAMBLE / SENTENCE BUILDER)
+  // Adaptive Progression Engine: Tự thích ứng 4 Cấp độ (Khởi động ➔ Master)
+  // ==========================================================================
+  renderSentenceScramble(q) {
+    this.answersContainer.innerHTML = '';
+
+    // Tạo cấu trúc giao diện Game Đặt Câu Thích Ứng
+    const wrapper = document.createElement('div');
+    wrapper.className = 'scramble-game-wrapper';
+
+    // 1. Khung ghép câu (Sentence Assembly Area)
+    const assemblyArea = document.createElement('div');
+    assemblyArea.className = 'sentence-assembly-area';
+    assemblyArea.id = 'sentence-assembly-area';
+    wrapper.appendChild(assemblyArea);
+
+    // 2. Thanh điều khiển thao tác & huy hiệu đếm từ
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'scramble-actions-row';
+
+    const counterBadge = document.createElement('div');
+    counterBadge.className = 'scramble-counter-badge';
+    counterBadge.id = 'scramble-counter-badge';
+    actionsRow.appendChild(counterBadge);
+
+    const btnGroup = document.createElement('div');
+    btnGroup.className = 'scramble-btn-group';
+
+    const btnUndo = document.createElement('button');
+    btnUndo.type = 'button';
+    btnUndo.id = 'btn-scramble-undo';
+    btnUndo.className = 'scramble-action-btn';
+    btnUndo.title = 'Bỏ từ vừa đặt gần nhất';
+    btnUndo.innerHTML = `⌫ Xóa từ cuối`;
+
+    const btnClear = document.createElement('button');
+    btnClear.type = 'button';
+    btnClear.id = 'btn-scramble-clear';
+    btnClear.className = 'scramble-action-btn';
+    btnClear.title = 'Chuyển toàn bộ từ về khay bên dưới';
+    btnClear.innerHTML = `🔄 Làm lại`;
+
+    btnGroup.appendChild(btnUndo);
+    btnGroup.appendChild(btnClear);
+    actionsRow.appendChild(btnGroup);
+    wrapper.appendChild(actionsRow);
+
+    // 3. Khay thẻ từ xáo trộn ở phía dưới (Scramble Chips Grid)
+    const chipsGrid = document.createElement('div');
+    chipsGrid.className = 'scramble-chips-grid';
+    chipsGrid.id = 'scramble-chips-grid';
+    wrapper.appendChild(chipsGrid);
+
+    this.answersContainer.appendChild(wrapper);
+
+    // Chuẩn bị danh sách thẻ từ tự thích ứng:
+    // Cấp 1, 2: Không có từ nhiễu (0 distractors)
+    // Cấp 3: 1 từ nhiễu (nếu câu có distractor)
+    // Cấp 4: Tối đa 2 từ nhiễu
+    const effectiveLevel = this.scrambleAdaptiveLevel || 1;
+    let activeDistractors = [];
+    if (effectiveLevel >= 3 && q.distractors && q.distractors.length > 0) {
+      const takeCount = (effectiveLevel >= 4) ? 2 : 1;
+      activeDistractors = q.distractors.slice(0, takeCount);
+    }
+
+    const rawTokens = q.tokens || (q.correct_sentence ? q.correct_sentence.split(' ') : []);
+    const chipItems = [
+      ...rawTokens.map((text, idx) => ({
+        id: `token-${idx}`,
+        text: text,
+        isDistractor: false,
+        correctIdx: idx
+      })),
+      ...activeDistractors.map((text, idx) => ({
+        id: `distractor-${idx}`,
+        text: text,
+        isDistractor: true,
+        correctIdx: -1
+      }))
+    ];
+
+    // Trộn ngẫu nhiên các thẻ từ (Fisher-Yates)
+    const shuffledChips = shuffleArray(chipItems);
+
+    let placedChips = []; // Danh sách các chip đang đặt trên khung câu
+
+    const updateAssemblyUI = () => {
+      assemblyArea.innerHTML = '';
+      if (placedChips.length === 0) {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'assembly-placeholder';
+        placeholder.textContent = 'Chạm các thẻ từ bên dưới để ghép câu theo thứ tự ngữ pháp...';
+        assemblyArea.appendChild(placeholder);
+      } else {
+        placedChips.forEach((chipObj, index) => {
+          const chipEl = document.createElement('div');
+          chipEl.className = 'placed-chip';
+          chipEl.innerHTML = `
+            <span class="placed-chip-text">${chipObj.text}</span>
+            <span class="placed-chip-remove" title="Bỏ từ này">×</span>
+          `;
+          chipObj.element = chipEl;
+
+          // Chạm vào từ đã xếp -> hoàn trả lại khay bên dưới
+          chipEl.addEventListener('click', () => {
+            if (this.isAnsweringLocked) return;
+            removePlacedChip(index);
+          });
+          assemblyArea.appendChild(chipEl);
+        });
+      }
+
+      counterBadge.innerHTML = `Đã ghép: <strong>${placedChips.length}</strong>/${rawTokens.length} từ`;
+    };
+
+    const removePlacedChip = (index) => {
+      const removed = placedChips.splice(index, 1)[0];
+      if (removed) {
+        const gridBtn = chipsGrid.querySelector(`[data-chip-id="${removed.id}"]`);
+        if (gridBtn) {
+          gridBtn.classList.remove('used');
+          gridBtn.disabled = false;
+        }
+        soundEngine.playTick(false);
+        updateAssemblyUI();
+      }
+    };
+
+    const addChipToAssembly = (chipObj, btnEl) => {
+      if (this.isAnsweringLocked) return;
+      placedChips.push(chipObj);
+      btnEl.classList.add('used');
+      btnEl.disabled = true;
+      soundEngine.playTick(false);
+      updateAssemblyUI();
+
+      // Kiểm tra khi đã đặt đủ số lượng từ yêu cầu
+      if (placedChips.length === rawTokens.length) {
+        this.evaluateSentenceScramble(q, placedChips, rawTokens, assemblyArea);
+      }
+    };
+
+    // Render các nút từ vào khay
+    shuffledChips.forEach((chip) => {
+      const chipBtn = document.createElement('button');
+      chipBtn.type = 'button';
+      chipBtn.className = 'word-chip';
+      chipBtn.dataset.chipId = chip.id;
+      chipBtn.textContent = chip.text;
+      if (chip.isDistractor) {
+        chipBtn.dataset.distractor = 'true';
+      }
+
+      // Cấp 1 (Khởi động): Đánh dấu mỏ neo từ đầu câu để học sinh yếu không bị bỡ ngỡ
+      if (effectiveLevel === 1 && chip.correctIdx === 0) {
+        chipBtn.classList.add('starter-anchor');
+        chipBtn.title = 'Gợi ý: Từ bắt đầu câu';
+      }
+
+      chipBtn.addEventListener('click', () => {
+        addChipToAssembly(chip, chipBtn);
+      });
+
+      chipsGrid.appendChild(chipBtn);
+    });
+
+    // Thao tác Undo
+    btnUndo.addEventListener('click', () => {
+      if (this.isAnsweringLocked || placedChips.length === 0) return;
+      removePlacedChip(placedChips.length - 1);
+    });
+
+    // Thao tác Clear
+    btnClear.addEventListener('click', () => {
+      if (this.isAnsweringLocked || placedChips.length === 0) return;
+      placedChips.forEach(c => {
+        const gridBtn = chipsGrid.querySelector(`[data-chip-id="${c.id}"]`);
+        if (gridBtn) {
+          gridBtn.classList.remove('used');
+          gridBtn.disabled = false;
+        }
+      });
+      placedChips = [];
+      soundEngine.playTick(false);
+      updateAssemblyUI();
+    });
+
+    // Hỗ trợ trợ giúp 50:50: tự động ghim từ đúng tiếp theo
+    this.autoPlaceNextScrambleWord = () => {
+      if (this.isAnsweringLocked) return false;
+      const nextIdx = placedChips.length;
+      if (nextIdx >= rawTokens.length) return false;
+      const expectedText = rawTokens[nextIdx];
+
+      const availableTarget = Array.from(chipsGrid.querySelectorAll('.word-chip:not(.used):not(.eliminated)'))
+        .find(btn => btn.textContent.trim() === expectedText);
+
+      if (availableTarget) {
+        availableTarget.click();
+        return true;
+      }
+      return false;
+    };
+
+    updateAssemblyUI();
+  }
+
+  normalizeSentence(str) {
+    if (!str) return '';
+    return str
+      .replace(/[.,?!;:"]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+
+  evaluateSentenceScramble(q, placedChips, rawTokens, assemblyArea) {
+    if (this.isAnsweringLocked) return;
+
+    const userSentence = placedChips.map(c => c.text).join(' ');
+    const expectedSentence = rawTokens.join(' ');
+
+    const isMatch = (userSentence === expectedSentence) || 
+      (this.normalizeSentence(userSentence) === this.normalizeSentence(q.correct_sentence || expectedSentence));
+
+    if (isMatch) {
+      this.isAnsweringLocked = true;
+      clearInterval(this.timerInterval);
+
+      assemblyArea.classList.remove('wrong-shake');
+      assemblyArea.classList.add('correct-state');
+      const placedEls = assemblyArea.querySelectorAll('.placed-chip');
+      placedEls.forEach(el => el.classList.add('correct-chip'));
+
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try { navigator.vibrate([35]); } catch (e) {}
+      }
+
+      const timeTaken = (Date.now() - this.questionStartTime) / 1000;
+      this.responseTimes.push(timeTaken);
+      const retentionRate = this.updateWordRetention(q.id, true);
+      this.updateMemoryProfile(q, true, timeTaken);
+
+      // Thăng cấp tự thích ứng: đúng 2 câu liên tiếp ở cấp độ hiện tại -> Thăng cấp!
+      this.scrambleStreak = (this.scrambleStreak || 0) + 1;
+      this.scrambleFails = 0;
+      if (this.scrambleStreak >= 2 && this.scrambleAdaptiveLevel < 4) {
+        this.scrambleAdaptiveLevel = Math.min(4, this.scrambleAdaptiveLevel + 1);
+        this.scrambleStreak = 0;
+        localStorage.setItem('ielts_scramble_level', this.scrambleAdaptiveLevel);
+        const levelNames = {
+          2: 'Cấp 2 (Tăng tốc)',
+          3: 'Cấp 3 (Thử thách)',
+          4: 'Cấp 4 (Master)'
+        };
+        this.flashDynamicIsland(`🎉 THĂNG HẠNG: ${levelNames[this.scrambleAdaptiveLevel]}!`);
+      }
+
+      this.handleCorrectAnswer(timeTaken);
+      this.roundResults.push(true);
+      this.showFeedbackDrawer(true, q, false, retentionRate);
+    } else {
+      // Khi xếp sai thứ tự hoặc chọn nhầm từ nhiễu
+      q._scrambleMistakes = (q._scrambleMistakes || 0) + 1;
+
+      assemblyArea.classList.remove('wrong-shake');
+      void assemblyArea.offsetWidth; // Trigger reflow
+      assemblyArea.classList.add('wrong-shake');
+
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        try { navigator.vibrate([60, 50, 70]); } catch (e) {}
+      }
+
+      // Đánh dấu các từ xếp sai vị trí để gợi ý cho người học
+      placedChips.forEach((c, idx) => {
+        if (c.element && c.text !== rawTokens[idx]) {
+          c.element.classList.add('misplaced');
+        }
+      });
+
+      // Nếu thử lại lần 2 vẫn chưa đúng: chốt câu sai và hiển thị giải thích
+      if (q._scrambleMistakes >= 2) {
+        this.isAnsweringLocked = true;
+        clearInterval(this.timerInterval);
+
+        assemblyArea.classList.add('wrong-state');
+        this.scrambleStreak = 0;
+        this.scrambleFails = (this.scrambleFails || 0) + 1;
+
+        // Hạ cấp an toàn cho người học yếu: nếu sai 2 lần ở cấp cao -> giảm 1 cấp để không bị nản
+        if (this.scrambleFails >= 2 && this.scrambleAdaptiveLevel > 1) {
+          this.scrambleAdaptiveLevel = Math.max(1, this.scrambleAdaptiveLevel - 1);
+          this.scrambleFails = 0;
+          localStorage.setItem('ielts_scramble_level', this.scrambleAdaptiveLevel);
+          this.flashDynamicIsland(`⚡ HỖ TRỢ: ĐIỀU CHỈNH VỀ CẤP ĐỘ ${this.scrambleAdaptiveLevel}`);
+        }
+
+        this.handleWrongAnswer(false);
+        const timeTaken = (Date.now() - this.questionStartTime) / 1000;
+        this.responseTimes.push(timeTaken);
+        const retentionRate = this.updateWordRetention(q.id, false);
+        this.updateMemoryProfile(q, false, timeTaken);
+        this.roundResults.push(false);
+        this.showFeedbackDrawer(false, q, false, retentionRate);
+      } else {
+        // Lần đầu sai: Thông báo hướng dẫn để học sinh tự sửa lỗi mà không bị trừ tim ngay
+        this.flashDynamicIsland('⚠️ Chưa đúng vị trí! Chạm vào từ màu cam để điều chỉnh lại.');
+      }
+    }
   }
 
   findTileButton(tileId) {
@@ -898,6 +1281,7 @@ class GameEngine {
 
     const maskedStr = q._activeMasked || q.masked || '';
     const activeMissing = q._activeMissing || q.missing || [];
+    const isMasterStep = (q._activeStep >= 4);
     const chars = maskedStr.split(' ');
     const blankBoxes = [];
     let blankIdx = 0;
@@ -920,7 +1304,7 @@ class GameEngine {
             box.className = 'letter-box blank empty';
             delete box.dataset.tileId;
 
-            if (tileId) {
+            if (tileId && !isMasterStep) {
               const tileBtn = this.findTileButton(tileId);
               if (tileBtn) {
                 tileBtn.classList.remove('used');
@@ -937,7 +1321,133 @@ class GameEngine {
       this.letterBoxContainer.appendChild(box);
     });
 
-    // Tạo phím chữ cái (gồm các ký tự cần điền + các ký tự nhiễu)
+    if (isMasterStep) {
+      // Bậc 4 (Thử thách Master): Bàn phím Full Layout QWERTY chuẩn thiết bị
+      this.renderFullQWERTYKeyboard(q, blankBoxes);
+    } else {
+      // Bậc 1, 2, 3: Phím chữ cái rút gọn (Missing letters + Distractors)
+      this.renderTileBankKeyboard(q, blankBoxes, activeMissing);
+    }
+  }
+
+  // Bậc 4: Bàn phím Full Layout QWERTY chuẩn theo thiết bị người dùng (Mobile & Tablet)
+  renderFullQWERTYKeyboard(q, blankBoxes) {
+    const kbdContainer = document.createElement('div');
+    kbdContainer.className = 'full-keyboard-container';
+
+    const row1Chars = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+    const row2Chars = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+    const row3Chars = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+
+    const handleCharInput = (ch) => {
+      if (this.isAnsweringLocked) return;
+      const emptySlot = blankBoxes.find(b => b.classList.contains('empty'));
+      if (!emptySlot) return;
+
+      emptySlot.textContent = ch;
+      emptySlot.classList.remove('empty');
+      emptySlot.classList.add('filled');
+      soundEngine.playTick(false);
+
+      const allFilled = blankBoxes.every(b => b.classList.contains('filled'));
+      if (allFilled) {
+        this.evaluateLetterFill(q, blankBoxes);
+      }
+    };
+
+    const handleBackspace = () => {
+      if (this.isAnsweringLocked) return;
+      const filledBlanks = blankBoxes.filter(b => b.classList.contains('filled'));
+      if (filledBlanks.length === 0) return;
+      const lastSlot = filledBlanks[filledBlanks.length - 1];
+      lastSlot.textContent = '_';
+      lastSlot.className = 'letter-box blank empty';
+      soundEngine.playTick(false);
+    };
+
+    const handleClear = () => {
+      if (this.isAnsweringLocked) return;
+      blankBoxes.forEach(b => {
+        b.textContent = '_';
+        b.className = 'letter-box blank empty';
+      });
+      soundEngine.playTick(false);
+    };
+
+    // Hàng 1 (Q - P: 10 phím)
+    const row1 = document.createElement('div');
+    row1.className = 'keyboard-row';
+    row1Chars.forEach(ch => {
+      const keyBtn = document.createElement('button');
+      keyBtn.type = 'button';
+      keyBtn.className = 'kbd-key';
+      keyBtn.textContent = ch;
+      keyBtn.dataset.char = ch;
+      keyBtn.addEventListener('click', () => handleCharInput(ch));
+      row1.appendChild(keyBtn);
+    });
+    kbdContainer.appendChild(row1);
+
+    // Hàng 2 (A - L: 9 phím kèm 2 spacer hai bên chuẩn thiết bị)
+    const row2 = document.createElement('div');
+    row2.className = 'keyboard-row';
+    const spacerL = document.createElement('div');
+    spacerL.className = 'kbd-spacer';
+    row2.appendChild(spacerL);
+
+    row2Chars.forEach(ch => {
+      const keyBtn = document.createElement('button');
+      keyBtn.type = 'button';
+      keyBtn.className = 'kbd-key';
+      keyBtn.textContent = ch;
+      keyBtn.dataset.char = ch;
+      keyBtn.addEventListener('click', () => handleCharInput(ch));
+      row2.appendChild(keyBtn);
+    });
+
+    const spacerR = document.createElement('div');
+    spacerR.className = 'kbd-spacer';
+    row2.appendChild(spacerR);
+    kbdContainer.appendChild(row2);
+
+    // Hàng 3 (Nút Xóa Làm lại + Z-M + Nút Xóa Lùi Backspace)
+    const row3 = document.createElement('div');
+    row3.className = 'keyboard-row';
+
+    const btnClear = document.createElement('button');
+    btnClear.type = 'button';
+    btnClear.className = 'kbd-key kbd-action-key kbd-clear';
+    btnClear.id = 'btn-letter-clear';
+    btnClear.innerHTML = '🔄 Xóa';
+    btnClear.title = 'Xóa toàn bộ ký tự đã điền';
+    btnClear.addEventListener('click', handleClear);
+    row3.appendChild(btnClear);
+
+    row3Chars.forEach(ch => {
+      const keyBtn = document.createElement('button');
+      keyBtn.type = 'button';
+      keyBtn.className = 'kbd-key';
+      keyBtn.textContent = ch;
+      keyBtn.dataset.char = ch;
+      keyBtn.addEventListener('click', () => handleCharInput(ch));
+      row3.appendChild(keyBtn);
+    });
+
+    const btnBackspace = document.createElement('button');
+    btnBackspace.type = 'button';
+    btnBackspace.className = 'kbd-key kbd-action-key kbd-backspace';
+    btnBackspace.id = 'btn-letter-undo';
+    btnBackspace.innerHTML = '⌫';
+    btnBackspace.title = 'Xóa ký tự vừa điền';
+    btnBackspace.addEventListener('click', handleBackspace);
+    row3.appendChild(btnBackspace);
+
+    kbdContainer.appendChild(row3);
+    this.answersContainer.appendChild(kbdContainer);
+  }
+
+  // Bậc 1, 2, 3: Phím chữ cái rút gọn (Missing + Distractors)
+  renderTileBankKeyboard(q, blankBoxes, activeMissing) {
     const missingLetters = (Array.isArray(activeMissing) ? [...activeMissing] : activeMissing.split('')).map(c => c.toUpperCase());
     const candidateDistractors = ['A', 'E', 'I', 'O', 'U', 'R', 'S', 'T', 'L', 'N', 'D', 'C', 'M', 'P', 'B'];
     const neededDistractors = missingLetters.length >= 7 
@@ -969,7 +1479,6 @@ class GameEngine {
       tileBtn.addEventListener('click', () => {
         if (this.isAnsweringLocked) return;
 
-        // Nếu phím này đã được bấm (used), kiểm tra xem có phím cùng chữ cái chưa dùng hay không (trường hợp từ có 2 chữ giống nhau như 2 chữ O trong ACCOMMODATE)
         let activeTile = tileBtn;
         if (activeTile.classList.contains('used')) {
           const allTiles = Array.from(tilesGrid.querySelectorAll('.letter-tile-btn'));
@@ -1281,6 +1790,9 @@ class GameEngine {
       }
       const tileBtns = this.answersContainer.querySelectorAll ? this.answersContainer.querySelectorAll('.letter-tile-btn') : [];
       if (tileBtns && tileBtns.forEach) tileBtns.forEach(btn => { btn.disabled = true; });
+    } else if (q.mode === 'sentence_scramble') {
+      const assembly = this.answersContainer ? this.answersContainer.querySelector('.sentence-assembly-area') : null;
+      if (assembly) assembly.classList.add('wrong-state');
     } else {
       const allButtons = this.answersContainer.querySelectorAll ? this.answersContainer.querySelectorAll('.btn-tactile') : [];
       if (allButtons[q.correct] && allButtons[q.correct].classList && allButtons[q.correct].classList.add) {
@@ -1314,7 +1826,7 @@ class GameEngine {
       this.flashDynamicIsland('💚 +1 EXTRA LIFE!');
     }
 
-    // Time-Decay scoring cho thang 15 GIÂY
+    // Time-Decay scoring cho thang 15 GIÂY (hoặc 25 GIÂY)
     const timeDecayFactor = Math.max(0.5, 1 - (timeTaken / (2 * this.maxTimeSeconds)));
     let multiplier = 1.0;
 
@@ -1331,9 +1843,9 @@ class GameEngine {
 
     soundEngine.playCorrect(this.streak);
 
-    // PHÁT ÂM CHUẨN TỪ VỰNG KHI CHỌN ĐÚNG (TONE TRUNG - CAO, RÕ RÀNG)
+    // PHÁT ÂM CHUẨN TỪ VỰNG HOẶC CÂU HOÀN CHỈNH KHI CHỌN ĐÚNG (TONE TRUNG - CAO, RÕ RÀNG)
     const q = this.questions[this.currentIndex];
-    const wordToSpeak = q.target_word || q.options[q.correct];
+    const wordToSpeak = q.correct_sentence || q.target_word || (q.options && q.options[q.correct]);
     setTimeout(() => {
       if (typeof speechEngine !== 'undefined') {
         speechEngine.speakWord(wordToSpeak);
@@ -1408,19 +1920,35 @@ class GameEngine {
       this.feedbackTitle.innerHTML = `<span style="color:var(--color-danger)">✕ CHƯA ĐÚNG!</span> <span style="font-size:0.75rem; background:rgba(239,68,68,0.15); color:var(--color-danger); padding:3px 10px; border-radius:8px; font-weight:800;">🧠 Độ nhớ: ${retentionRate}%</span>`;
     }
 
-    this.feedbackVietnamese.innerHTML = `
-      <div class="feedback-word-info">
-        <span class="feedback-vn-text">${q.vietnamese}</span>
-        ${q.phonetic ? `<span class="feedback-phonetic-badge">${q.phonetic}</span>` : ''}
-      </div>
-      <button class="btn-audio-replay" id="btn-audio-replay" title="Nghe lại phát âm chuẩn" aria-label="Nghe lại phát âm chuẩn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fill-opacity="0.25"/>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-        </svg>
-      </button>
-    `;
+    if (q.mode === 'sentence_scramble') {
+      this.feedbackVietnamese.innerHTML = `
+        <div class="feedback-word-info">
+          <span class="feedback-vn-text" style="font-size:0.92rem; margin-bottom:4px;">${q.vietnamese}</span>
+          <span class="feedback-sentence-correct">“${q.correct_sentence}”</span>
+        </div>
+        <button class="btn-audio-replay" id="btn-audio-replay" title="Nghe lại phát âm chuẩn" aria-label="Nghe lại phát âm chuẩn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fill-opacity="0.25"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </button>
+      `;
+    } else {
+      this.feedbackVietnamese.innerHTML = `
+        <div class="feedback-word-info">
+          <span class="feedback-vn-text">${q.vietnamese}</span>
+          ${q.phonetic ? `<span class="feedback-phonetic-badge">${q.phonetic}</span>` : ''}
+        </div>
+        <button class="btn-audio-replay" id="btn-audio-replay" title="Nghe lại phát âm chuẩn" aria-label="Nghe lại phát âm chuẩn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" fill-opacity="0.25"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </button>
+      `;
+    }
 
     const replayBtn = document.getElementById('btn-audio-replay');
     if (replayBtn) {
@@ -1428,8 +1956,8 @@ class GameEngine {
         e.stopPropagation();
         replayBtn.classList.add('playing');
         setTimeout(() => replayBtn.classList.remove('playing'), 900);
-        const word = q.target_word || (q.options && q.options[q.correct]) || '';
-        if (typeof speechEngine !== 'undefined') speechEngine.speakWord(word);
+        const textToSpeak = q.correct_sentence || q.target_word || (q.options && q.options[q.correct]) || '';
+        if (typeof speechEngine !== 'undefined') speechEngine.speakWord(textToSpeak);
       });
     }
 
@@ -1480,9 +2008,51 @@ class GameEngine {
 
     const q = this.questions[this.currentIndex];
 
+    if (q.mode === 'sentence_scramble') {
+      // 1. Nếu có distractor trong khay từ: loại bỏ ngay từ gây nhiễu
+      const distractorChips = Array.from(this.answersContainer.querySelectorAll('.word-chip[data-distractor="true"]:not(.used):not(.eliminated)'));
+      if (distractorChips.length > 0) {
+        distractorChips.forEach(chip => {
+          chip.classList.add('eliminated');
+          chip.disabled = true;
+        });
+        this.flashDynamicIsland('⚡ 50:50 ĐÃ LOẠI TỪ GÂY NHIỄU!');
+        return;
+      }
+
+      // 2. Nếu không có distractor: Tự động ghim từ đúng kế tiếp vào khung câu
+      if (typeof this.autoPlaceNextScrambleWord === 'function') {
+        const placed = this.autoPlaceNextScrambleWord();
+        if (placed) {
+          this.flashDynamicIsland('⚡ 50:50 ĐÃ ĐIỀN TỪ KẾ TIẾP!');
+          return;
+        }
+      }
+    }
+
     if (q.mode === 'letter_fill') {
       const activeMissing = q._activeMissing || q.missing;
       const missingLetters = (Array.isArray(activeMissing) ? activeMissing : activeMissing.split('')).map(m => m.toUpperCase());
+
+      // Hỗ trợ loại trừ cho Bậc 4 (Bàn phím Full QWERTY)
+      const kbdBtns = this.answersContainer.querySelectorAll 
+        ? Array.from(this.answersContainer.querySelectorAll('.kbd-key[data-char]'))
+        : [];
+      if (kbdBtns.length > 0) {
+        const distractorKeys = kbdBtns.filter(btn => {
+          const ch = btn.dataset && btn.dataset.char;
+          return !missingLetters.includes(ch) && !btn.classList.contains('eliminated');
+        });
+        const toEliminate = shuffleArray(distractorKeys).slice(0, 4);
+        toEliminate.forEach(tile => {
+          tile.classList.add('eliminated');
+          tile.disabled = true;
+        });
+        this.flashDynamicIsland('⚡ 50:50 ĐÃ LOẠI 4 KÝ TỰ SAI');
+        return;
+      }
+
+      // Hỗ trợ loại trừ cho Bậc 1-3 (Tile bank)
       const tileBtns = this.answersContainer.querySelectorAll 
         ? Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'))
         : [];
@@ -1711,6 +2281,7 @@ ${emojiBlocks}
   updateGradeFilterUI() {
     const filterLabels = {
       all: 'Lớp 6-12 & TOEIC',
+      scramble: 'Đặt câu thích ứng',
       toeic: 'TOEIC 400-700',
       ielts: 'IELTS (Lớp 6-12)',
       g6: 'Lớp 6 (Band 5.0)',
