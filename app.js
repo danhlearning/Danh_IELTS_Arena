@@ -682,10 +682,10 @@ class GameEngine {
       this.renderAnswerButtons(q);
     }
 
-    // Cập nhật dải thông tin bổ trợ học thuật & Phiên âm IPA
+    // Không hiển thị phiên âm IPA trong lúc làm câu hỏi để tránh làm lộ đáp án (chỉ hiển thị sau khi trả lời ở popup Feedback)
     if (this.phoneticGuide) {
-      this.phoneticGuide.textContent = q.phonetic || '';
-      this.phoneticGuide.style.display = q.phonetic ? 'inline-block' : 'none';
+      this.phoneticGuide.textContent = '';
+      this.phoneticGuide.style.display = 'none';
     }
     if (this.academicHintPill) {
       if (q.mode === 'letter_fill') {
