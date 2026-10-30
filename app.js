@@ -3,6 +3,52 @@
  * 10-Second Countdown, Spaced Repetition, Active Recall & Long-Term Memory Retention
  */
 
+// Utility: Loại bỏ dấu tiếng Việt (Telex / VNI gõ nhầm)
+function stripDiacritics(str) {
+  if (!str) return '';
+  return str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[đĐ]/g, 'd');
+}
+
+// Utility: Kiểm tra tương đương chính tả Anh-Anh & Anh-Mỹ (IELTS chấp nhận cả hai)
+function areEquivalentSpellings(w1, w2) {
+  if (!w1 || !w2) return false;
+  const s1 = stripDiacritics(w1).trim().toUpperCase();
+  const s2 = stripDiacritics(w2).trim().toUpperCase();
+  if (s1 === s2) return true;
+
+  const normUKUS = (s) => {
+    return s
+      .replace(/OUR/g, 'OR')
+      .replace(/ISE\b/g, 'IZE')
+      .replace(/ISING\b/g, 'IZING')
+      .replace(/ISED\b/g, 'IZED')
+      .replace(/ISATION\b/g, 'IZATION')
+      .replace(/RE\b/g, 'ER')
+      .replace(/LL/g, 'L')
+      .replace(/ENCE\b/g, 'ENSE')
+      .replace(/OGUE\b/g, 'OG')
+      .replace(/YSE\b/g, 'YZE');
+  };
+
+  return normUKUS(s1) === normUKUS(s2);
+}
+
+// Utility: Xáo trộn mảng ngẫu nhiên an toàn (Fisher-Yates)
+if (typeof shuffleArray !== 'function') {
+  function shuffleArray(array) {
+    if (!Array.isArray(array)) return [];
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+}
+
 class GameEngine {
   constructor() {
     this.totalQuestionsPerRound = 10;
@@ -52,10 +98,24 @@ class GameEngine {
     // Tự động chuyển câu (Auto Next) - Mặc định BẬT (true), đồng bộ theo tùy chọn người dùng
     this.isAutoNextEnabled = (localStorage.getItem('ielts_auto_next') !== 'false');
 
+    // Lưu trữ tiến độ và lịch sử làm bài (Local Persistence)
+    this.userHistory = this.loadUserHistory();
+    this.totalXp = parseInt(localStorage.getItem('ielts_total_xp') || '0', 10);
+    this.totalAnswered = parseInt(localStorage.getItem('ielts_total_answered') || '0', 10);
+    this.totalCorrect = parseInt(localStorage.getItem('ielts_total_correct') || '0', 10);
+
+    // AI Scanner Đề thi giấy (Gemini Flash)
+    this.geminiApiKey = localStorage.getItem('ielts_gemini_api_key') || '';
+    this.scannedExams = this.loadScannedExams();
+    this.currentArenaView = 'vocab'; // 'vocab' | 'scanner'
+    this.currentPlayingExam = null;
+    this.isBackgroundGenerating = false;
+
     this.initDOMElements();
     this.bindEvents();
     this.applyPersistedSettings();
     this.updateGradeFilterUI();
+    this.initScannerSystem();
   }
 
   loadUsedQuestionIds() {
@@ -309,6 +369,48 @@ class GameEngine {
     this.btnSoundToggle = document.getElementById('btn-sound-toggle');
     this.soundIconSvg = document.getElementById('sound-icon-svg');
     this.btnViewToggle = document.getElementById('btn-view-toggle');
+
+    // Arena views & Scanner elements
+    this.vocabArenaView = document.getElementById('vocab-arena-view');
+    this.scannerArenaView = document.getElementById('scanner-arena-view');
+    this.btnOpenScanner = document.getElementById('btn-open-scanner');
+    this.btnScannerBack = document.getElementById('btn-scanner-back');
+    this.btnScannerKeyConfig = document.getElementById('btn-scanner-key-config');
+    this.scannerKeyStatusBadge = document.getElementById('scanner-key-status-badge');
+
+    // Camera & Scanner triggers
+    this.btnCameraTrigger = document.getElementById('btn-camera-trigger');
+    this.btnGalleryTrigger = document.getElementById('btn-gallery-trigger');
+    this.cameraFileInput = document.getElementById('camera-file-input');
+    this.galleryFileInput = document.getElementById('gallery-file-input');
+    this.scanningRadarStatus = document.getElementById('scanning-radar-status');
+    this.scannedExamsShelf = document.getElementById('scanned-exams-shelf');
+    this.scannerLogStatus = document.getElementById('scanner-log-status');
+
+    // Listening Player Container & Play Button
+    this.listeningPlayerContainer = document.getElementById('listening-player-container');
+    this.btnListeningPlay = document.getElementById('btn-listening-play');
+
+    // Gemini API Key Modal
+    this.geminiKeyModal = document.getElementById('gemini-key-modal');
+    this.geminiKeyInput = document.getElementById('gemini-key-input');
+    this.btnToggleKeyEye = document.getElementById('btn-toggle-key-eye');
+    this.btnCloseKeyModal = document.getElementById('btn-close-key-modal');
+    this.btnCancelKey = document.getElementById('btn-cancel-key');
+    this.btnSaveKey = document.getElementById('btn-save-key');
+    this.keyInputFeedback = document.getElementById('key-input-feedback');
+
+    // Sync Modal (Export / Import)
+    this.btnSyncOpen = document.getElementById('btn-sync-open');
+    this.syncModalOverlay = document.getElementById('sync-modal-overlay');
+    this.btnCloseSyncModal = document.getElementById('btn-close-sync-modal');
+    this.btnExportFile = document.getElementById('btn-export-file');
+    this.btnExportCopy = document.getElementById('btn-export-copy');
+    this.btnImportFileTrigger = document.getElementById('btn-import-file-trigger');
+    this.importFileInput = document.getElementById('import-file-input');
+    this.importPasteArea = document.getElementById('import-paste-area');
+    this.btnImportPasteSubmit = document.getElementById('btn-import-paste-submit');
+    this.syncStatusMsg = document.getElementById('sync-status-msg');
   }
 
   bindEvents() {
@@ -316,6 +418,118 @@ class GameEngine {
     this.btnSoundToggle.addEventListener('click', () => this.toggleSound());
     if (this.btnViewToggle) {
       this.btnViewToggle.addEventListener('click', () => this.toggleViewMode());
+    }
+
+    // Arena view toggle & Scanner navigation
+    if (this.btnOpenScanner) {
+      this.btnOpenScanner.addEventListener('click', () => this.switchArenaView('scanner'));
+    }
+    if (this.btnScannerBack) {
+      this.btnScannerBack.addEventListener('click', () => this.switchArenaView('vocab'));
+    }
+
+    // Camera & Gallery inputs
+    if (this.btnCameraTrigger && this.cameraFileInput) {
+      this.btnCameraTrigger.addEventListener('click', () => this.cameraFileInput.click());
+    }
+    if (this.btnGalleryTrigger && this.galleryFileInput) {
+      this.btnGalleryTrigger.addEventListener('click', () => this.galleryFileInput.click());
+    }
+    if (this.cameraFileInput) {
+      this.cameraFileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          this.handleImageFileSelect(e.target.files[0]);
+          e.target.value = '';
+        }
+      });
+    }
+    if (this.galleryFileInput) {
+      this.galleryFileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          this.handleImageFileSelect(e.target.files[0]);
+          e.target.value = '';
+        }
+      });
+    }
+
+    // Gemini API Key Modal
+    if (this.btnScannerKeyConfig) {
+      this.btnScannerKeyConfig.addEventListener('click', () => this.openGeminiKeyModal());
+    }
+    if (this.btnCloseKeyModal) {
+      this.btnCloseKeyModal.addEventListener('click', () => this.closeGeminiKeyModal());
+    }
+    if (this.btnCancelKey) {
+      this.btnCancelKey.addEventListener('click', () => this.closeGeminiKeyModal());
+    }
+    if (this.btnSaveKey) {
+      this.btnSaveKey.addEventListener('click', () => this.saveGeminiKeyFromInput());
+    }
+    if (this.btnToggleKeyEye) {
+      this.btnToggleKeyEye.addEventListener('click', () => this.toggleKeyVisibility());
+    }
+    if (this.geminiKeyModal) {
+      this.geminiKeyModal.addEventListener('click', (e) => {
+        if (e.target === this.geminiKeyModal) this.closeGeminiKeyModal();
+      });
+    }
+
+    // Sync Modal (Export / Import)
+    if (this.btnSyncOpen) {
+      this.btnSyncOpen.addEventListener('click', () => this.openSyncModal());
+    }
+    if (this.btnCloseSyncModal) {
+      this.btnCloseSyncModal.addEventListener('click', () => this.closeSyncModal());
+    }
+    if (this.btnExportFile) {
+      this.btnExportFile.addEventListener('click', () => this.downloadProgressFile());
+    }
+    if (this.btnExportCopy) {
+      this.btnExportCopy.addEventListener('click', () => this.copyProgressToClipboard());
+    }
+    if (this.btnImportFileTrigger && this.importFileInput) {
+      this.btnImportFileTrigger.addEventListener('click', () => this.importFileInput.click());
+    }
+    if (this.importFileInput) {
+      this.importFileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files[0]) {
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            this.importProgressData(evt.target.result);
+          };
+          reader.readAsText(file);
+          e.target.value = '';
+        }
+      });
+    }
+    if (this.btnImportPasteSubmit) {
+      this.btnImportPasteSubmit.addEventListener('click', () => {
+        const text = this.importPasteArea ? this.importPasteArea.value : '';
+        this.importProgressData(text);
+      });
+    }
+    if (this.syncModalOverlay) {
+      this.syncModalOverlay.addEventListener('click', (e) => {
+        if (e.target === this.syncModalOverlay) this.closeSyncModal();
+      });
+    }
+
+    // Listening Replay Button
+    if (this.btnListeningPlay) {
+      this.btnListeningPlay.addEventListener('click', () => {
+        const q = this.questions[this.currentIndex];
+        if (q) {
+          const wordToSpeak = q.target_word || q.correct_answer || (q.options ? q.options[q.correct] : '');
+          if (wordToSpeak && typeof speechEngine !== 'undefined' && typeof speechEngine.speakWord === 'function') {
+            speechEngine.speakWord(wordToSpeak);
+          }
+          this.btnListeningPlay.classList.add('playing');
+          setTimeout(() => {
+            if (this.btnListeningPlay) this.btnListeningPlay.classList.remove('playing');
+          }, 1200);
+        }
+      });
     }
 
     this.btnFiftyFifty.addEventListener('click', () => this.useFiftyFifty());
@@ -406,21 +620,24 @@ class GameEngine {
               btnClear.classList.add('key-pressed');
               setTimeout(() => btnClear.classList.remove('key-pressed'), 120);
             }
-          } else if (/^[a-zA-Z]$/.test(e.key)) {
-            const char = e.key.toUpperCase();
-            if (this.answersContainer && this.answersContainer.querySelectorAll) {
-              // Bậc 4: Full QWERTY keyboard
-              const kbdKey = this.answersContainer.querySelector(`.kbd-key[data-char="${char}"]`);
-              if (kbdKey) {
-                kbdKey.click();
-                kbdKey.classList.add('key-pressed');
-                setTimeout(() => kbdKey.classList.remove('key-pressed'), 120);
-              } else {
-                // Bậc 1-3: Tile bank
-                const tileBtns = Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'));
-                const availableTile = tileBtns.find(t => t.dataset && t.dataset.char === char && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
-                if (availableTile) {
-                  availableTile.click();
+          } else {
+            const cleanKey = stripDiacritics(e.key);
+            if (/^[a-zA-Z]$/.test(cleanKey)) {
+              const char = cleanKey.toUpperCase();
+              if (this.answersContainer && this.answersContainer.querySelectorAll) {
+                // Bậc 4: Full QWERTY keyboard
+                const kbdKey = this.answersContainer.querySelector(`.kbd-key[data-char="${char}"]`);
+                if (kbdKey) {
+                  kbdKey.click();
+                  kbdKey.classList.add('key-pressed');
+                  setTimeout(() => kbdKey.classList.remove('key-pressed'), 120);
+                } else {
+                  // Bậc 1-3: Tile bank
+                  const tileBtns = Array.from(this.answersContainer.querySelectorAll('.letter-tile-btn'));
+                  const availableTile = tileBtns.find(t => t.dataset && t.dataset.char === char && !t.classList.contains('used') && !t.disabled && !t.classList.contains('eliminated'));
+                  if (availableTile) {
+                    availableTile.click();
+                  }
                 }
               }
             }
@@ -714,6 +931,24 @@ class GameEngine {
       }
     });
 
+    // Sắp xếp phân bố đan xen Listening (nghe từ và chọn đáp án đúng tại vị trí câu 3 và câu 8)
+    const listeningSlots = [2, 7];
+    listeningSlots.forEach(slotIdx => {
+      if (selected[slotIdx]) {
+        let candidate = selected[slotIdx];
+        if (!candidate.target_word) {
+          const found = selected.find((item, idx) => item.target_word && !listeningSlots.includes(idx));
+          if (found) candidate = found;
+        }
+        if (candidate && candidate.target_word) {
+          const listeningQ = this.createListeningVariant(candidate, workingPool);
+          if (listeningQ) {
+            selected[slotIdx] = listeningQ;
+          }
+        }
+      }
+    });
+
     // Ghi nhận ID đã chọn vào usedQuestionIds để chống lặp tuyệt đối
     selected.forEach(q => this.usedQuestionIds.add(q.id));
     this.saveUsedQuestionIds();
@@ -875,19 +1110,26 @@ class GameEngine {
     this.progressText.textContent = `Câu ${index + 1}/${this.questions.length}`;
 
     if (this.gradeBadge) {
-      this.gradeBadge.textContent = q.grade_label || (q.grade ? `Lớp ${q.grade}` : 'TOEIC');
-      if (q.category === 'toeic' || q.topic_category === 'toeic' || (q.id && q.id.startsWith('toeic_'))) {
-        this.gradeBadge.style.background = 'rgba(245, 158, 11, 0.25)';
-        this.gradeBadge.style.color = '#fbbf24';
-        this.gradeBadge.style.borderColor = 'rgba(251, 191, 36, 0.4)';
-      } else if (q.grade >= 10) {
-        this.gradeBadge.style.background = 'rgba(168, 85, 247, 0.25)';
-        this.gradeBadge.style.color = '#c084fc';
-        this.gradeBadge.style.borderColor = 'rgba(192, 132, 252, 0.4)';
+      if (this.currentPlayingExam) {
+        this.gradeBadge.textContent = '📸 ĐỀ THI GIẤY';
+        this.gradeBadge.style.background = 'rgba(16, 185, 129, 0.25)';
+        this.gradeBadge.style.color = '#34d399';
+        this.gradeBadge.style.borderColor = 'rgba(52, 211, 153, 0.4)';
       } else {
-        this.gradeBadge.style.background = 'rgba(56, 189, 248, 0.25)';
-        this.gradeBadge.style.color = '#38bdf8';
-        this.gradeBadge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        this.gradeBadge.textContent = q.grade_label || (q.grade ? `Lớp ${q.grade}` : 'TOEIC');
+        if (q.category === 'toeic' || q.topic_category === 'toeic' || (q.id && q.id.startsWith('toeic_'))) {
+          this.gradeBadge.style.background = 'rgba(245, 158, 11, 0.25)';
+          this.gradeBadge.style.color = '#fbbf24';
+          this.gradeBadge.style.borderColor = 'rgba(251, 191, 36, 0.4)';
+        } else if (q.grade >= 10) {
+          this.gradeBadge.style.background = 'rgba(168, 85, 247, 0.25)';
+          this.gradeBadge.style.color = '#c084fc';
+          this.gradeBadge.style.borderColor = 'rgba(192, 132, 252, 0.4)';
+        } else {
+          this.gradeBadge.style.background = 'rgba(56, 189, 248, 0.25)';
+          this.gradeBadge.style.color = '#38bdf8';
+          this.gradeBadge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        }
       }
     }
 
@@ -906,8 +1148,8 @@ class GameEngine {
       this.masteryBadge.style.color = mInfo.color;
     }
 
-    this.bandBadge.textContent = `BAND ${q.band}`;
-    this.topicBadge.textContent = `🏷️ ${q.topic}`;
+    this.bandBadge.textContent = this.currentPlayingExam ? `EXAM` : `BAND ${q.band || '6.5'}`;
+    this.topicBadge.textContent = `🏷️ ${q.topic || 'IELTS Arena'}`;
 
     const modeLabels = {
       letter_fill: '🔤 Điền chữ cái',
@@ -916,13 +1158,19 @@ class GameEngine {
       collocation: '🧩 Ghép Collocation',
       word_class: '🏷️ Phân biệt từ loại',
       preposition: '🎯 Chọn giới từ',
-      sentence_cloze: '✍️ Điền vào câu'
+      sentence_cloze: '✍️ Điền vào câu',
+      listening_choice: '🎧 Luyện nghe phát âm',
+      multiple_choice: '📝 Trắc nghiệm đề thi'
     };
     
     if (q.isRecallVariant) {
       this.modeBadge.innerHTML = `🔁 Active Recall`;
       this.modeBadge.style.background = `rgba(236, 72, 153, 0.25)`;
       this.modeBadge.style.color = `#f472b6`;
+    } else if (q.mode === 'listening_choice') {
+      this.modeBadge.innerHTML = `🎧 IELTS Listening`;
+      this.modeBadge.style.background = `rgba(56, 189, 248, 0.25)`;
+      this.modeBadge.style.color = `#38bdf8`;
     } else {
       this.modeBadge.textContent = modeLabels[q.mode] || 'IELTS Quiz';
       this.modeBadge.style.background = `var(--bg-pill-glass)`;
@@ -946,40 +1194,64 @@ class GameEngine {
       }
     }
 
-    if (q.mode === 'sentence_scramble') {
-      this.promptText.textContent = 'Chạm các thẻ từ bên dưới theo thứ tự để ghép thành câu đúng:';
+    if (q.mode === 'listening_choice') {
+      if (this.listeningPlayerContainer) {
+        this.listeningPlayerContainer.style.display = 'flex';
+        this.listeningPlayerContainer.classList.remove('hidden');
+      }
+      this.promptText.textContent = q.prompt || '🎧 Nghe phát âm và chọn từ vựng bạn vừa nghe:';
       this.letterBoxContainer.style.display = 'none';
-      this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
-      this.renderSentenceScramble(q);
-    } else if (q.mode === 'letter_fill') {
-      const scaffold = this.getScaffoldedConfig(q);
-      q._activeMasked = scaffold.masked;
-      q._activeMissing = scaffold.missing;
-      q._activeStep = scaffold.stepNum;
-      q._activeHint = scaffold.hint;
+      this.questionMainText.innerHTML = `<span class="listening-sound-badge">🔊 Chạm nút loa để nghe lại nếu cần</span>`;
+      this.renderAnswerButtons(q);
 
-      this.promptText.textContent = scaffold.stepNum >= 4 
-        ? 'Nhập toàn bộ các chữ cái để hoàn thành từ vựng:' 
-        : 'Chạm các chữ cái bên dưới để hoàn thành từ:';
-      this.letterBoxContainer.style.display = 'flex';
-      this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
-      this.renderInteractiveLetterFill(q);
-    } else if (q.mode === 'meaning_match') {
-      this.promptText.textContent = 'Chọn từ tiếng Anh chính xác mang nghĩa:';
-      this.letterBoxContainer.style.display = 'none';
-      this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
-      this.renderAnswerButtons(q);
-    } else if (q.sentence) {
-      this.promptText.textContent = q.prompt || 'Chọn đáp án học thuật chính xác:';
-      this.letterBoxContainer.style.display = 'none';
-      const highlightedSentence = q.sentence.replace(/_{2,}/g, '<span class="blank-slot">____</span>');
-      this.questionMainText.innerHTML = highlightedSentence;
-      this.renderAnswerButtons(q);
+      // Tự động phát âm ngay khi vào câu hỏi Listening
+      setTimeout(() => {
+        const word = q.target_word || q.correct_answer || (q.options ? q.options[q.correct] : '');
+        if (word && typeof speechEngine !== 'undefined' && typeof speechEngine.speakWord === 'function') {
+          speechEngine.speakWord(word);
+        }
+      }, 250);
     } else {
-      this.promptText.textContent = 'Chọn đáp án chính xác:';
-      this.letterBoxContainer.style.display = 'none';
-      this.questionMainText.innerHTML = q.prompt;
-      this.renderAnswerButtons(q);
+      if (this.listeningPlayerContainer) {
+        this.listeningPlayerContainer.style.display = 'none';
+        this.listeningPlayerContainer.classList.add('hidden');
+      }
+
+      if (q.mode === 'sentence_scramble') {
+        this.promptText.textContent = 'Chạm các thẻ từ bên dưới theo thứ tự để ghép thành câu đúng:';
+        this.letterBoxContainer.style.display = 'none';
+        this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
+        this.renderSentenceScramble(q);
+      } else if (q.mode === 'letter_fill') {
+        const scaffold = this.getScaffoldedConfig(q);
+        q._activeMasked = scaffold.masked;
+        q._activeMissing = scaffold.missing;
+        q._activeStep = scaffold.stepNum;
+        q._activeHint = scaffold.hint;
+
+        this.promptText.textContent = scaffold.stepNum >= 4 
+          ? 'Nhập toàn bộ các chữ cái để hoàn thành từ vựng:' 
+          : 'Chạm các chữ cái bên dưới để hoàn thành từ:';
+        this.letterBoxContainer.style.display = 'flex';
+        this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
+        this.renderInteractiveLetterFill(q);
+      } else if (q.mode === 'meaning_match') {
+        this.promptText.textContent = 'Chọn từ tiếng Anh chính xác mang nghĩa:';
+        this.letterBoxContainer.style.display = 'none';
+        this.questionMainText.innerHTML = `<span class="meaning-highlight">“${q.vietnamese}”</span>`;
+        this.renderAnswerButtons(q);
+      } else if (q.sentence) {
+        this.promptText.textContent = q.prompt || 'Chọn đáp án học thuật chính xác:';
+        this.letterBoxContainer.style.display = 'none';
+        const highlightedSentence = q.sentence.replace(/_{2,}/g, '<span class="blank-slot">____</span>');
+        this.questionMainText.innerHTML = highlightedSentence;
+        this.renderAnswerButtons(q);
+      } else {
+        this.promptText.textContent = 'Chọn đáp án chính xác:';
+        this.letterBoxContainer.style.display = 'none';
+        this.questionMainText.innerHTML = q.prompt;
+        this.renderAnswerButtons(q);
+      }
     }
 
     // Không hiển thị phiên âm IPA trong lúc làm câu hỏi để tránh làm lộ đáp án (chỉ hiển thị sau khi trả lời ở popup Feedback)
@@ -988,7 +1260,9 @@ class GameEngine {
       this.phoneticGuide.style.display = 'none';
     }
     if (this.academicHintPill) {
-      if (q.mode === 'sentence_scramble') {
+      if (q.mode === 'listening_choice') {
+        this.academicHintPill.innerHTML = `💡 Luyện nghe phản xạ (Audio Recognition)`;
+      } else if (q.mode === 'sentence_scramble') {
         const level = this.scrambleAdaptiveLevel || 1;
         const levelLabels = {
           1: '💡 Cấp 1 (Khởi động): Câu cơ bản 4-6 từ',
@@ -1232,7 +1506,7 @@ class GameEngine {
   normalizeSentence(str) {
     if (!str) return '';
     return str
-      .replace(/[.,?!;:"]/g, '')
+      .replace(/[.,?!;:"'‘’“”]/g, '')
       .replace(/\s+/g, ' ')
       .trim()
       .toLowerCase();
@@ -1650,7 +1924,30 @@ class GameEngine {
     const activeMissing = q._activeMissing || q.missing || [];
     const filledChars = blankBoxes.map(b => b.textContent.trim().toUpperCase());
     const missingChars = (Array.isArray(activeMissing) ? activeMissing : activeMissing.split('')).map(m => m.trim().toUpperCase());
-    const isCorrect = filledChars.join('') === missingChars.join('');
+
+    const filledStr = filledChars.join('');
+    const missingStr = missingChars.join('');
+
+    // Toàn bộ từ hoàn chỉnh ghép được từ tất cả các ô trong container (cố định + ô trống)
+    const allLetterBoxes = this.letterBoxContainer ? Array.from(this.letterBoxContainer.querySelectorAll('.letter-box')) : [];
+    const assembledWord = allLetterBoxes.map(b => b.textContent.trim().toUpperCase()).join('');
+    const targetWord = (q.target_word || q.correct_answer || '').trim().toUpperCase();
+
+    // Kiểm tra độ trùng khớp toàn diện chống false negative:
+    // 1. Khớp chính xác ký tự thiếu
+    // 2. Khớp sau khi loại bỏ dấu tiếng Việt (tránh lỗi bộ gõ Telex / VNI tự thêm dấu)
+    // 3. Khớp tương đương chính tả UK/US (counsellor/counselor, recognise/recognize,...)
+    // 4. Khớp toàn bộ từ hoàn chỉnh (assembledWord) so với targetWord
+    const isDirectMatch = (filledStr === missingStr);
+    const isDiacriticMatch = (stripDiacritics(filledStr) === stripDiacritics(missingStr));
+    const isEquivMissing = areEquivalentSpellings(filledStr, missingStr);
+    const isFullWordMatch = assembledWord && targetWord && (
+      assembledWord === targetWord ||
+      stripDiacritics(assembledWord) === stripDiacritics(targetWord) ||
+      areEquivalentSpellings(assembledWord, targetWord)
+    );
+
+    const isCorrect = isDirectMatch || isDiacriticMatch || isEquivMissing || isFullWordMatch;
 
     if (isCorrect) {
       this.isAnsweringLocked = true;
@@ -1790,7 +2087,18 @@ class GameEngine {
     clearInterval(this.timerInterval);
 
     const q = this.questions[this.currentIndex];
-    const isCorrect = selectedIndex === q.correct;
+    const selectedText = (q.options && q.options[selectedIndex]) ? String(q.options[selectedIndex]).trim() : '';
+    const targetAnswer = (q.correct_answer || (q.options ? q.options[q.correct] : '') || '').trim();
+
+    let isCorrect = selectedIndex === q.correct;
+    // Kiểm tra tương đương nếu vị trí index bị lệch hoặc khác biệt ngữ pháp/chính tả nhỏ
+    if (!isCorrect && selectedText && targetAnswer) {
+      if (selectedText.toLowerCase() === targetAnswer.toLowerCase() ||
+          stripDiacritics(selectedText).toLowerCase() === stripDiacritics(targetAnswer).toLowerCase() ||
+          areEquivalentSpellings(selectedText, targetAnswer)) {
+        isCorrect = true;
+      }
+    }
     const timeTaken = (Date.now() - this.questionStartTime) / 1000;
     this.responseTimes.push(timeTaken);
 
@@ -2287,6 +2595,7 @@ ${emojiBlocks}
 
     if (this.wordleGridEl) this.wordleGridEl.textContent = emojiBlocks;
     if (this.modalOverlay) this.modalOverlay.classList.add('active');
+    this.saveUserRoundResult(this.score, correctCount, totalAnswered, avgTime, bandTitle);
     this.launchConfetti();
   }
 
@@ -2392,6 +2701,888 @@ ${emojiBlocks}
           btn.classList.remove('active');
         }
       });
+    }
+  }
+
+  // ==========================================================================
+  // TIẾN ĐỘ HỌC TẬP & ĐỒNG BỘ DỮ LIỆU (LOCAL PERSISTENCE & SYNC)
+  // ==========================================================================
+  loadUserHistory() {
+    try {
+      const saved = localStorage.getItem('ielts_user_history');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  saveUserHistory() {
+    try {
+      localStorage.setItem('ielts_user_history', JSON.stringify(this.userHistory || []));
+    } catch (e) {}
+  }
+
+  saveUserRoundResult(score, correctCount, totalAnswered, avgTime, bandTitle) {
+    const record = {
+      timestamp: Date.now(),
+      dateStr: new Date().toLocaleDateString('vi-VN'),
+      score,
+      correctCount,
+      totalAnswered,
+      accuracy: totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0,
+      avgTime,
+      bandTitle
+    };
+    if (!this.userHistory) this.userHistory = [];
+    this.userHistory.unshift(record);
+    if (this.userHistory.length > 50) this.userHistory.pop();
+    this.saveUserHistory();
+
+    this.totalXp = (this.totalXp || 0) + score;
+    this.totalAnswered = (this.totalAnswered || 0) + totalAnswered;
+    this.totalCorrect = (this.totalCorrect || 0) + correctCount;
+    localStorage.setItem('ielts_total_xp', this.totalXp);
+    localStorage.setItem('ielts_total_answered', this.totalAnswered);
+    localStorage.setItem('ielts_total_correct', this.totalCorrect);
+  }
+
+  openSyncModal() {
+    if (this.syncModalOverlay) {
+      this.syncModalOverlay.classList.add('active');
+      this.showSyncStatus('Dữ liệu tiến độ học tập và SRS được lưu trữ an toàn trên thiết bị của bạn.', 'info');
+    }
+  }
+
+  closeSyncModal() {
+    if (this.syncModalOverlay) {
+      this.syncModalOverlay.classList.remove('active');
+    }
+  }
+
+  showSyncStatus(msg, type = 'info') {
+    if (!this.syncStatusMsg) return;
+    this.syncStatusMsg.textContent = msg;
+    this.syncStatusMsg.className = `sync-status-text ${type}`;
+  }
+
+  exportProgressData() {
+    return {
+      version: '2.0',
+      exportedAt: new Date().toISOString(),
+      appName: 'IELTS Blitz Arena (Danh Học IELTS)',
+      storage: {
+        ielts_memory_profiles: this.memoryProfiles || this.loadMemoryProfiles(),
+        ielts_srs_matrix: this.srsMatrix || this.loadSRSMatrix(),
+        ielts_weak_words: this.weakWordIds || this.loadWeakWords(),
+        ielts_scramble_level: this.scrambleAdaptiveLevel,
+        ielts_auto_next: this.isAutoNextEnabled ? 'true' : 'false',
+        ielts_theme: localStorage.getItem('ielts_theme') || 'dark',
+        ielts_grade_filter: this.currentGradeFilter,
+        ielts_user_history: this.userHistory || this.loadUserHistory(),
+        ielts_total_xp: this.totalXp || 0,
+        ielts_total_answered: this.totalAnswered || 0,
+        ielts_total_correct: this.totalCorrect || 0,
+        ielts_scanned_exams: this.scannedExams || this.loadScannedExams(),
+        ielts_gemini_api_key: this.geminiApiKey || ''
+      }
+    };
+  }
+
+  downloadProgressFile() {
+    try {
+      const data = this.exportProgressData();
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      a.href = url;
+      a.download = `ielts_blitz_progress_${dateStr}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      this.showSyncStatus('✅ Đã tải file tiến độ học tập thành công!', 'success');
+      this.flashDynamicIsland('💾 Đã xuất file tiến độ học tập');
+    } catch (e) {
+      console.error('Lỗi khi xuất file:', e);
+      this.showSyncStatus('❌ Lỗi khi xuất file: ' + e.message, 'error');
+    }
+  }
+
+  copyProgressToClipboard() {
+    try {
+      const data = this.exportProgressData();
+      const jsonStr = JSON.stringify(data, null, 2);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(jsonStr).then(() => {
+          this.showSyncStatus('✅ Đã copy toàn bộ mã tiến độ vào bộ nhớ tạm!', 'success');
+          this.flashDynamicIsland('📋 Đã copy tiến độ vào Clipboard');
+        }).catch(() => {
+          this.fallbackCopyText(jsonStr);
+        });
+      } else {
+        this.fallbackCopyText(jsonStr);
+      }
+    } catch (e) {
+      this.showSyncStatus('❌ Lỗi copy: ' + e.message, 'error');
+    }
+  }
+
+  fallbackCopyText(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      document.execCommand('copy');
+      this.showSyncStatus('✅ Đã copy tiến độ vào bộ nhớ tạm!', 'success');
+    } catch (err) {
+      this.showSyncStatus('❌ Không thể copy tự động, vui lòng tải file.', 'error');
+    }
+    document.body.removeChild(ta);
+  }
+
+  importProgressData(rawStr) {
+    try {
+      if (!rawStr || !rawStr.trim()) {
+        this.showSyncStatus('⚠️ Vui lòng dán dữ liệu JSON hoặc chọn file tiến độ', 'warning');
+        return false;
+      }
+
+      let parsed = JSON.parse(rawStr.trim());
+      const payload = parsed.storage || parsed.data || parsed;
+
+      if (!payload || typeof payload !== 'object') {
+        throw new Error('Dữ liệu JSON không đúng cấu trúc tiến độ IELTS Blitz');
+      }
+
+      let importedCount = 0;
+
+      if (payload.ielts_memory_profiles) {
+        this.memoryProfiles = payload.ielts_memory_profiles;
+        this.saveMemoryProfiles();
+        importedCount++;
+      }
+      if (payload.ielts_srs_matrix) {
+        this.srsMatrix = payload.ielts_srs_matrix;
+        this.saveSRSMatrix();
+        importedCount++;
+      }
+      if (Array.isArray(payload.ielts_weak_words)) {
+        this.weakWordIds = payload.ielts_weak_words;
+        this.saveWeakWords();
+        importedCount++;
+      }
+      if (payload.ielts_scramble_level) {
+        this.scrambleAdaptiveLevel = parseInt(payload.ielts_scramble_level, 10) || 1;
+        localStorage.setItem('ielts_scramble_level', this.scrambleAdaptiveLevel);
+        importedCount++;
+      }
+      if (typeof payload.ielts_auto_next !== 'undefined') {
+        this.isAutoNextEnabled = (payload.ielts_auto_next === true || payload.ielts_auto_next === 'true');
+        localStorage.setItem('ielts_auto_next', this.isAutoNextEnabled ? 'true' : 'false');
+        this.updateAutoNextUI();
+        importedCount++;
+      }
+      if (payload.ielts_theme) {
+        localStorage.setItem('ielts_theme', payload.ielts_theme);
+        this.applyPersistedSettings();
+        importedCount++;
+      }
+      if (Array.isArray(payload.ielts_scanned_exams)) {
+        this.scannedExams = payload.ielts_scanned_exams;
+        this.saveScannedExams();
+        this.renderScannedExamsShelf();
+        importedCount++;
+      }
+      if (payload.ielts_gemini_api_key) {
+        this.geminiApiKey = payload.ielts_gemini_api_key;
+        localStorage.setItem('ielts_gemini_api_key', this.geminiApiKey);
+        this.updateGeminiKeyBadge();
+        importedCount++;
+      }
+      if (Array.isArray(payload.ielts_user_history)) {
+        this.userHistory = payload.ielts_user_history;
+        this.saveUserHistory();
+        importedCount++;
+      }
+      if (typeof payload.ielts_total_xp !== 'undefined') {
+        this.totalXp = parseInt(payload.ielts_total_xp, 10) || 0;
+        localStorage.setItem('ielts_total_xp', this.totalXp);
+      }
+      if (typeof payload.ielts_total_answered !== 'undefined') {
+        this.totalAnswered = parseInt(payload.ielts_total_answered, 10) || 0;
+        localStorage.setItem('ielts_total_answered', this.totalAnswered);
+      }
+      if (typeof payload.ielts_total_correct !== 'undefined') {
+        this.totalCorrect = parseInt(payload.ielts_total_correct, 10) || 0;
+        localStorage.setItem('ielts_total_correct', this.totalCorrect);
+      }
+
+      this.showSyncStatus(`🎉 Khôi phục thành công! Đã nạp ${importedCount} mục dữ liệu`, 'success');
+      this.flashDynamicIsland('🔄 Đồng bộ tiến độ thành công!');
+
+      setTimeout(() => {
+        if (this.syncModalOverlay) this.syncModalOverlay.classList.remove('active');
+      }, 1500);
+
+      return true;
+    } catch (e) {
+      console.error('Lỗi khi import:', e);
+      this.showSyncStatus('❌ Dữ liệu không hợp lệ: ' + e.message, 'error');
+      return false;
+    }
+  }
+
+  // ==========================================================================
+  // PHÂN BỐ CÂU HỎI LISTENING ĐAN XEN (LISTENING INTEGRATION)
+  // ==========================================================================
+  createListeningVariant(sourceQuestion, pool = []) {
+    if (!sourceQuestion) return null;
+    const targetWord = (sourceQuestion.target_word || sourceQuestion.correct_answer || '').trim();
+    if (!targetWord) return null;
+
+    const bank = (pool && pool.length > 0) ? pool : (typeof IELTS_VOCAB_BANK !== 'undefined' ? IELTS_VOCAB_BANK : []);
+    const otherCandidates = bank
+      .filter(x => x.target_word && x.target_word.trim().toUpperCase() !== targetWord.toUpperCase())
+      .map(x => x.target_word.trim());
+
+    const uniqueDistractors = shuffleArray([...new Set(otherCandidates)]).slice(0, 3);
+    const options = shuffleArray([targetWord, ...uniqueDistractors]);
+
+    return {
+      ...sourceQuestion,
+      id: `${sourceQuestion.id}_listening_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+      mode: 'listening_choice',
+      prompt: '🎧 Nghe phát âm và chọn từ vựng bạn vừa nghe:',
+      target_word: targetWord,
+      options: options,
+      correct: options.indexOf(targetWord),
+      correct_answer: targetWord,
+      vietnamese: sourceQuestion.vietnamese || '',
+      explanation: `Từ vừa phát âm là: ${targetWord} (${sourceQuestion.phonetic || ''}) - ${sourceQuestion.vietnamese || ''}`,
+      real_exam_sentence: sourceQuestion.real_exam_sentence || sourceQuestion.sentence || `Listen and recognize "${targetWord}" in IELTS Listening Section.`
+    };
+  }
+
+  // ==========================================================================
+  // SỐ HÓA ĐỀ THI GIẤY BẰNG AI (GEMINI FLASH EXAM SCANNER)
+  // ==========================================================================
+  loadScannedExams() {
+    try {
+      const saved = localStorage.getItem('ielts_scanned_exams');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  saveScannedExams() {
+    try {
+      localStorage.setItem('ielts_scanned_exams', JSON.stringify(this.scannedExams || []));
+    } catch (e) {}
+  }
+
+  initScannerSystem() {
+    this.updateGeminiKeyBadge();
+    const saved = this.loadScannedExams();
+    if (!saved || saved.length === 0) {
+      const sample = this.getPreloadedSampleExam();
+      this.scannedExams = [sample];
+      this.saveScannedExams();
+    } else {
+      this.scannedExams = saved;
+    }
+    this.renderScannedExamsShelf();
+  }
+
+  getPreloadedSampleExam() {
+    return {
+      id: 'sample_thpt_2026',
+      title: 'Đề minh họa THPT Quốc Gia & IELTS 2026',
+      date: 'Mẫu có sẵn',
+      questionCount: 10,
+      totalBatchesGenerated: 1,
+      questions: [
+        {
+          id: 'scan_sample_1',
+          mode: 'multiple_choice',
+          prompt: 'Choose the word whose underlined part differs in pronunciation:',
+          sentence: 'A. climate   B. examine   C. surprise   D. divide',
+          options: ['climate', 'examine', 'surprise', 'divide'],
+          correct: 1,
+          correct_answer: 'examine',
+          vietnamese: 'Phát âm /ɪ/ thay vì /aɪ/ như các từ còn lại',
+          explanation: 'examine phát âm là /ɪɡˈzæm.ɪn/, các từ còn lại phát âm là /aɪ/.',
+          band: '6.0',
+          topic: 'Phonetics'
+        },
+        {
+          id: 'scan_sample_2',
+          mode: 'sentence_cloze',
+          prompt: 'Choose the best answer to complete the sentence:',
+          sentence: 'The government has decided to ____ stricter regulations on industrial emissions.',
+          options: ['impose', 'dispose', 'propose', 'expose'],
+          correct: 0,
+          correct_answer: 'impose',
+          vietnamese: 'Ban hành / áp đặt các quy định nghiêm ngặt',
+          explanation: 'Cụm từ cố định: "impose regulations on something" (áp đặt quy định).',
+          band: '6.5',
+          topic: 'Vocabulary'
+        },
+        {
+          id: 'scan_sample_3',
+          mode: 'letter_fill',
+          prompt: 'Điền chữ cái hoàn thành từ vựng có trong đề:',
+          target_word: 'INNOVATION',
+          masked: 'I N N _ V A T _ O N',
+          missing: ['O', 'I'],
+          options: ['O', 'I', 'E', 'A'],
+          correct: 0,
+          correct_answer: 'INNOVATION',
+          vietnamese: 'Sự đổi mới, sáng kiến',
+          explanation: 'Innovation (danh từ): sự đổi mới công nghệ hoặc phương pháp.',
+          band: '7.0',
+          topic: 'Technology'
+        },
+        {
+          id: 'scan_sample_4',
+          mode: 'preposition',
+          prompt: 'Chọn giới từ thích hợp điền vào chỗ trống:',
+          sentence: 'Many young graduates are dependent ____ financial support from their parents.',
+          options: ['on', 'with', 'for', 'at'],
+          correct: 0,
+          correct_answer: 'on',
+          vietnamese: 'Phụ thuộc vào',
+          explanation: 'Cụm tính từ + giới từ: "dependent on / upon someone/something".',
+          band: '6.0',
+          topic: 'Prepositions'
+        },
+        {
+          id: 'scan_sample_5',
+          mode: 'sentence_scramble',
+          prompt: 'Chạm các thẻ từ để sắp xếp lại câu chuẩn ngữ pháp trong đề thi:',
+          raw_tokens: ['Active', 'learning', 'enhances', 'long-term', 'memory', 'retention.'],
+          scrambled_tokens: ['enhances', 'Active', 'retention.', 'learning', 'memory', 'long-term'],
+          options: ['Active', 'learning', 'enhances', 'retention.'],
+          correct: 0,
+          correct_sentence: 'Active learning enhances long-term memory retention.',
+          vietnamese: 'Phương pháp học chủ động giúp tăng cường khả năng ghi nhớ dài hạn.',
+          explanation: 'Chủ ngữ cụm danh từ: Active learning + Động từ enhances + Tân ngữ long-term memory retention.',
+          band: '7.0',
+          topic: 'Education'
+        },
+        {
+          id: 'scan_sample_6',
+          mode: 'multiple_choice',
+          prompt: 'Mark the letter A, B, C, or D to indicate the word CLOSEST in meaning:',
+          sentence: 'The new policy is expected to generate profound alterations in student performance.',
+          options: ['significant', 'trivial', 'minor', 'superficial'],
+          correct: 0,
+          correct_answer: 'significant',
+          vietnamese: 'Sâu sắc, đáng kể',
+          explanation: 'Profound = significant / deep-seated (sâu sắc, tác động lớn).',
+          band: '7.5',
+          topic: 'Synonyms'
+        },
+        {
+          id: 'scan_sample_7',
+          mode: 'sentence_cloze',
+          prompt: 'Choose the correct phrasal verb:',
+          sentence: 'We had to ____ our trip to London until next summer due to unexpected travel delays.',
+          options: ['put off', 'call off', 'give up', 'take after'],
+          correct: 0,
+          correct_answer: 'put off',
+          vietnamese: 'Hoãn lại',
+          explanation: 'Put off = delay / postpone (hoãn lại). Call off = cancel (hủy bỏ hoàn toàn).',
+          band: '6.5',
+          topic: 'Phrasal Verbs'
+        },
+        {
+          id: 'scan_sample_8',
+          mode: 'letter_fill',
+          prompt: 'Điền chữ cái còn thiếu cho từ vựng học thuật:',
+          target_word: 'ACCOMMODATE',
+          masked: 'A C C _ M M _ D A T E',
+          missing: ['O', 'O'],
+          options: ['O', 'E', 'U', 'A'],
+          correct: 0,
+          correct_answer: 'ACCOMMODATE',
+          vietnamese: 'Cung cấp nơi ăn chốn ở / đáp ứng nhu cầu',
+          explanation: 'Accommodate (v): chứa chấp, đáp ứng. Lưu ý từ này có 2 chữ C và 2 chữ M.',
+          band: '7.0',
+          topic: 'Academic Vocab'
+        },
+        {
+          id: 'scan_sample_9',
+          mode: 'meaning_match',
+          prompt: 'Chọn nghĩa tiếng Việt chính xác của cụm từ trong đề thi:',
+          questionMain: 'wreak havoc',
+          options: ['Gây ra tàn phá nghiêm trọng', 'Mang lại cơ hội tốt', 'Cải thiện tình hình', 'Thúc đẩy sự hợp tác'],
+          correct: 0,
+          correct_answer: 'Gây ra tàn phá nghiêm trọng',
+          vietnamese: 'Gây ra tàn phá, hủy hoại',
+          explanation: 'Cụm thành ngữ học thuật: "wreak havoc on something" (gây tàn phá nặng nề).',
+          band: '7.5',
+          topic: 'Collocations'
+        },
+        {
+          id: 'scan_sample_10',
+          mode: 'multiple_choice',
+          prompt: 'Mark the letter A, B, C, or D to indicate the OPPOSITE in meaning:',
+          sentence: 'His reluctant attitude towards team collaboration made the project progress much slower.',
+          options: ['enthusiastic', 'hesitant', 'unwilling', 'careless'],
+          correct: 0,
+          correct_answer: 'enthusiastic',
+          vietnamese: 'Nhiệt tình (trái nghĩa với reluctant - miễn cưỡng)',
+          explanation: 'Reluctant (miễn cưỡng, ngần ngại) trái nghĩa với enthusiastic (nhiệt huyết, hào hứng).',
+          band: '7.0',
+          topic: 'Antonyms'
+        }
+      ]
+    };
+  }
+
+  renderScannedExamsShelf() {
+    if (!this.scannedExamsShelf) return;
+    this.scannedExamsShelf.innerHTML = '';
+
+    if (!this.scannedExams || this.scannedExams.length === 0) {
+      this.scannedExamsShelf.innerHTML = '<div class="empty-shelf-hint">Chưa có đề thi nào. Chụp ảnh đề thi bằng Camera hoặc Tải ảnh để AI chuyển thành game ngay!</div>';
+      return;
+    }
+
+    this.scannedExams.forEach((exam) => {
+      const card = document.createElement('div');
+      card.className = 'scanned-exam-card';
+      const isSample = exam.id === 'sample_thpt_2026';
+      const qCount = exam.questions ? exam.questions.length : 0;
+      const batchCount = exam.totalBatchesGenerated || 1;
+
+      card.innerHTML = `
+        <div class="exam-card-header">
+          <div class="exam-card-title">${exam.title || 'Đề thi đã quét'}</div>
+          <span class="exam-date-pill">${exam.date || 'Gần đây'}</span>
+        </div>
+        <div class="exam-card-meta">
+          <span class="exam-count-badge">📝 ${qCount} câu hỏi (${batchCount} batch)</span>
+          ${isSample ? '<span class="exam-sample-badge">⭐ Mẫu chuẩn</span>' : '<span class="exam-ai-badge">🤖 Gemini Flash</span>'}
+        </div>
+        <div class="exam-card-actions">
+          <button class="btn-exam-action-play" data-exam-id="${exam.id}">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Chơi ngay
+          </button>
+          ${!isSample ? `<button class="btn-exam-action-delete" data-exam-id="${exam.id}" title="Xóa đề thi này">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>` : ''}
+        </div>
+      `;
+
+      const btnPlay = card.querySelector('.btn-exam-action-play');
+      if (btnPlay) {
+        btnPlay.addEventListener('click', () => this.playScannedExam(exam.id));
+      }
+      const btnDelete = card.querySelector('.btn-exam-action-delete');
+      if (btnDelete) {
+        btnDelete.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.deleteScannedExam(exam.id);
+        });
+      }
+
+      this.scannedExamsShelf.appendChild(card);
+    });
+  }
+
+  deleteScannedExam(examId) {
+    if (!confirm('Bạn có chắc muốn xóa đề thi này không?')) return;
+    this.scannedExams = this.scannedExams.filter(e => e.id !== examId);
+    this.saveScannedExams();
+    this.renderScannedExamsShelf();
+    this.flashDynamicIsland('🗑️ Đã xóa đề thi');
+  }
+
+  openGeminiKeyModal() {
+    if (!this.geminiKeyModal) return;
+    if (this.geminiKeyInput) {
+      this.geminiKeyInput.value = this.geminiApiKey || '';
+    }
+    this.geminiKeyModal.classList.add('active');
+  }
+
+  closeGeminiKeyModal() {
+    if (this.geminiKeyModal) {
+      this.geminiKeyModal.classList.remove('active');
+    }
+  }
+
+  toggleKeyVisibility() {
+    if (!this.geminiKeyInput) return;
+    const isPassword = this.geminiKeyInput.type === 'password';
+    this.geminiKeyInput.type = isPassword ? 'text' : 'password';
+    if (this.btnToggleKeyEye) {
+      this.btnToggleKeyEye.innerHTML = isPassword
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    }
+  }
+
+  saveGeminiKeyFromInput() {
+    if (!this.geminiKeyInput) return;
+    const val = this.geminiKeyInput.value.trim();
+    if (!val) {
+      this.geminiApiKey = '';
+      localStorage.removeItem('ielts_gemini_api_key');
+      this.updateGeminiKeyBadge();
+      this.closeGeminiKeyModal();
+      this.flashDynamicIsland('🗑️ Đã xóa Gemini API Key');
+      return;
+    }
+
+    this.geminiApiKey = val;
+    localStorage.setItem('ielts_gemini_api_key', val);
+    this.updateGeminiKeyBadge();
+    this.closeGeminiKeyModal();
+    this.flashDynamicIsland('🔑 Đã lưu Gemini API Key');
+  }
+
+  updateGeminiKeyBadge() {
+    if (!this.scannerKeyStatusBadge) return;
+    if (this.geminiApiKey) {
+      const masked = this.geminiApiKey.length > 8
+        ? `${this.geminiApiKey.slice(0, 4)}...${this.geminiApiKey.slice(-4)}`
+        : 'Đã lưu';
+      this.scannerKeyStatusBadge.textContent = `🔑 Key: ${masked}`;
+      this.scannerKeyStatusBadge.style.background = 'rgba(16, 185, 129, 0.2)';
+      this.scannerKeyStatusBadge.style.color = '#34d399';
+    } else {
+      this.scannerKeyStatusBadge.textContent = '⚠️ Chưa nhập Key';
+      this.scannerKeyStatusBadge.style.background = 'rgba(239, 68, 68, 0.2)';
+      this.scannerKeyStatusBadge.style.color = '#f87171';
+    }
+  }
+
+  switchArenaView(viewName) {
+    if (viewName === 'scanner') {
+      if (this.vocabArenaView) this.vocabArenaView.classList.add('hidden-view');
+      if (this.scannerArenaView) this.scannerArenaView.classList.remove('hidden-view');
+      this.currentArenaView = 'scanner';
+      clearInterval(this.timerInterval);
+    } else {
+      if (this.scannerArenaView) this.scannerArenaView.classList.add('hidden-view');
+      if (this.vocabArenaView) this.vocabArenaView.classList.remove('hidden-view');
+      this.currentArenaView = 'vocab';
+    }
+  }
+
+  compressImageToJpegBase64(file, maxDimension = 1280, quality = 0.85) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('Không thể đọc file ảnh'));
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onerror = () => reject(new Error('Ảnh không hợp lệ'));
+        img.onload = () => {
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDimension || h > maxDimension) {
+            if (w > h) {
+              h = Math.round((h * maxDimension) / w);
+              w = maxDimension;
+            } else {
+              w = Math.round((w * maxDimension) / h);
+              h = maxDimension;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          const base64 = dataUrl.split(',')[1];
+          resolve(base64);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async handleImageFileSelect(file) {
+    if (!file) return;
+    try {
+      if (!this.geminiApiKey) {
+        this.openGeminiKeyModal();
+        this.flashDynamicIsland('🔑 Vui lòng nhập Gemini API Key trước khi quét đề');
+        return;
+      }
+
+      this.flashDynamicIsland('📸 Đang nén và phân tích ảnh đề thi...');
+      const base64 = await this.compressImageToJpegBase64(file);
+      const questions = await this.callGeminiFlashExamExtractor(base64, 1, []);
+
+      if (questions && questions.length > 0) {
+        const newExam = {
+          id: `exam_${Date.now()}`,
+          title: `Đề thi quét camera #${this.scannedExams.length + 1}`,
+          date: new Date().toLocaleDateString('vi-VN'),
+          questionCount: questions.length,
+          base64Image: base64,
+          totalBatchesGenerated: 1,
+          questions: questions
+        };
+
+        this.scannedExams.unshift(newExam);
+        this.saveScannedExams();
+        this.renderScannedExamsShelf();
+        this.flashDynamicIsland(`🎉 Đã số hóa thành công 10 câu hỏi! Chuyển vào chơi ngay`);
+
+        this.playScannedExam(newExam.id);
+      }
+    } catch (err) {
+      console.error('Lỗi quét đề thi:', err);
+      alert(`Không thể số hóa đề thi: ${err.message}\n\nVui lòng kiểm tra lại Gemini API Key hoặc kết nối mạng.`);
+    }
+  }
+
+  async callGeminiFlashExamExtractor(base64Data, batchNum = 1, existingQuestions = []) {
+    if (!this.geminiApiKey) {
+      this.openGeminiKeyModal();
+      this.flashDynamicIsland('🔑 Vui lòng nhập Gemini API Key để số hóa đề thi');
+      throw new Error('Chưa cấu hình Gemini API Key');
+    }
+
+    if (this.scanningRadarStatus) {
+      this.scanningRadarStatus.style.display = 'flex';
+    }
+    if (this.scannerLogStatus) {
+      this.scannerLogStatus.textContent = batchNum === 1
+        ? '🤖 Gemini Flash đang phân tích đề thi và tạo 10 câu đầu...'
+        : `🤖 Gemini Flash đang tự động sinh 10 câu tiếp theo (Đợt ${batchNum})...`;
+    }
+
+    const existingSummary = (existingQuestions || [])
+      .slice(-10)
+      .map(q => q.prompt || q.sentence || q.target_word || '')
+      .filter(Boolean)
+      .join('; ');
+
+    const promptText = `Bạn là chuyên gia chuyển hóa đề thi giấy tiếng Anh (THPT Quốc Gia & IELTS) thành game tương tác di động.
+Hãy phân tích hình ảnh trang đề thi này và trích xuất nguyên văn các câu hỏi/từ vựng trong đề để tạo đúng 10 câu hỏi game chất lượng cao.
+${batchNum > 1 ? `ĐÂY LÀ ĐỢT SỐ ${batchNum}. Yêu cầu tạo 10 câu MỚI TIẾP THEO từ đề thi, HOÀN TOÀN KHÔNG TRÙNG với các câu trước đó: [${existingSummary}]` : 'Tạo 10 câu hỏi đầu tiên theo sát nội dung đề thi.'}
+
+Các định dạng câu hỏi cho phép:
+1. "multiple_choice": Trắc nghiệm 4 đáp án nguyên văn từ đề thi.
+2. "sentence_cloze": Điền từ vào chỗ trống trong câu (dùng "____").
+3. "letter_fill": Điền chữ cái còn thiếu cho từ vựng có trong đề (có "target_word", "masked", "missing", "options").
+4. "preposition": Điền giới từ đúng.
+5. "sentence_scramble": Ghép lại câu hoàn chỉnh từ các từ bị xáo trộn (có "raw_tokens", "scrambled_tokens", "correct_sentence").
+6. "meaning_match": Chọn nghĩa tiếng Việt hoặc từ đồng nghĩa trong đề thi.
+
+YÊU CẦU ĐẶC BIỆT QUAN TRỌNG:
+- Trả về ĐÚNG MỘT MẢNG JSON thuần túy (Array of objects), KHÔNG kèm bất kỳ văn bản giải thích nào ngoài JSON.
+- Mỗi object PHẢI có cấu trúc:
+  {
+    "id": "scan_${Date.now()}_${batchNum}_[index]",
+    "mode": "multiple_choice" | "sentence_cloze" | "letter_fill" | "preposition" | "sentence_scramble" | "meaning_match",
+    "prompt": "Hướng dẫn câu hỏi",
+    "sentence": "Câu văn đề bài (dùng ____ cho chỗ trống)",
+    "options": ["A", "B", "C", "D"], // đúng 4 đáp án
+    "correct": 0, // số nguyên từ 0 đến 3 biểu thị vị trí đáp án đúng
+    "correct_answer": "nội dung đáp án đúng",
+    "vietnamese": "Nghĩa tiếng Việt hoặc bản dịch tóm tắt",
+    "explanation": "Giải thích ngắn gọn lý do chọn đáp án này",
+    "band": "6.5",
+    "topic": "Đề thi giấy"
+  }`;
+
+    const requestBody = {
+      contents: [
+        {
+          role: "user",
+          parts: [
+            { text: promptText },
+            {
+              inline_data: {
+                mime_type: "image/jpeg",
+                data: base64Data
+              }
+            }
+          ]
+        }
+      ],
+      generationConfig: {
+        temperature: 0.2,
+        responseMimeType: "application/json"
+      }
+    };
+
+    const modelsToTry = ['gemini-2.5-flash', 'gemini-1.5-flash'];
+    let lastError = null;
+
+    for (const model of modelsToTry) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${this.geminiApiKey}`;
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error?.message || `HTTP ${response.status} (${response.statusText})`);
+        }
+
+        const data = await response.json();
+        const rawJsonText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!rawJsonText) {
+          throw new Error('Gemini không trả về nội dung câu hỏi');
+        }
+
+        let cleanText = rawJsonText.trim();
+        if (cleanText.startsWith('```')) {
+          cleanText = cleanText.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+        }
+
+        const parsed = JSON.parse(cleanText);
+        const questionsList = Array.isArray(parsed) ? parsed : (parsed.questions || []);
+
+        if (!Array.isArray(questionsList) || questionsList.length === 0) {
+          throw new Error('Định dạng JSON trả về không phải là mảng câu hỏi');
+        }
+
+        const validQuestions = questionsList.map((q, idx) => {
+          const validOptions = (Array.isArray(q.options) && q.options.length >= 4)
+            ? q.options.slice(0, 4)
+            : (Array.isArray(q.options) ? [...q.options, 'Option A', 'Option B', 'Option C', 'Option D'].slice(0, 4) : ['A', 'B', 'C', 'D']);
+          let correctIdx = typeof q.correct === 'number' && q.correct >= 0 && q.correct < 4 ? q.correct : 0;
+          if (q.correct_answer && validOptions[correctIdx] !== q.correct_answer) {
+            const foundIdx = validOptions.indexOf(q.correct_answer);
+            if (foundIdx !== -1) correctIdx = foundIdx;
+            else validOptions[correctIdx] = q.correct_answer;
+          }
+
+          return {
+            id: q.id || `scan_${Date.now()}_${idx}`,
+            mode: q.mode || 'multiple_choice',
+            prompt: q.prompt || 'Chọn đáp án chính xác trong đề thi:',
+            sentence: q.sentence || '',
+            options: validOptions,
+            correct: correctIdx,
+            correct_answer: q.correct_answer || validOptions[correctIdx],
+            vietnamese: q.vietnamese || 'Đề thi tiếng Anh',
+            explanation: q.explanation || 'Đáp án chính xác theo ngữ cảnh đề bài.',
+            band: q.band || '6.5',
+            topic: q.topic || 'Đề thi giấy',
+            target_word: q.target_word || q.correct_answer || '',
+            masked: q.masked || '',
+            missing: q.missing || [],
+            raw_tokens: q.raw_tokens || [],
+            scrambled_tokens: q.scrambled_tokens || [],
+            correct_sentence: q.correct_sentence || ''
+          };
+        });
+
+        if (this.scanningRadarStatus) {
+          this.scanningRadarStatus.style.display = 'none';
+        }
+
+        return validQuestions;
+      } catch (err) {
+        console.warn(`Lỗi khi gọi model ${model}:`, err);
+        lastError = err;
+      }
+    }
+
+    if (this.scanningRadarStatus) {
+      this.scanningRadarStatus.style.display = 'none';
+    }
+    throw lastError || new Error('Không thể kết nối đến Gemini Flash');
+  }
+
+  playScannedExam(examId) {
+    const exam = this.scannedExams.find(e => e.id === examId);
+    if (!exam || !exam.questions || exam.questions.length === 0) {
+      this.flashDynamicIsland('⚠️ Đề thi chưa có câu hỏi');
+      return;
+    }
+
+    this.currentPlayingExam = exam;
+    this.questions = [...exam.questions];
+    this.currentIndex = 0;
+    this.score = 0;
+    this.streak = 0;
+    this.maxStreak = 0;
+    this.hearts = 3;
+    this.consecutiveForHeartRecovery = 0;
+    this.roundResults = [];
+    this.responseTimes = [];
+    this.sessionVocabs = [];
+
+    this.powerups = { fiftyFifty: true, freeze: true, hint: true };
+    this.updatePowerupButtons();
+    this.updateHeartsUI();
+    this.updateScoreUI();
+    this.updateStreakUI();
+
+    this.switchArenaView('vocab');
+    this.loadQuestion(0);
+    this.flashDynamicIsland(`🚀 Đang chơi: ${exam.title}`);
+
+    // Tự động sinh ngầm 10 câu tiếp theo nếu có ảnh gốc và chưa đạt giới hạn 60 câu
+    if (exam.base64Image && exam.questions.length < 60) {
+      setTimeout(() => {
+        this.requestNextExamBatch(exam);
+      }, 4000);
+    }
+  }
+
+  async requestNextExamBatch(exam) {
+    if (!exam || !exam.base64Image || exam.questions.length >= 60 || this.isBackgroundGenerating) return;
+    this.isBackgroundGenerating = true;
+
+    try {
+      const nextBatchNum = (exam.totalBatchesGenerated || 1) + 1;
+      const newQuestions = await this.callGeminiFlashExamExtractor(exam.base64Image, nextBatchNum, exam.questions);
+      if (Array.isArray(newQuestions) && newQuestions.length > 0) {
+        exam.questions.push(...newQuestions);
+        exam.totalBatchesGenerated = nextBatchNum;
+        exam.questionCount = exam.questions.length;
+        this.saveScannedExams();
+        this.renderScannedExamsShelf();
+
+        // Nếu người chơi vẫn đang chơi đề thi này, nối trực tiếp câu hỏi vào danh sách thi đấu
+        if (this.currentPlayingExam && this.currentPlayingExam.id === exam.id) {
+          this.questions.push(...newQuestions);
+          if (this.progressText) {
+            this.progressText.textContent = `Câu ${this.currentIndex + 1}/${this.questions.length}`;
+          }
+          this.flashDynamicIsland(`⚡ AI đã tạo thêm 10 câu mới (${this.questions.length}/60 câu)!`);
+        }
+
+        // Nếu vẫn chưa đủ 60 câu, tiếp tục tạo đợt tiếp theo sau 8 giây
+        if (exam.questions.length < 60) {
+          setTimeout(() => {
+            this.isBackgroundGenerating = false;
+            this.requestNextExamBatch(exam);
+          }, 8000);
+        } else {
+          this.isBackgroundGenerating = false;
+        }
+      } else {
+        this.isBackgroundGenerating = false;
+      }
+    } catch (e) {
+      console.warn('Lỗi khi tạo batch tiếp theo:', e);
+      this.isBackgroundGenerating = false;
     }
   }
 

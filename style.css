@@ -3169,3 +3169,772 @@ body.light-theme .grade-option-btn.active .g-badge {
   margin-top: 5px;
   line-height: 1.35;
 }
+
+
+/* ==========================================================================
+   VIEW SWITCHER & TOP HEADER EXTENSIONS (CAMERA SCANNER & SYNC PROGRESS)
+   ========================================================================== */
+.scanner-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.22) 0%, rgba(168, 85, 247, 0.25) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.45);
+  color: #f472b6;
+  font-family: inherit;
+  font-size: clamp(0.72rem, 1.5vh, 0.8rem);
+  font-weight: 800;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(236, 72, 153, 0.2);
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+.scanner-switch-btn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.35) 0%, rgba(168, 85, 247, 0.4) 100%);
+  border-color: rgba(244, 114, 182, 0.7);
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+}
+
+.scanner-switch-btn:active {
+  transform: scale(0.95);
+}
+
+body.light-theme .scanner-switch-btn {
+  background: #fdf2f8;
+  border-color: #fbcfe8;
+  color: #db2777;
+  box-shadow: 0 2px 6px rgba(219, 39, 119, 0.1);
+}
+
+/* ==========================================================================
+   ARENA VIEWS (1 SCREEN INTERACTIVE - NO SCROLLING)
+   ========================================================================== */
+.arena-view {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.arena-view.hidden-view {
+  display: none !important;
+}
+
+/* ==========================================================================
+   SCANNER ARENA (CHUYỂN ĐỀ THI GIẤY THÀNH GAME AI GEMINI FLASH)
+   ========================================================================== */
+.scanner-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+body.light-theme .scanner-header-bar {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.btn-scanner-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.btn-scanner-nav svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-scanner-nav:hover {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.btn-key-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-key-pill .key-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+.btn-key-pill.active .key-dot {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.scanner-stage-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.4vh, 12px);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.scanner-hero-card {
+  position: relative;
+  padding: clamp(10px, 1.8vh, 14px) 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(244, 114, 182, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+body.light-theme .scanner-hero-card {
+  background: #ffffff;
+  border-color: #fbcfe8;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.08);
+}
+
+.scanner-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.scanner-mode-tag {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(236, 72, 153, 0.2);
+  color: #f472b6;
+}
+
+.scanner-batch-tag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+.scanner-title {
+  font-size: clamp(1.05rem, 2.2vh, 1.25rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.scanner-desc {
+  font-size: clamp(0.74rem, 1.5vh, 0.82rem);
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.scanner-actions-card {
+  padding: 10px 12px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1.5px dashed rgba(99, 102, 241, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+body.light-theme .scanner-actions-card {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.scanner-btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-scan-primary,
+.btn-scan-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  border: none;
+  touch-action: manipulation;
+}
+
+.btn-scan-primary {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+}
+
+.btn-scan-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(236, 72, 153, 0.45);
+}
+
+.btn-scan-primary:active {
+  transform: scale(0.96);
+}
+
+.btn-scan-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-primary);
+}
+
+body.light-theme .btn-scan-secondary {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-scan-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.scan-icon-wrap {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.scan-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.scan-btn-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.scan-btn-sub {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  line-height: 1.1;
+}
+
+/* Radar Scan status box */
+.scanner-status-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(99, 102, 241, 0.14);
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  overflow: hidden;
+}
+
+.radar-scan-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.35), transparent);
+  animation: radarScan 1.5s infinite;
+}
+
+@keyframes radarScan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.scanner-status-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(99, 102, 241, 0.25);
+  border-top-color: #6366f1;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scanner-status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 1;
+}
+
+.status-main-text {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.status-sub-text {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* Scanned Exams Shelf */
+.scanned-exams-shelf {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.shelf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.shelf-title {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.shelf-count {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+}
+
+.scanned-exams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 2px;
+}
+
+.scanned-exam-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: all 0.18s ease;
+}
+
+body.light-theme .scanned-exam-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.scanned-exam-card:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+}
+
+.exam-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exam-card-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.exam-card-meta {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.btn-play-exam {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-play-exam:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+}
+
+.btn-play-exam:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   LISTENING PLAYER COMPONENT (CHẾ ĐỘ LISTENING_CHOICE)
+   ========================================================================== */
+.listening-player-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.btn-audio-wave {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.25) 100%);
+  border: 1.5px solid rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.25);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+body.light-theme .btn-audio-wave {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.12);
+}
+
+.btn-audio-wave:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.35);
+}
+
+.btn-audio-wave:active {
+  transform: scale(0.97);
+}
+
+.audio-wave-bars {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+}
+
+.audio-wave-bars .bar {
+  width: 3.5px;
+  height: 8px;
+  border-radius: 999px;
+  background: #60a5fa;
+  transition: height 0.15s ease;
+}
+
+.btn-audio-wave.active-playing .audio-wave-bars .b1 { animation: wavePulse 0.5s infinite alternate ease-in-out; }
+.btn-audio-wave.active-playing .audio-wave-bars .b2 { animation: wavePulse 0.5s infinite 0.1s alternate ease-in-out; }
+.btn-audio-wave.active-playing .audio-wave-bars .b3 { animation: wavePulse 0.5s infinite 0.2s alternate ease-in-out; }
+.btn-audio-wave.active-playing .audio-wave-bars .b4 { animation: wavePulse 0.5s infinite 0.3s alternate ease-in-out; }
+.btn-audio-wave.active-playing .audio-wave-bars .b5 { animation: wavePulse 0.5s infinite 0.4s alternate ease-in-out; }
+
+@keyframes wavePulse {
+  0% { height: 6px; }
+  100% { height: 20px; }
+}
+
+.audio-listen-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.audio-listen-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.audio-listen-sub {
+  font-size: 0.68rem;
+  opacity: 0.8;
+  line-height: 1.1;
+}
+
+/* ==========================================================================
+   MODAL DIALOGS (GEMINI KEY & SYNC EXPORT/IMPORT)
+   ========================================================================== */
+.modal-header-simple {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.modal-header-simple h3 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.btn-modal-close-x {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.btn-modal-close-x:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-desc-simple {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.key-input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.key-input-field {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding: 0 42px 0 12px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+body.light-theme .key-input-field {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.key-input-field:focus {
+  border-color: var(--accent-primary);
+}
+
+.btn-toggle-key-eye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+}
+
+.key-help-links {
+  margin-bottom: 14px;
+}
+
+.link-get-key {
+  font-size: 0.76rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.link-get-key:hover {
+  text-decoration: underline;
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.btn-modal-action {
+  flex: 1;
+  height: 42px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+}
+
+.btn-modal-action.btn-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.btn-modal-action.btn-save {
+  background: var(--accent-primary);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.35);
+}
+
+.sync-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.btn-sync-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: center;
+}
+
+body.light-theme .btn-sync-action {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.btn-sync-action:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+}
+
+.btn-sync-action .sync-icon {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.btn-sync-action .sync-title {
+  font-size: 0.74rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.btn-sync-action .sync-desc {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.import-paste-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.import-label {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.import-textarea {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 8px;
+  font-family: monospace;
+  font-size: 0.72rem;
+  resize: none;
+  box-sizing: border-box;
+}
+
+body.light-theme .import-textarea {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.btn-import-paste-submit {
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}

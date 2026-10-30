@@ -79,6 +79,9 @@
           </div>
         </header>
 
+        <!-- ==================== KHU VỰC 1: SÂN ĐẤU TỪ VỰNG MẶC ĐỊNH (VOCAB ARENA) ==================== -->
+        <div class="arena-view" id="vocab-arena-view">
+
         <!-- ==================== TẦNG 1: MONITORING ZONE (QUAN SÁT THỤ ĐỘNG) ==================== -->
         <section class="zone-header">
           <div class="stats-row">
@@ -111,6 +114,13 @@
                 <button class="grade-filter-pill-btn" id="btn-grade-filter" title="Chọn Khối Lớp / Band IELTS">
                   <span class="g-icon">🎓</span>
                   <span id="current-filter-pill-label">Lớp 6-12</span>
+                </button>
+                <button class="scanner-switch-btn" id="btn-open-scanner" title="Chuyển sang trang Quét Đề Thi Giấy bằng AI (Gemini Flash)">
+                  <span class="cam-icon">📸</span>
+                  <span class="cam-label">Đề thi</span>
+                </button>
+                <button class="icon-btn" id="btn-sync-open" title="Sao lưu / Khôi phục tiến độ học tập">
+                  <svg class="action-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </button>
                 <button class="icon-btn" id="btn-sound-toggle" title="Bật/Tắt Âm thanh">
                   <svg id="sound-icon-svg" class="action-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
@@ -167,6 +177,23 @@
               <!-- Dynamic Letter Boxes -->
             </div>
 
+            <!-- Trình phát âm thanh tương tác trực quan cho chế độ listening_choice -->
+            <div class="listening-player-container" id="listening-player-container" style="display: none;">
+              <button type="button" class="btn-audio-wave" id="btn-listening-play" title="Bấm để nghe lại phát âm">
+                <div class="audio-wave-bars">
+                  <span class="bar b1"></span>
+                  <span class="bar b2"></span>
+                  <span class="bar b3"></span>
+                  <span class="bar b4"></span>
+                  <span class="bar b5"></span>
+                </div>
+                <div class="audio-listen-meta">
+                  <span class="audio-listen-title">Phát Âm Bản Xứ (Native Audio)</span>
+                  <span class="audio-listen-sub">Chạm để nghe lại 🎧</span>
+                </div>
+              </button>
+            </div>
+
             <!-- Câu văn học thuật / Nghĩa tiếng Việt -->
             <h2 class="question-main-text" id="question-main-text">
               Loading question...
@@ -206,6 +233,88 @@
           </div>
 
         </section>
+        </div> <!-- End #vocab-arena-view -->
+
+        <!-- ==================== KHU VỰC 2: TRANG BIẾN ĐỀ THI GIẤY THÀNH GAME AI (RIÊNG BIỆT 100%) ==================== -->
+        <div class="arena-view hidden-view" id="scanner-arena-view">
+          
+          <!-- Scanner Header -->
+          <div class="scanner-header-bar">
+            <button type="button" class="btn-scanner-nav" id="btn-scanner-back">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Về Luyện Từ Vựng</span>
+            </button>
+            <div class="scanner-header-actions">
+              <button type="button" class="btn-key-pill" id="btn-scanner-key-config" title="Cấu hình Google Gemini Flash API Key">
+                <span class="key-dot" id="scanner-key-dot"></span>
+                <span>🔑 API Key</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Scanner Interactive Stage (Fits 1 screen without scrolling) -->
+          <div class="scanner-stage-container">
+            
+            <!-- Thẻ Hero Giới Thiệu -->
+            <div class="scanner-hero-card">
+              <div class="scanner-hero-glow"></div>
+              <div class="scanner-badge-row">
+                <span class="scanner-mode-tag">✨ AI GEMINI FLASH SCANNER</span>
+                <span class="scanner-batch-tag" id="scanner-batch-tag">10 CÂU / SET (TỐI ĐA 60)</span>
+              </div>
+              <h2 class="scanner-title">Biến Đề Thi Giấy Thành Game</h2>
+              <p class="scanner-desc">
+                Chụp ảnh đề thi tiếng Anh (THPT, IELTS, Đề thi học kỳ). AI tự phân tích cấu trúc, giữ nguyên câu hỏi trong đề và tạo ngay 10 câu đầu để chơi!
+              </p>
+            </div>
+
+            <!-- Cụm Nút Chụp & Tải Ảnh Đề Thi -->
+            <div class="scanner-actions-card">
+              <input type="file" id="camera-file-input" accept="image/*" capture="environment" style="display:none;">
+              <input type="file" id="gallery-file-input" accept="image/*" style="display:none;">
+
+              <div class="scanner-btn-grid">
+                <button type="button" class="btn-scan-primary" id="btn-snap-camera">
+                  <div class="scan-icon-wrap">📸</div>
+                  <div class="scan-btn-text">
+                    <span class="scan-btn-title">Chụp Ảnh Đề Thi</span>
+                    <span class="scan-btn-sub">Mở Camera chụp ngay</span>
+                  </div>
+                </button>
+
+                <button type="button" class="btn-scan-secondary" id="btn-snap-gallery">
+                  <div class="scan-icon-wrap">🖼️</div>
+                  <div class="scan-btn-text">
+                    <span class="scan-btn-title">Chọn Ảnh Từ Máy</span>
+                    <span class="scan-btn-sub">Tải ảnh đề có sẵn</span>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Hộp trạng thái AI Scanning Radar -->
+              <div class="scanner-status-box" id="scanner-status-box" style="display:none;">
+                <div class="radar-scan-line"></div>
+                <div class="scanner-status-spinner"></div>
+                <div class="scanner-status-info">
+                  <span class="status-main-text" id="scanner-status-main">Đang đọc đề thi...</span>
+                  <span class="status-sub-text" id="scanner-status-sub">Gemini Flash đang đọc câu hỏi & tạo 10 câu đầu tiên</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thư viện đề đã quét & Đề mẫu khởi động tức thì -->
+            <div class="scanned-exams-shelf">
+              <div class="shelf-header">
+                <span class="shelf-title">📑 ĐỀ THI ĐÃ SẴN SÀNG</span>
+                <span class="shelf-count" id="scanned-exams-count">1 Đề mẫu</span>
+              </div>
+              <div class="scanned-exams-list" id="scanned-exams-list">
+                <!-- Danh sách đề đã quét hoặc đề mẫu -->
+              </div>
+            </div>
+
+          </div>
+        </div> <!-- End #scanner-arena-view -->
 
         <!-- Ngăn Kéo Phản Hồi Tinh Gọn (Popup giải thích ngắn gọn, dễ hiểu - Bỏ Writing Task 2) -->
         <div class="feedback-drawer" id="feedback-drawer">
@@ -424,6 +533,70 @@
                 </div>
                 <span class="g-badge">41 câu</span>
               </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Nhập API Key Google Gemini Flash -->
+        <div class="modal-overlay" id="gemini-key-modal">
+          <div class="modal-card mini-modal-card">
+            <div class="modal-header-simple">
+              <h3>🔑 API Key Gemini Flash</h3>
+              <button type="button" class="btn-modal-close-x" id="btn-close-key-modal">✕</button>
+            </div>
+            <p class="modal-desc-simple">
+              Nhập API Key cá nhân của bạn để sử dụng mô hình Gemini Flash phân tích ảnh đề thi và tạo câu hỏi tự động.
+            </p>
+            <div class="key-input-wrapper">
+              <input type="password" id="input-gemini-key" class="key-input-field" placeholder="Dán API Key (AIzaSy...)" autocomplete="off">
+              <button type="button" class="btn-toggle-key-eye" id="btn-toggle-key-eye" title="Hiện / Ẩn key">👁️</button>
+            </div>
+            <div class="key-help-links">
+              <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="link-get-key">
+                👉 Lấy API Key miễn phí từ Google AI Studio (aistudio.google.com)
+              </a>
+            </div>
+            <div class="modal-actions-row">
+              <button type="button" class="btn-modal-action btn-cancel" id="btn-cancel-key">Đóng</button>
+              <button type="button" class="btn-modal-action btn-save" id="btn-save-key">Lưu & Kích Hoạt</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Sao Lưu & Đồng Bộ Tiến Độ (Export / Import) -->
+        <div class="modal-overlay" id="sync-modal-overlay">
+          <div class="modal-card mini-modal-card">
+            <div class="modal-header-simple">
+              <h3>⇄ Sao Lưu & Khôi Phục Tiến Độ</h3>
+              <button type="button" class="btn-modal-close-x" id="btn-close-sync-modal">✕</button>
+            </div>
+            <p class="modal-desc-simple">
+              Lưu trữ an toàn 100% dữ liệu (độ nhớ từ vựng, cấp độ thành thạo, chuỗi combo, điểm số & các đề thi đã quét) để tiếp tục học trên thiết bị khác.
+            </p>
+            
+            <div class="sync-actions-grid">
+              <button type="button" class="btn-sync-action export-btn" id="btn-export-file">
+                <span class="sync-icon">📥</span>
+                <span class="sync-title">Xuất File (.json)</span>
+                <span class="sync-desc">Tải file tiến độ về máy</span>
+              </button>
+              <button type="button" class="btn-sync-action export-copy-btn" id="btn-export-copy">
+                <span class="sync-icon">📋</span>
+                <span class="sync-title">Sao Chép Dữ Liệu</span>
+                <span class="sync-desc">Copy văn bản mã hóa</span>
+              </button>
+              <button type="button" class="btn-sync-action import-btn" id="btn-import-file-trigger">
+                <span class="sync-icon">📤</span>
+                <span class="sync-title">Nhập File (.json)</span>
+                <span class="sync-desc">Chọn file đã sao lưu</span>
+              </button>
+            </div>
+            <input type="file" id="import-file-input" accept=".json" style="display:none;">
+
+            <div class="import-paste-section">
+              <label for="textarea-import-json" class="import-label">Hoặc dán trực tiếp dữ liệu JSON vào đây:</label>
+              <textarea id="textarea-import-json" class="import-textarea" placeholder='{"app":"Danh Học IELTS",...}' rows="3"></textarea>
+              <button type="button" class="btn-import-paste-submit" id="btn-import-paste-submit">Khôi Phục Tiến Độ</button>
             </div>
           </div>
         </div>
